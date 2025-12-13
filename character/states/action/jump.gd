@@ -3,6 +3,7 @@ extends ActionState
 
 
 @export var jump_power: float
+@export var fall_threshold: float
 @export var air_physics: PhysicsState
 
 @export var variable_jump_factor: float = 1
@@ -24,7 +25,7 @@ func _startup_check() -> bool:
 ## the string returned is the name of the state to change to
 ## return self.name for no change!
 func _transition_check() -> String:
-	if character.velocity.y > 2 or character.physics is GroundPhysics:
+	if character.velocity.y > fall_threshold or character.physics is GroundPhysics:
 		return ""
 	return name
 

@@ -152,7 +152,8 @@ func get_gravity_sum() -> float:
 var inputs_list: Array = [
 	"left",
 	"right",
-	"jump"
+	"jump",
+	"ball"
 ]
 func get_input() -> Dictionary[String, Array]:
 	var new_input: Dictionary[String, Array] = {}

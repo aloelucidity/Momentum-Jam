@@ -23,10 +23,10 @@ func do_movement(delta: float, move_dir: int) -> void:
 	
 	var projected_speed: float = character.velocity.x + working_accel
 	if abs(projected_speed) > max_speed:
-		if abs(character.velocity.x) < max_speed:
-			working_accel = (max_speed * move_dir) - character.velocity.x
-		else:
-			working_accel = 0
+		working_accel = clamp(
+			(max_speed * move_dir) - character.velocity.x,
+			-accel * delta, accel * delta
+		)
 	
 	character.velocity.x += working_accel
 
