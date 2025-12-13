@@ -150,6 +150,8 @@ func get_gravity_sum() -> float:
 
 ### Input
 var inputs_list: Array = [
+	"up",
+	"down",
 	"left",
 	"right",
 	"jump",

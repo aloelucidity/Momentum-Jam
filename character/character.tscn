@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=20 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dodc7pappdgl2" path="res://character/classes/character_animator.gd" id="2_1l1n4"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://ba2r8ii35sujn" path="res://character/states/physics/ball.gd" id="4_tgjim"]
 [ext_resource type="Script" uid="uid://cr3ytgk6vs5q3" path="res://character/states/action/ride_ball.gd" id="4_wy5t8"]
 [ext_resource type="Script" uid="uid://by0bfc2agxghc" path="res://character/debug/property_watcher.gd" id="5_0rvpn"]
+[ext_resource type="Script" uid="uid://ccbgj2r3ghy1f" path="res://character/states/action/float.gd" id="5_dy06j"]
 [ext_resource type="Script" uid="uid://c7a8bmoye1aui" path="res://character/states/action/jump.gd" id="5_o6jyn"]
+[ext_resource type="Script" uid="uid://ddorebuj6vyp7" path="res://character/states/action/run_windup.gd" id="9_qkjfd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(16, 32)
@@ -131,10 +133,226 @@ tracks/0/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_dy06j"]
+resource_name = "ball_top"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ball:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(12, 4), Vector2(24, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-6, -36), Vector2(-12, -56)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -32), Vector2(-8, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_gx66j"]
+resource_name = "ball_side"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ball:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(4, 12), Vector2(24, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -20), Vector2(-8, -28)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -32), Vector2(16, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_qkjfd"]
+resource_name = "ball_side_bottom"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ball:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(24, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -6), Vector2(-8, -24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -32), Vector2(4, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_8brn5"]
+resource_name = "ball_side_top"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ball:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(24, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ball:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -32), Vector2(-8, -50)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(-8, -32), Vector2(4, -32)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dy06j"]
 _data = {
 &"RESET": SubResource("Animation_tgjim"),
 &"ball_bottom": SubResource("Animation_wy5t8"),
+&"ball_side": SubResource("Animation_gx66j"),
+&"ball_side_bottom": SubResource("Animation_qkjfd"),
+&"ball_side_top": SubResource("Animation_8brn5"),
+&"ball_top": SubResource("Animation_dy06j"),
 &"idle": SubResource("Animation_o6jyn")
 }
 
@@ -163,7 +381,7 @@ color = Color(0.5176471, 0, 0.20392157, 1)
 [node name="ColorRect" type="ColorRect" parent="Animator"]
 offset_left = -8.0
 offset_top = -32.0
-offset_right = 8.0
+offset_right = 7.999981
 
 [node name="PhysicsStates" type="Node" parent="."]
 unique_name_in_owner = true
@@ -181,17 +399,30 @@ metadata/_custom_type_script = "uid://bobthsffwufj0"
 [node name="RideBall" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("ball_physics")]
 script = ExtResource("4_wy5t8")
 ball_physics = NodePath("../../Ball")
+press_buffer = 0.1
 priority = 1
 metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
+[node name="FloatAction" type="Node" parent="PhysicsStates/Air"]
+script = ExtResource("5_dy06j")
+jump_power = 400.0
+gravity_subtract = 0.3
+float_time = 0.4
+subsequent_damp = 1.5
+variable_jump_factor = 0.63
+metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
+
 [node name="Ball" type="Node" parent="PhysicsStates"]
 script = ExtResource("4_tgjim")
-accel = 750.0
-max_speed = 350.0
-max_fall = 1500.0
-bounce_factor = 1.0
+min_bounce_vel = 200.0
+bounce_damp = 1.003
+base_launch_speed = 200.0
+launch_damp = 2.5
+direction_buffer = 0.07
+max_fall = 1000.0
+bounce_factor = 0.1
 ground_name = "Ground"
-animation = "ball_bottom"
+flip_restart = true
 metadata/_custom_type_script = "uid://bobthsffwufj0"
 
 [node name="Ground" type="Node" parent="PhysicsStates"]
@@ -211,7 +442,12 @@ air_physics = NodePath("../../Air")
 variable_jump_factor = 0.63
 snap_buffer = 0.1
 press_buffer = 0.2
+allow_priority_override = true
 metadata/_custom_type_script = "uid://c7a8bmoye1aui"
+
+[node name="RunWindup" type="Node" parent="PhysicsStates/Ground"]
+script = ExtResource("9_qkjfd")
+metadata/_custom_type_script = "uid://ddorebuj6vyp7"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
 offset_top = -64.0

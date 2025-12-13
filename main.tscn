@@ -10,6 +10,9 @@
 process_callback = 0
 script = ExtResource("2_h2yge")
 camera_follow = NodePath("../Player")
+camera_speed = 5.0
+zoom_out_threshold = 350.0
+zoom_out_damp = 1500.0
 max_velocity_offset = Vector2(1000, 600)
 
 [node name="Player" parent="." instance=ExtResource("2_1bvp3")]

@@ -7,6 +7,7 @@ extends Node2D
 
 var cur_anim: String
 var last_rotator: Rotator
+var last_dir: int
 
 
 func _update() -> void:
@@ -16,6 +17,7 @@ func _update() -> void:
 	var sprite_rot: float
 	var sprite_skew: float
 	var sprite_scale := Vector2.ONE
+	var flip_restart: bool
 	var animator: Animator
 	var rotator: Rotator
 	
@@ -27,6 +29,7 @@ func _update() -> void:
 		sprite_scale = character.action.sprite_scale
 		animator = character.action.animator
 		rotator = character.action.rotator
+		flip_restart = character.action.flip_restart
 	
 	if is_instance_valid(character.physics):
 		if new_anim == "":
@@ -37,6 +40,7 @@ func _update() -> void:
 		sprite_skew += character.physics.sprite_skew
 		sprite_scale *= character.physics.sprite_scale
 		if not is_instance_valid(character.action):
+			flip_restart = character.physics.flip_restart
 			animator = character.physics.animator
 			rotator = character.physics.rotator
 	
@@ -53,7 +57,7 @@ func _update() -> void:
 	if new_anim == "":
 		if animation_player.is_playing(): 
 			animation_player.play("RESET")
-	elif cur_anim != new_anim:
+	elif cur_anim != new_anim or (character.facing_dir != last_dir and flip_restart):
 		cur_anim = new_anim
 		animation_player.play("RESET")
 		animation_player.advance(0)
@@ -66,3 +70,4 @@ func _update() -> void:
 		animation_player.speed_scale = 1
 	
 	last_rotator = rotator
+	last_dir = character.facing_dir
