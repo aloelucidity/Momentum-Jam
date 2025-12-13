@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqwlfcfa1tbol"]
+
+[ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://dodc7pappdgl2" path="res://character/classes/character_animator.gd" id="2_1l1n4"]
+[ext_resource type="Script" uid="uid://bobthsffwufj0" path="res://character/states/physics/air.gd" id="3_hx151"]
+[ext_resource type="Script" uid="uid://djxg21q4acmle" path="res://character/states/physics/ground.gd" id="4_0rvpn"]
+[ext_resource type="Script" uid="uid://by0bfc2agxghc" path="res://character/debug/property_watcher.gd" id="5_0rvpn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(16, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_oul6g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -32.0
+offset_right = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Animator" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_1l1n4")
+metadata/_custom_type_script = "uid://dodc7pappdgl2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animator"]
+
+[node name="PhysicsStates" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Air" type="Node" parent="PhysicsStates"]
+script = ExtResource("3_hx151")
+ground_name = "Ground"
+metadata/_custom_type_script = "uid://bobthsffwufj0"
+
+[node name="Ground" type="Node" parent="PhysicsStates"]
+script = ExtResource("4_0rvpn")
+accel = 2000.0
+max_speed = 500.0
+friction_linear = 500.0
+friction_decay = 0.5
+air_name = "Air"
+metadata/_custom_type_script = "uid://djxg21q4acmle"
+
+[node name="DebugLabels" type="VBoxContainer" parent="."]
+anchors_preset = -1
+offset_top = -64.0
+offset_right = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="Physics" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+layout_mode = 2
+script = ExtResource("5_0rvpn")
+object_to_watch = NodePath("../..")
+property_to_watch = "physics"
+
+[node name="Velocity" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+layout_mode = 2
+script = ExtResource("5_0rvpn")
+object_to_watch = NodePath("../..")
+property_to_watch = "velocity"

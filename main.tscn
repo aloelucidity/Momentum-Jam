@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cobk8lnewpxif"]
+
+[ext_resource type="Script" uid="uid://dlwr37a2j3bdo" path="res://polygon_2d.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dqwlfcfa1tbol" path="res://character/character.tscn" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://bxwwlyk64urqt" path="res://character_camera.gd" id="2_h2yge"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("camera_follow")]
+process_callback = 0
+script = ExtResource("2_h2yge")
+camera_follow = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("2_1bvp3")]
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
+polygon = PackedVector2Array(150, 220, -359, 212, -787, 110, -1354, 80, -1436, 306, -1045, 950, 9, 907, 1422, 914, 1664, 546, 1575, -22, 1372, -335, 1037, -144, 879, 141, 474, 96, 245, 207)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("1_ig7tw")
+collision_polygon = NodePath("../CollisionPolygon2D")
