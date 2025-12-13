@@ -10,13 +10,14 @@
 process_callback = 0
 script = ExtResource("2_h2yge")
 camera_follow = NodePath("../Player")
+max_velocity_offset = Vector2(1000, 600)
 
 [node name="Player" parent="." instance=ExtResource("2_1bvp3")]
 
 [node name="Terrain" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain"]
-polygon = PackedVector2Array(150, 220, -359, 212, -787, 110, -1354, 80, -1436, 306, -1045, 950, 9, 907, 1422, 914, 1664, 546, 1575, -22, 1372, -335, 1037, -144, 879, 141, 474, 96, 245, 207)
+polygon = PackedVector2Array(150, 220, -359, 212, -787, 110, -985.1532, 99.515686, -1005, -226, -1167, -222, -1192.5067, 88.54462, -1354, 80, -1436, 306, -1045, 950, 9, 907, 1422, 914, 1664, 546, 1575, -22, 1372, -335, 1037, -144, 879, 141, 474, 96, 245, 207)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain" node_paths=PackedStringArray("collision_polygon")]
 script = ExtResource("1_ig7tw")

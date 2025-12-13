@@ -5,9 +5,12 @@ extends Camera2D
 @export var camera_follow: Node2D
 @export var camera_speed: float = 3
 
+@export var velocity_offset_damp: float = 2
+@export var max_velocity_offset: Vector2
+
 @export var air_offset: float = 0
-@export var ground_offset: float = 200
-@export var offset_speed: float = 4
+@export var ground_offset: float = 100
+@export var offset_speed: float = 2
 
 var camera_offset: Vector2
 var camera_velocity: Vector2
@@ -20,7 +23,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var center_distance: Vector2 = global_position - camera_follow.global_position
-	var target_offset: Vector2
+	var target_offset := Vector2.ZERO
 	
 	if camera_follow is Character:
 		var character: Character = camera_follow
@@ -28,6 +31,10 @@ func _physics_process(delta: float) -> void:
 			target_offset.y = -air_offset
 		else:
 			target_offset.y = -ground_offset
+		
+		target_offset += character.velocity / velocity_offset_damp
+	
+	target_offset = target_offset.clamp(-max_velocity_offset, max_velocity_offset)
 	
 	## alpha is done this way to preserve framerate independence
 	var alpha: float = 1.0 - exp(-offset_speed * delta)

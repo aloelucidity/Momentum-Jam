@@ -2,25 +2,22 @@ class_name JumpAction
 extends ActionState
 
 
-@export var jump_speeds: Array[float]
-@export var jump_sounds: Array[AudioStreamPlayer]
-@export var triple_jump_threshold: float
-@export var triple_jump_action: ActionState
+@export var jump_power: float
 @export var air_physics: PhysicsState
-@export var max_jumps: int
-@export var check_grounded: bool
 
-var jump_sequence: int
-var reset_frames: int
-var pressed_buffer: int
-var snap_buffer: int
+@export var variable_jump_factor: float = 1
+var jump_released: bool
+
+@export var snap_buffer: float
+@export var press_buffer: float
+var snap_timer: float
+var press_timer: float
 
 
 ## runs this check every frame while inactive and 
 ## in the character's current pool of states
 func _startup_check() -> bool:
-	var ground_check: bool = not check_grounded or character.on_ground
-	return character.input["jump"][0] and pressed_buffer > 0 and character.velocity.y >= -3 and ground_check
+	return character.input["jump"][0] and press_timer > 0 and character.on_ground
 
 
 ## runs this check every frame while active
@@ -36,44 +33,31 @@ func _transition_check() -> String:
 func _on_enter() -> void:
 	character.on_ground = false
 	enable_snap = false
-	snap_buffer = 1
+	jump_released = false
 	
-	## triple jump
-	if jump_sequence >= max_jumps - 1 and abs(character.velocity.x) > triple_jump_threshold:
-		character.set_state("action", triple_jump_action)
-		reset_frames = 0
-	## single and double jump
-	elif jump_sequence < max_jumps - 1:
-		character.set_state("physics", air_physics)
-		character.velocity.y = min(-jump_speeds[jump_sequence], character.velocity.y)
-		jump_sounds[jump_sequence].play()
+	snap_timer = snap_buffer
+	press_timer = 0
 	
-	jump_sequence += 1
-	reset_frames = 9
-	if jump_sequence >= max_jumps:
-		jump_sequence = 0
-		reset_frames = 0
+	character.set_state("physics", air_physics)
+	character.velocity.y = min(-jump_power, character.velocity.y)
 
 
 ## runs every frame while active
-func _update() -> void:
-	## the original code disables ground snapping only on the frame that the jump key is pressed
-	if snap_buffer > 0:
-		snap_buffer -= 1
+func _update(delta: float) -> void:
+	if snap_timer > 0:
+		snap_timer -= delta
 	else:
 		enable_snap = true
+	
+	if not jump_released and not character.input["jump"][0]:
+		jump_released = true
+		character.velocity.y *= variable_jump_factor
 
 
 ## always runs no matter what, before any of the other functions
-func _general_update() -> void:
+func _general_update(delta: float) -> void:
 	var jump_just_pressed: bool = character.input["jump"][1]
 	if jump_just_pressed:
-		pressed_buffer = 7
+		press_timer = press_buffer
 	else:
-		pressed_buffer -= 1
-	
-	if character.on_ground:
-		reset_frames -= 1
-		reset_frames = max(reset_frames, 0)
-		if reset_frames == 0:
-			jump_sequence = 0
+		press_timer -= delta

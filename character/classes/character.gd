@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 ### Basics
+@onready var initial_snap: float = floor_snap_length
 var input: Dictionary
 var gravity: float
 var facing_dir: int = 1 : 
@@ -15,7 +16,6 @@ var on_ground: bool
 ### Nodes
 @onready var physics_states: Node = %PhysicsStates
 @onready var animator: CharacterAnimator = %Animator
-
 
 ### States
 var physics: PhysicsState
@@ -125,6 +125,13 @@ func _physics_process(delta: float) -> void:
 		if override_frames <= 0: container_override = null
 	
 	update_states(delta, "action", container)
+	
+	var enable_snap: bool = true
+	if is_instance_valid(physics):
+		enable_snap = enable_snap and physics.enable_snap
+	if is_instance_valid(action):
+		enable_snap = enable_snap and action.enable_snap
+	floor_snap_length = initial_snap if enable_snap else 0.0
 	
 	move_and_slide()
 	on_ground = is_on_floor()

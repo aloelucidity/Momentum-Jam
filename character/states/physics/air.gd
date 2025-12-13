@@ -6,6 +6,15 @@ extends PhysicsState
 @export var accel: float
 @export var max_speed: float
 
+@export_group("Gravity")
+@export var max_fall: float
+
+@export_group("Misc")
+@export var bounce_factor: float = 0
+var did_bounce: bool
+
+var last_velocity: Vector2
+
 
 func do_movement(delta: float, move_dir: int) -> void:
 	var working_accel: float = 0.0
@@ -16,8 +25,10 @@ func do_movement(delta: float, move_dir: int) -> void:
 	
 	var projected_speed: float = character.velocity.x + working_accel
 	if abs(projected_speed) > max_speed:
-		working_accel = (max_speed * move_dir) - character.velocity.x
-		if sign(working_accel) != sign(move_dir): working_accel = 0
+		if abs(character.velocity.x) < max_speed:
+			working_accel = (max_speed * move_dir) - character.velocity.x
+		else:
+			working_accel = 0
 	
 	character.velocity.x += working_accel
 
@@ -46,12 +57,26 @@ func _transition_check() -> String:
 func _update(delta: float) -> void:
 	## Gravity
 	var total_gravity: float = character.get_gravity_sum()
-	character.velocity.y += total_gravity * delta
+	character.velocity.y = move_toward(
+		character.velocity.y, 
+		max_fall, 
+		total_gravity * delta
+	)
 	
 	var move_dir: int = 0
 	if character.input["left"][0]: move_dir -= 1 
 	if character.input["right"][0]: move_dir += 1
 	do_movement(delta, move_dir)
 	
+	## bounce off walls
+	if character.is_on_wall():
+		if not did_bounce:
+			character.velocity.x = -last_velocity.x * bounce_factor
+		did_bounce = true
+	else:
+		did_bounce = false
+	
 	## run base function
 	super(delta)
+	
+	last_velocity = character.velocity
