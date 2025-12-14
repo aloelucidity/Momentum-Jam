@@ -7,6 +7,9 @@ extends GroundPhysics
 var start_direction: int
 var stop_timer: float
 
+@export_group("Gravity")
+@export var max_fall: float
+
 
 ## runs this check every frame while active
 ## the string returned is the name of the state to change to
@@ -37,9 +40,27 @@ func _on_enter() -> void:
 
 
 func _update(delta: float) -> void:
+	## Gravity (required because the player can be in this state and not grounded)
+	if not character.on_ground:
+		var total_gravity: float = character.get_gravity_sum()
+		character.velocity.y = move_toward(
+			character.velocity.y, 
+			max_fall, 
+			total_gravity * delta
+		)
+	else:
+		character.velocity.y = min(0, character.velocity.y)
+	
 	if ground_check() != name:
 		stop_timer -= delta
 	else:
 		stop_timer = stop_buffer
 	
-	super(delta)
+	var move_dir: int = 0
+	if character.input["left"][0]: move_dir -= 1 
+	if character.input["right"][0]: move_dir += 1
+	
+	if move_dir == 0:
+		do_friction(delta)
+	else:
+		do_movement(delta, move_dir)

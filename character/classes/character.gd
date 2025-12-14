@@ -25,7 +25,7 @@ var action: ActionState
 # to the air state, it'll set an override for a few frames so you
 # can still do ground actions even if you're slightly late
 var container_override: PhysicsState
-var override_frames: int
+var override_time: float
 
 
 ### Signals
@@ -119,10 +119,10 @@ func _physics_process(delta: float) -> void:
 	update_states(delta, "physics", physics_states)
 	
 	var container: PhysicsState = physics
-	if override_frames > 0:
-		override_frames -= 1
+	if override_time > 0:
+		override_time -= delta
 		container = container_override
-		if override_frames <= 0: container_override = null
+		if override_time <= 0: container_override = null
 	
 	update_states(delta, "action", container)
 	

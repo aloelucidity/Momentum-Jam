@@ -18,7 +18,7 @@ var press_timer: float
 ## runs this check every frame while inactive and 
 ## in the character's current pool of states
 func _startup_check() -> bool:
-	return character.input["jump"][0] and press_timer > 0 and character.on_ground
+	return character.input["jump"][0] and press_timer > 0
 
 
 ## runs this check every frame while active
@@ -40,6 +40,8 @@ func _on_enter() -> void:
 	press_timer = 0
 	
 	character.set_state("physics", air_physics)
+	character.override_time = 0
+	character.container_override = null
 	character.velocity.y = min(-jump_power, character.velocity.y)
 
 

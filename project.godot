@@ -87,6 +87,7 @@ ball={
 
 [physics]
 
+common/physics_ticks_per_second=30
 2d/default_gravity=1400.0
 common/physics_interpolation=true
 

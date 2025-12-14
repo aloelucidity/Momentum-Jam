@@ -12,6 +12,7 @@ extends PhysicsState
 @export_group("Misc")
 @export var air_name: String
 @export var set_facing: bool = true
+@export var coyote_time: float
 
 
 func do_movement(delta: float, move_dir: int) -> void:
@@ -50,6 +51,8 @@ func _startup_check() -> bool:
 ## return self.name for no change!
 func _transition_check() -> String:
 	if not character.on_ground:
+		character.container_override = self
+		character.override_time = coyote_time
 		return air_name
 	return name
 
