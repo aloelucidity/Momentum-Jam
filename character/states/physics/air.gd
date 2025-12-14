@@ -8,6 +8,8 @@ extends PhysicsState
 
 @export_group("Gravity")
 @export var max_fall: float
+@export var is_buoyant: bool
+@export var water_check: Area2D
 
 @export_group("Misc")
 @export var bounce_factor: float = 0
@@ -56,10 +58,14 @@ func _transition_check() -> String:
 ## runs every frame while active
 func _update(delta: float) -> void:
 	## Gravity
+	var target_velocity: float = max_fall
+	if is_buoyant and not water_check.get_overlapping_bodies().is_empty():
+		target_velocity = -target_velocity
+	
 	var total_gravity: float = character.get_gravity_sum()
 	character.velocity.y = move_toward(
 		character.velocity.y, 
-		max_fall, 
+		target_velocity, 
 		total_gravity * delta
 	)
 	

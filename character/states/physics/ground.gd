@@ -59,8 +59,6 @@ func _transition_check() -> String:
 
 ## runs every frame while active
 func _update(delta: float) -> void:
-	character.velocity.y = min(0, character.velocity.y)
-	
 	var move_dir: int = 0
 	if character.input["left"][0]: move_dir -= 1 
 	if character.input["right"][0]: move_dir += 1

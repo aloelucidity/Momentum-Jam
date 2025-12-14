@@ -12,6 +12,7 @@ var launch_speed: float
 var can_launch: bool
 
 @export var direction_buffer: float
+@export var rot_speed: float = 1
 var buffer_vector: Vector2
 
 var landed: bool
@@ -72,14 +73,11 @@ func _update(delta: float) -> void:
 	if input_direction.y == 0:
 		buffer_vector.y = move_toward(buffer_vector.y, 0, delta)
 	
-	var prefix: String = "ball" if ball_direction.x == 0 else "ball_side"
-	var suffix: String = ""
-	
-	if ball_direction.y != 0:
-		suffix = "_top" if ball_direction.y == 1 else "_bottom"
-	
-	if prefix + suffix != "ball":
-		animation = prefix + suffix
+	## alpha is done this way to preserve framerate independence
+	var alpha: float = 1.0 - exp(-rot_speed * delta)
+	var new_rot: float = sprite_rot
+	new_rot = lerp_angle(new_rot, (ball_direction.angle() + PI/2) * character.facing_dir, alpha)
+	sprite_rot = new_rot
 	
 	for index: int in character.get_slide_collision_count():
 		var collision: KinematicCollision2D = character.get_slide_collision(index)

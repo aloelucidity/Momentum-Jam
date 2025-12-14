@@ -21,6 +21,10 @@ var on_ground: bool
 var physics: PhysicsState
 var action: ActionState
 
+
+@export var default_collision: CollisionShape2D
+var collision_override: CollisionShape2D
+
 # the below is used for coyote time; when the ground state transitions 
 # to the air state, it'll set an override for a few frames so you
 # can still do ground actions even if you're slightly late
@@ -126,11 +130,24 @@ func _physics_process(delta: float) -> void:
 	
 	update_states(delta, "action", container)
 	
+	var last_override = collision_override
+	collision_override = null
+	
 	var enable_snap: bool = true
 	if is_instance_valid(physics):
 		enable_snap = enable_snap and physics.enable_snap
+		collision_override = physics.shape_override
 	if is_instance_valid(action):
 		enable_snap = enable_snap and action.enable_snap
+		collision_override = physics.shape_override
+	if is_instance_valid(last_override) and last_override != collision_override:
+		last_override.disabled = true
+	
+	default_collision.disabled = false
+	if is_instance_valid(collision_override):
+		default_collision.disabled = true
+		collision_override.disabled = false
+	
 	floor_snap_length = initial_snap if enable_snap else 0.0
 	
 	move_and_slide()

@@ -48,19 +48,10 @@ func _update(delta: float) -> void:
 			max_fall, 
 			total_gravity * delta
 		)
-	else:
-		character.velocity.y = min(0, character.velocity.y)
 	
 	if ground_check() != name:
 		stop_timer -= delta
 	else:
 		stop_timer = stop_buffer
 	
-	var move_dir: int = 0
-	if character.input["left"][0]: move_dir -= 1 
-	if character.input["right"][0]: move_dir += 1
-	
-	if move_dir == 0:
-		do_friction(delta)
-	else:
-		do_movement(delta, move_dir)
+	super(delta)

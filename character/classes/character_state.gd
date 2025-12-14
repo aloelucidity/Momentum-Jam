@@ -24,6 +24,7 @@ extends Node
 
 @export_group("Collision")
 @export var enable_snap: bool = true ## floor snapping
+@export var shape_override: CollisionShape2D
 
 
 var character: Character

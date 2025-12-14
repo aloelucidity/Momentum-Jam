@@ -63,6 +63,10 @@ func _update() -> void:
 		animation_player.advance(0)
 		animation_player.play(new_anim)
 		animation_player.advance(0)
+		
+		for child in get_children():
+			child.reset_physics_interpolation()
+		
 	
 	if is_instance_valid(animator):
 		animator._update()

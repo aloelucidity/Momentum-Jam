@@ -48,7 +48,8 @@ func _update(delta: float) -> void:
 	if character.input["right"][0]: input_dir += 1
 	
 	if input_dir == run_direction:
-		character.velocity.x = start_speed * run_direction
+		if character.velocity.x * run_direction < start_speed:
+			character.velocity.x = start_speed * run_direction
 		character.set_state("physics", run_physics)
 		windup_timer = 0
 
