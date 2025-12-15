@@ -454,6 +454,7 @@ press_buffer = 0.2
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
+visible = false
 offset_top = -64.0
 offset_right = 1.0
 offset_bottom = -40.0
