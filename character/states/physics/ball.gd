@@ -13,6 +13,7 @@ var can_launch: bool
 
 @export var direction_buffer: float
 @export var rot_speed: float = 1
+@export var sprite: AnimatedSprite2D
 var buffer_vector: Vector2
 
 var landed: bool
@@ -44,10 +45,14 @@ func _transition_check() -> String:
 ## runs once when this state begins being active
 func _on_enter() -> void:
 	landed = false
+	
+	calc_inputs()
+	sprite_rot = ball_direction.angle() + PI/2
+	await get_tree().process_frame
+	sprite.flip_v = wrapf(sprite_rot, -PI, PI) > 0
 
 
-## runs every frame while active
-func _update(delta: float) -> void:
+func calc_inputs() -> Vector2:
 	var input_direction := Vector2.ZERO
 	if character.input["left"][0]: input_direction.x -= 1
 	if character.input["right"][0]: input_direction.x += 1
@@ -74,6 +79,12 @@ func _update(delta: float) -> void:
 			buffer_vector.y = input_direction.y * working_buffer
 		ball_direction = buffer_vector.sign()
 	
+	return input_direction
+
+
+## runs every frame while active
+func _update(delta: float) -> void:
+	var input_direction: Vector2 = calc_inputs()
 	if input_direction.x == 0:
 		buffer_vector.x = move_toward(buffer_vector.x, 0, delta)
 	if input_direction.y == 0:
@@ -81,9 +92,8 @@ func _update(delta: float) -> void:
 	
 	## alpha is done this way to preserve framerate independence
 	var alpha: float = 1.0 - exp(-rot_speed * delta)
-	var new_rot: float = sprite_rot
-	new_rot = lerp_angle(new_rot, (ball_direction.angle() + PI/2) * character.facing_dir, alpha)
-	sprite_rot = new_rot
+	sprite_rot = lerp_angle(sprite_rot, ball_direction.angle() + PI/2, alpha)
+	sprite.flip_v = wrapf(sprite_rot, -PI, PI) > 0
 	
 	for index: int in character.get_slide_collision_count():
 		var collision: KinematicCollision2D = character.get_slide_collision(index)

@@ -14,11 +14,11 @@ extends Node
 
 @export_group("Animation Info")
 @export var animation: String
-@export var flip_restart: bool ## restart animation when flipping
 @export var sprite_offset: Vector2i
 @export_range(-360, 360, 0.1, "radians_as_degrees") var sprite_rot: float
 @export_range(-89.9, 89.9, 0.1, "radians_as_degrees") var sprite_skew: float
 @export var sprite_scale := Vector2.ONE
+@export var do_flip_scale: bool = true
 @export var animator: Animator
 @export var rotator: Rotator
 

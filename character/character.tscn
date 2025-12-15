@@ -342,6 +342,7 @@ script = ExtResource("4_wy5t8")
 ball_physics = NodePath("../../Ball")
 press_buffer = 0.1
 priority = 1
+do_flip_scale = false
 metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
 [node name="Float" type="Node" parent="PhysicsStates/Air"]
@@ -353,7 +354,7 @@ subsequent_damp = 1.5
 variable_jump_factor = 0.63
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
-[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("water_check", "shape_override")]
+[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("sprite", "water_check", "shape_override")]
 script = ExtResource("4_tgjim")
 min_bounce_vel = 200.0
 bounce_damp = 1.003
@@ -361,15 +362,18 @@ base_launch_speed = 200.0
 launch_damp = 2.5
 direction_buffer = 0.07
 rot_speed = 12.0
+sprite = NodePath("../../Animator/Character")
 max_fall = 750.0
 is_buoyant = true
 float_factor = 0.5
 water_check = NodePath("../../WaterCheck")
 bounce_factor = 0.1
 ground_name = "Ground"
+set_facing = false
 priority = 1
 animation = "ball"
 sprite_offset = Vector2i(0, -12)
+do_flip_scale = false
 shape_override = NodePath("../../BounceShape")
 metadata/_custom_type_script = "uid://bobthsffwufj0"
 

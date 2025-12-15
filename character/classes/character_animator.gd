@@ -17,7 +17,7 @@ func _update() -> void:
 	var sprite_rot: float
 	var sprite_skew: float
 	var sprite_scale := Vector2.ONE
-	var flip_restart: bool
+	var do_flip_scale: bool = true
 	var animator: Animator
 	var rotator: Rotator
 	
@@ -27,9 +27,9 @@ func _update() -> void:
 		sprite_rot = character.action.sprite_rot
 		sprite_skew = character.action.sprite_skew
 		sprite_scale = character.action.sprite_scale
+		do_flip_scale = character.action.do_flip_scale
 		animator = character.action.animator
 		rotator = character.action.rotator
-		flip_restart = character.action.flip_restart
 	
 	if is_instance_valid(character.physics):
 		if new_anim == "":
@@ -40,14 +40,15 @@ func _update() -> void:
 		sprite_skew += character.physics.sprite_skew
 		sprite_scale *= character.physics.sprite_scale
 		if not is_instance_valid(character.action):
-			flip_restart = character.physics.flip_restart
+			do_flip_scale = character.physics.do_flip_scale
 			animator = character.physics.animator
 			rotator = character.physics.rotator
 	
+	var flip_factor: float = character.facing_dir if do_flip_scale else 1
 	position = sprite_offset
-	rotation = sprite_rot * character.facing_dir
+	rotation = sprite_rot * flip_factor
 	skew = sprite_skew
-	scale = sprite_scale * Vector2(character.facing_dir, 1)
+	scale = sprite_scale * Vector2(flip_factor, 1)
 	
 	if is_instance_valid(rotator):
 		if rotator != last_rotator:
@@ -61,7 +62,7 @@ func _update() -> void:
 			reset_physics_interpolation()
 			for child in get_children():
 				child.reset_physics_interpolation()
-	elif cur_anim != new_anim or (character.facing_dir != last_dir and flip_restart):
+	elif cur_anim != new_anim:
 		cur_anim = new_anim
 		animation_player.play("RESET")
 		animation_player.advance(0)
