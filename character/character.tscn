@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=27 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dodc7pappdgl2" path="res://character/classes/character_animator.gd" id="2_1l1n4"]
@@ -14,12 +14,17 @@
 [ext_resource type="Script" uid="uid://ddorebuj6vyp7" path="res://character/states/action/run_windup.gd" id="9_qkjfd"]
 [ext_resource type="Script" uid="uid://ccpx31cqeve4t" path="res://character/states/physics/run.gd" id="10_gx66j"]
 [ext_resource type="Script" uid="uid://64e26a6bvbu7" path="res://character/classes/state_link.gd" id="11_8brn5"]
+[ext_resource type="Script" uid="uid://d0kxrujyqivry" path="res://character/states/physics/water.gd" id="14_hq3og"]
+[ext_resource type="Script" uid="uid://rgxdfuawxo3h" path="res://character/states/action/swim.gd" id="15_orckd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(16, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orckd"]
 radius = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orckd"]
+size = Vector2(16, 20)
 
 [sub_resource type="Animation" id="Animation_tgjim"]
 length = 0.001
@@ -120,33 +125,6 @@ tracks/7/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_o6jyn"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Ball:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Character:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle"]
-}
-
 [sub_resource type="Animation" id="Animation_wy5t8"]
 resource_name = "ball"
 length = 0.2
@@ -236,6 +214,33 @@ tracks/6/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_o6jyn"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dy06j"]
 _data = {
 &"RESET": SubResource("Animation_tgjim"),
@@ -290,8 +295,8 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCheck"]
-position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_0xm2m")
+position = Vector2(0, -22)
+shape = SubResource("RectangleShape2D_orckd")
 
 [node name="Animator" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -358,9 +363,11 @@ direction_buffer = 0.07
 rot_speed = 12.0
 max_fall = 750.0
 is_buoyant = true
+float_factor = 0.5
 water_check = NodePath("../../WaterCheck")
 bounce_factor = 0.1
 ground_name = "Ground"
+priority = 1
 animation = "ball"
 sprite_offset = Vector2i(0, -12)
 shape_override = NodePath("../../BounceShape")
@@ -413,6 +420,34 @@ metadata/_custom_type_script = "uid://djxg21q4acmle"
 script = ExtResource("11_8brn5")
 link_to = NodePath("../../Ground/Jump")
 metadata/_custom_type_script = "uid://64e26a6bvbu7"
+
+[node name="Water" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("water_check")]
+script = ExtResource("14_hq3og")
+accel = 500.0
+max_speed = 300.0
+friction_decay = 0.1
+water_check = NodePath("../../WaterCheck")
+enter_factor = 0.5
+exit_factor = 1.5
+priority = 1
+metadata/_custom_type_script = "uid://d0kxrujyqivry"
+
+[node name="BallLink" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("link_to")]
+script = ExtResource("11_8brn5")
+link_to = NodePath("../../Air/RideBall")
+metadata/_custom_type_script = "uid://64e26a6bvbu7"
+
+[node name="Swim" type="Node" parent="PhysicsStates/Water"]
+script = ExtResource("15_orckd")
+swim_power = 150.0
+perfect_swim_power = 300.0
+swim_speed = 800.0
+swim_time = 0.3
+control_regain_window = 0.1
+perfect_swim_interval = 0.5
+perfect_swim_window = 0.15
+press_buffer = 0.2
+metadata/_custom_type_script = "uid://rgxdfuawxo3h"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
 offset_top = -64.0

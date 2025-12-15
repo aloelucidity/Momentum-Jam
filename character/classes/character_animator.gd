@@ -57,6 +57,10 @@ func _update() -> void:
 	if new_anim == "":
 		if animation_player.is_playing(): 
 			animation_player.play("RESET")
+			
+			reset_physics_interpolation()
+			for child in get_children():
+				child.reset_physics_interpolation()
 	elif cur_anim != new_anim or (character.facing_dir != last_dir and flip_restart):
 		cur_anim = new_anim
 		animation_player.play("RESET")
@@ -64,6 +68,7 @@ func _update() -> void:
 		animation_player.play(new_anim)
 		animation_player.advance(0)
 		
+		reset_physics_interpolation()
 		for child in get_children():
 			child.reset_physics_interpolation()
 		
