@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=28 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dodc7pappdgl2" path="res://character/classes/character_animator.gd" id="2_1l1n4"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://64e26a6bvbu7" path="res://character/classes/state_link.gd" id="11_8brn5"]
 [ext_resource type="Script" uid="uid://d0kxrujyqivry" path="res://character/states/physics/water.gd" id="14_hq3og"]
 [ext_resource type="Script" uid="uid://rgxdfuawxo3h" path="res://character/states/action/swim.gd" id="15_orckd"]
+[ext_resource type="Script" uid="uid://b84f6plg0kbok" path="res://character/states/physics/collect.gd" id="16_1dqym"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(16, 32)
@@ -276,7 +277,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("default_collision")]
-collision_layer = 0
+collision_layer = 4
 floor_snap_length = 8.0
 script = ExtResource("1_oul6g")
 default_collision = NodePath("RegularShape")
@@ -452,6 +453,17 @@ perfect_swim_interval = 0.5
 perfect_swim_window = 0.15
 press_buffer = 0.2
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"
+
+[node name="Collect" type="Node" parent="PhysicsStates"]
+unique_name_in_owner = true
+script = ExtResource("16_1dqym")
+ground_name = "Ground"
+animate_time = 3.0
+x_correct_speed = 200.0
+max_fall = 750.0
+priority = 2
+animation = "idle"
+metadata/_custom_type_script = "uid://b84f6plg0kbok"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
 visible = false

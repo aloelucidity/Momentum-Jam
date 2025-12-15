@@ -21,7 +21,6 @@ var on_ground: bool
 var physics: PhysicsState
 var action: ActionState
 
-
 @export var default_collision: CollisionShape2D
 var collision_override: CollisionShape2D
 
@@ -34,6 +33,8 @@ var override_time: float
 
 ### Signals
 signal direction_changed(new_direction: int)
+@warning_ignore("unused_signal")
+signal start_collect_cutscene
 
 
 func set_state(type: String, state: CharacterState) -> void:

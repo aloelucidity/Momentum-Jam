@@ -92,6 +92,12 @@ ball={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="terrain"
+2d_physics/layer_2="water"
+2d_physics/layer_3="player"
+
 [physics]
 
 common/physics_ticks_per_second=30

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg1xca6iswg5y"]
+
+[ext_resource type="Script" uid="uid://cvnlowip10k3n" path="res://level/objects/kalei/kalei.gd" id="1_cejkl"]
+[ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://misc/kalei.gdshader" id="1_gwlkb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec8w2"]
+shader = ExtResource("1_gwlkb")
+shader_parameter/influence = 1.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbniv"]
+radius = 24.0
+
+[node name="Kalei" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_cejkl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ec8w2")
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.32, 0.32, 0.32, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gbniv")
+
+[connection signal="body_entered" from="." to="." method="body_entered"]

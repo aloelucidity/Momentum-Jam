@@ -2,6 +2,8 @@ class_name CharacterCamera
 extends Camera2D
 
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 @export var character: Character
 @export var camera_speed: float = 3
 
@@ -18,8 +20,16 @@ extends Camera2D
 @export var ground_offset: float = 100
 @export var offset_speed: float = 2
 
+@export var base_zoom := Vector2.ONE
+@export var animated_zoom: float = 1
+
 var camera_offset: Vector2
 var camera_velocity: Vector2
+
+
+func _ready() -> void:
+	character.connect("start_collect_cutscene", 
+		animation_player.play.bind("collect"))
 
 
 func _physics_process(delta: float) -> void:
@@ -37,11 +47,12 @@ func _physics_process(delta: float) -> void:
 	var final_zoom: float = clamp(1 - zoom_subtract, min_zoom, max_zoom)
 	
 	var zoom_alpha: float = 1.0 - exp(-zoom_out_speed * delta)
-	zoom = lerp(zoom, Vector2(final_zoom, final_zoom), zoom_alpha)
-
+	base_zoom = lerp(base_zoom, Vector2(final_zoom, final_zoom), zoom_alpha)
+	zoom = base_zoom * animated_zoom
+	
 	target_offset = target_offset.clamp(-max_velocity_offset / zoom, max_velocity_offset / zoom)
 	
-	## alpha is done this way to preserve framerate independence
+	## alpha is done this way to preserve framerate independance
 	var alpha: float = 1.0 - exp(-offset_speed * delta)
 	camera_offset = lerp(camera_offset, target_offset, alpha)
 	

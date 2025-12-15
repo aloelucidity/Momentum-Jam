@@ -90,7 +90,7 @@ func _update(delta: float) -> void:
 	if input_direction.y == 0:
 		buffer_vector.y = move_toward(buffer_vector.y, 0, delta)
 	
-	## alpha is done this way to preserve framerate independence
+	## alpha is done this way to preserve framerate independance
 	var alpha: float = 1.0 - exp(-rot_speed * delta)
 	sprite_rot = lerp_angle(sprite_rot, ball_direction.angle() + PI/2, alpha)
 	sprite.flip_v = wrapf(sprite_rot, -PI, PI) > 0

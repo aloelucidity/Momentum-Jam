@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cobk8lnewpxif"]
+[gd_scene load_steps=23 format=3 uid="uid://cobk8lnewpxif"]
 
 [ext_resource type="Script" uid="uid://cimamf4iibvtd" path="res://line_2d.gd" id="1_81cir"]
 [ext_resource type="Script" uid="uid://r1y7h7ppfe0j" path="res://level/level_scene.gd" id="1_gbniv"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://dlwr37a2j3bdo" path="res://polygon_2d.gd" id="3_56yq2"]
 [ext_resource type="Script" uid="uid://bxwwlyk64urqt" path="res://level/character_camera.gd" id="4_q8ubn"]
 [ext_resource type="Script" uid="uid://c1n8j1ba2i8mt" path="res://level/transitioner.gd" id="5_csaot"]
+[ext_resource type="PackedScene" uid="uid://cg1xca6iswg5y" path="res://level/objects/kalei/kalei.tscn" id="5_p86dk"]
 [ext_resource type="Texture2D" uid="uid://ceymbhu4il1q0" path="res://character/sprites/ball.png" id="6_56yq2"]
+[ext_resource type="PackedScene" uid="uid://bge0n8af06jnl" path="res://level/objects/collectible_placer/collectible_placer.tscn" id="6_ec8w2"]
 [ext_resource type="AudioStream" uid="uid://msa1oks5siq5" path="res://music/bgm.mp3" id="6_p86dk"]
 [ext_resource type="Texture2D" uid="uid://cqtsxjnqlfb5i" path="res://character/sprites/idle.png" id="7_q8ubn"]
 [ext_resource type="Script" uid="uid://tvi1ptnuyihn" path="res://level/objects/player_spawner/player_spawner.gd" id="8_q8ubn"]
@@ -50,6 +52,12 @@ _data = {
 &"animate": SubResource("Animation_272bh")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_ec8w2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -64, 0, 0, 0, 0, -96, -64)
+}
+point_count = 6
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3og"]
 atlas = ExtResource("6_56yq2")
 region = Rect2(0, 0, 48, 48)
@@ -76,6 +84,68 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_p86dk"]
+resource_name = "collect"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animated_zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.9666667),
+"transitions": PackedFloat32Array(-2, 1, -2, 1),
+"update": 0,
+"values": [1.0, 2.0, 2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(-2, 1, -2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 48), Vector2(0, 48), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ec8w2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animated_zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ksba8"]
+_data = {
+&"RESET": SubResource("Animation_ec8w2"),
+&"collect": SubResource("Animation_p86dk")
+}
 
 [node name="TestLevel" type="Node2D" node_paths=PackedStringArray("player_spawner", "character_camera")]
 script = ExtResource("1_gbniv")
@@ -153,6 +223,16 @@ width = 6.0
 script = ExtResource("1_81cir")
 collision_polygon = NodePath("..")
 
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Kalei" parent="Objects" instance=ExtResource("5_p86dk")]
+position = Vector2(128, 32)
+
+[node name="CollectiblePlacer" parent="Objects" instance=ExtResource("6_ec8w2")]
+position = Vector2(-256, 32)
+curve = SubResource("Curve2D_ec8w2")
+collectible_count = 16
+
 [node name="PlayerSpawner" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_gbniv")
@@ -175,6 +255,11 @@ max_velocity_offset = Vector2(1000, 600)
 script = ExtResource("5_csaot")
 left_scene = "res://level/level_scenes/test_level.tscn"
 right_scene = "res://level/level_scenes/test_level.tscn"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_ksba8")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_p86dk")
