@@ -2,9 +2,11 @@ class_name CharacterCamera
 extends Camera2D
 
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-@export var character: Character
+@export var character: Character:
+	set(new_value):
+		character = new_value
+		character.connect("start_collect_cutscene", 
+			$AnimationPlayer.play.bind("collect"))
 @export var camera_speed: float = 3
 
 @export var max_zoom: float = 1
@@ -25,11 +27,6 @@ extends Camera2D
 
 var camera_offset: Vector2
 var camera_velocity: Vector2
-
-
-func _ready() -> void:
-	character.connect("start_collect_cutscene", 
-		animation_player.play.bind("collect"))
 
 
 func _physics_process(delta: float) -> void:
