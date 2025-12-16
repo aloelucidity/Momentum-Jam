@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=37 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cqtsxjnqlfb5i" path="res://character/sprites/idle.png" id="3_b4qc5"]
 [ext_resource type="Texture2D" uid="uid://ceymbhu4il1q0" path="res://character/sprites/ball.png" id="3_hd715"]
 [ext_resource type="Script" uid="uid://bobthsffwufj0" path="res://character/states/physics/air.gd" id="3_hx151"]
+[ext_resource type="Script" uid="uid://bffiqbmkhjr7v" path="res://character/rotators/water.gd" id="3_mbhnd"]
 [ext_resource type="Script" uid="uid://djxg21q4acmle" path="res://character/states/physics/ground.gd" id="4_0rvpn"]
 [ext_resource type="Script" uid="uid://ba2r8ii35sujn" path="res://character/states/physics/ball.gd" id="4_tgjim"]
 [ext_resource type="Script" uid="uid://cr3ytgk6vs5q3" path="res://character/states/action/ride_ball.gd" id="4_wy5t8"]
@@ -352,7 +353,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 9.0
+"speed": 12.0
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("default_collision")]
@@ -382,6 +383,10 @@ shape = SubResource("RectangleShape2D_orckd")
 
 [node name="Air" type="Node2D" parent="Rotators"]
 script = ExtResource("2_0shic")
+
+[node name="Water" type="Node2D" parent="Rotators" node_paths=PackedStringArray("water_physics")]
+script = ExtResource("3_mbhnd")
+water_physics = NodePath("../../PhysicsStates/Water")
 
 [node name="Ground" type="Node2D" parent="Rotators"]
 script = ExtResource("2_6610h")
@@ -529,7 +534,7 @@ script = ExtResource("11_8brn5")
 link_to = NodePath("../../Ground/Jump")
 metadata/_custom_type_script = "uid://64e26a6bvbu7"
 
-[node name="Water" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("water_check")]
+[node name="Water" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("water_check", "rotator")]
 script = ExtResource("14_hq3og")
 accel = 500.0
 max_speed = 300.0
@@ -538,6 +543,7 @@ water_check = NodePath("../../WaterCheck")
 enter_factor = 0.5
 exit_factor = 1.5
 priority = 1
+rotator = NodePath("../../Rotators/Water")
 metadata/_custom_type_script = "uid://d0kxrujyqivry"
 
 [node name="BallLink" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("link_to")]
@@ -547,13 +553,14 @@ metadata/_custom_type_script = "uid://64e26a6bvbu7"
 
 [node name="Swim" type="Node" parent="PhysicsStates/Water"]
 script = ExtResource("15_orckd")
-swim_power = 100.0
-perfect_swim_power = 200.0
+swim_power = 125.0
+perfect_swim_power = 250.0
 swim_speed = 1000.0
-perfect_swim_speed = 1400.0
+perfect_swim_speed = 1600.0
+swim_delay = 0.05
 swim_time = 0.3
 control_regain_window = 0.1
-perfect_swim_interval = 0.5
+perfect_swim_interval = 0.55
 perfect_swim_window = 0.15
 press_buffer = 0.2
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"

@@ -56,7 +56,7 @@ func _on_enter() -> void:
 
 ## runs once when this state stops being active
 func _on_exit() -> void:
-	character.animator.rotation /= 2
+	character.animator.rotation -= PI/2 * 1.0 if sprite.flip_v else -1.0
 
 
 func calc_inputs() -> Vector2:

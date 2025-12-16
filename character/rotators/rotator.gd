@@ -8,3 +8,11 @@ extends Node2D
 
 func on_enter() -> void:
 	pass
+
+
+func update_rotation(_delta: float) -> float:
+	return animator.rotation
+
+
+func update_skew(_delta: float) -> float:
+	return animator.skew

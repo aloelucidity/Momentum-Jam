@@ -48,15 +48,16 @@ func _update(delta: float) -> void:
 	
 	var flip_factor: float = character.facing_dir if do_flip_scale else 1
 	position = sprite_offset
-	skew = sprite_skew
 	scale = sprite_scale * Vector2(flip_factor, 1)
 	
 	if is_instance_valid(rotator):
 		if rotator != last_rotator:
 			rotator.on_enter()
 		rotation = rotator.update_rotation(delta)
+		skew = rotator.update_skew(delta)
 	else:
 		rotation = sprite_rot * flip_factor
+		skew = sprite_skew
 	
 	if new_anim == "":
 		if animation_player.is_playing(): 
