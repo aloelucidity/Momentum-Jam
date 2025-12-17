@@ -266,6 +266,9 @@ position = Vector2(664, -23)
 curve = SubResource("Curve2D_qeywc")
 clover = NodePath("../CloverRings")
 
+[node name="PathFollow2D" parent="Objects/Rings" index="0"]
+position = Vector2(-3, -2)
+
 [node name="PlayerSpawner" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_gbniv")
@@ -295,4 +298,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_ksba8")
 }
 
+[connection signal="timeout" from="Objects/Rings/Timer" to="Objects/Rings" method="timeout"]
+
 [editable path="Objects/PetalPlacer"]
+[editable path="Objects/Rings"]
