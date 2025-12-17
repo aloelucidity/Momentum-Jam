@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cobk8lnewpxif"]
+[gd_scene load_steps=26 format=3 uid="uid://cobk8lnewpxif"]
 
 [ext_resource type="Script" uid="uid://cimamf4iibvtd" path="res://line_2d.gd" id="1_81cir"]
 [ext_resource type="Script" uid="uid://r1y7h7ppfe0j" path="res://level/level_scene.gd" id="1_gbniv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bge0n8af06jnl" path="res://level/objects/collectible_placer/collectible_placer.tscn" id="6_ec8w2"]
 [ext_resource type="PackedScene" uid="uid://drha351nbsdeu" path="res://level/objects/petal_placer/petal_placer.tscn" id="7_ec8w2"]
 [ext_resource type="Texture2D" uid="uid://cqtsxjnqlfb5i" path="res://character/sprites/idle.png" id="7_q8ubn"]
+[ext_resource type="PackedScene" uid="uid://caqbx734ke4b3" path="res://level/objects/rings/rings.tscn" id="8_ksba8"]
 [ext_resource type="Script" uid="uid://tvi1ptnuyihn" path="res://level/objects/player_spawner/player_spawner.gd" id="8_q8ubn"]
 
 [sub_resource type="Animation" id="Animation_5vw27"]
@@ -63,6 +64,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 256, -128, 0, 0, 0, 0, 768, -128, 0, 0, 0, 0, 832, -320, 0, 0, 0, 0, 608, -416, 0, 0, 0, 0, 128, -384, 0, 0, 0, 0, 32, -288, 0, 0, 0, 0, 224, -224, 0, 0, 0, 0, 576, -224, 0, 0, 0, 0, 544, -352, 0, 0, 0, 0, 352, -288)
 }
 point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_qeywc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -2, 0, 0, 0, 0, -252, 8, 0, 0, 0, 0, -381, 153, 0, 0, 0, 0, -600, 115, 0, 0, 0, 0, -836, 64)
+}
+point_count = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3og"]
 atlas = ExtResource("6_56yq2")
@@ -231,8 +238,11 @@ collision_polygon = NodePath("..")
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="Clover" parent="Objects" instance=ExtResource("5_p86dk")]
+[node name="CloverRings" parent="Objects" instance=ExtResource("5_p86dk")]
 position = Vector2(128, 32)
+
+[node name="CloverPetals" parent="Objects" instance=ExtResource("5_p86dk")]
+position = Vector2(1098, 34)
 
 [node name="CollectiblePlacer" parent="Objects" instance=ExtResource("6_ec8w2")]
 position = Vector2(-256, 32)
@@ -242,14 +252,19 @@ collectible_count = 16
 [node name="PetalPlacer" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("7_ec8w2")]
 position = Vector2(800, 96)
 curve = SubResource("Curve2D_ksba8")
-clover = NodePath("../Clover")
-collectible_count = 1
+clover = NodePath("../CloverPetals")
+collectible_count = 10
 
 [node name="PathFollow2D" parent="Objects/PetalPlacer" index="0"]
 position = Vector2(256, -128)
 
 [node name="Spawner" parent="Objects/PetalPlacer" index="2"]
 position = Vector2(128, -64)
+
+[node name="Rings" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("8_ksba8")]
+position = Vector2(664, -23)
+curve = SubResource("Curve2D_qeywc")
+clover = NodePath("../CloverRings")
 
 [node name="PlayerSpawner" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(0, -24)

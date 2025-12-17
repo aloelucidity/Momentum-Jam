@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://caqbx734ke4b3"]
+
+[ext_resource type="Script" uid="uid://dg3jcyvxhve25" path="res://level/objects/rings/rings.gd" id="2_lrv7a"]
+[ext_resource type="Shader" uid="uid://0aiwcmtbqvvg" path="res://shaders/petal.gdshader" id="4_u82hx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ux1n"]
+shader = ExtResource("4_u82hx")
+shader_parameter/influence = 0.5
+shader_parameter/saturation = 1.30000000447036
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4jrmn"]
+radius = 48.0
+
+[node name="Rings" type="Path2D"]
+z_index = 1
+script = ExtResource("2_lrv7a")
+particle_time = 0.5
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 3.1415927
+rotates = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="PathFollow2D"]
+material = SubResource("ShaderMaterial_4ux1n")
+emitting = false
+amount = 32
+gravity = Vector2(0, 0)
+scale_amount_min = 6.0
+scale_amount_max = 6.0
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Ring" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="ColorRect" type="ColorRect" parent="Ring"]
+material = SubResource("ShaderMaterial_4ux1n")
+offset_left = -2.0
+offset_top = -48.0
+offset_right = 2.0
+offset_bottom = 48.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ring"]
+shape = SubResource("CircleShape2D_4jrmn")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="Ring" to="." method="ring_entered"]
+[connection signal="body_exited" from="Ring" to="." method="ring_exited"]
+[connection signal="timeout" from="Timer" to="." method="timeout"]
