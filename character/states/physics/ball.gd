@@ -17,6 +17,7 @@ var can_launch: bool
 @export var pop: Node2D
 @export var pop_speed_target: float
 @export var blur_strength: float
+@export var light: RainbowGlow
 
 @export var direction_buffer: float
 @export var rot_speed: float = 1
@@ -45,6 +46,8 @@ func _transition_check() -> String:
 			sprite.blur(blur_strength * strength_factor)
 			pop.strength_factor = strength_factor
 			pop.pop(character.animator.global_position)
+			
+			light.strength_factor = 0.0
 			
 			character.velocity = ball_direction * launch_speed
 			launch_speed = base_launch_speed
@@ -137,6 +140,9 @@ func _update(delta: float) -> void:
 				character.velocity.x = min_bounce_vel * ball_direction.x
 			if abs(character.velocity.y) < min_bounce_vel and ball_direction.y != 0:
 				character.velocity.y = min_bounce_vel * ball_direction.y
+			
+			var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target / 1.5
+			light.strength_factor = strength_factor
 			
 			break
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=74 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://ccbgj2r3ghy1f" path="res://character/states/action/float.gd" id="5_dy06j"]
 [ext_resource type="Script" uid="uid://c7a8bmoye1aui" path="res://character/states/action/jump.gd" id="5_o6jyn"]
 [ext_resource type="Texture2D" uid="uid://b3c2fjpeg6i4o" path="res://character/sprites/jump.png" id="7_wlm6a"]
+[ext_resource type="Script" uid="uid://cx8d8obc1c2ef" path="res://character/light.gd" id="8_5tbnp"]
 [ext_resource type="Script" uid="uid://84e4k7324ns8" path="res://character/lantern/rainbow.gd" id="8_q7srn"]
 [ext_resource type="Script" uid="uid://ddorebuj6vyp7" path="res://character/states/action/run_windup.gd" id="9_qkjfd"]
 [ext_resource type="Script" uid="uid://ca8wcnqxadc5n" path="res://character/lantern/pop.gd" id="10_a87gu"]
@@ -805,7 +806,6 @@ follow_speed = 12.0
 lantern_target = NodePath("../Animator/LanternTarget")
 
 [node name="Light" type="TextureRect" parent="Lantern"]
-modulate = Color(1, 0.7529412, 0.7529412, 1)
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_yn8gt")
 anchors_preset = 15
@@ -817,9 +817,11 @@ offset_right = -12.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(12, 12)
 texture = SubResource("GradientTexture2D_a87gu")
 expand_mode = 1
-script = ExtResource("8_q7srn")
+script = ExtResource("8_5tbnp")
+lerp_speed = 4.0
 saturation = 0.25
 rainbow_speed = 1.0
 
@@ -922,7 +924,7 @@ subsequent_damp = 1.5
 variable_jump_factor = 0.63
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
-[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("pop", "sprite", "water_check", "shape_override")]
+[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("pop", "light", "sprite", "water_check", "shape_override")]
 script = ExtResource("4_tgjim")
 min_bounce_vel = 200.0
 bounce_damp = 1.003
@@ -933,6 +935,7 @@ scale_speed = 4.0
 pop = NodePath("../../Pop")
 pop_speed_target = 600.0
 blur_strength = 3.0
+light = NodePath("../../Lantern/Light")
 direction_buffer = 0.07
 rot_speed = 12.0
 sprite = NodePath("../../Animator/Character")

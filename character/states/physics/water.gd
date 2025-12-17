@@ -47,6 +47,9 @@ func _on_exit() -> void:
 
 ## runs every frame while active
 func _update(delta: float) -> void:
+	## framerate independance
+	var decay_factor: float = pow(friction_decay, delta)
+	
 	var move_dir := Vector2.ZERO
 	
 	if can_move:
@@ -58,11 +61,9 @@ func _update(delta: float) -> void:
 	if move_dir.x != 0 and abs(character.velocity).x < max_speed:
 		character.facing_dir = int(move_dir.x)
 		character.velocity.x = move_toward(
-			character.velocity.x, max_speed * move_dir.x , accel * delta)
+			character.velocity.x, max_speed * move_dir.x, accel * delta)
 	else:
 		character.velocity.x = move_toward(character.velocity.x, 0, friction_linear * delta)
-		## framerate independance
-		var decay_factor: float = pow(friction_decay, delta)
 		character.velocity.x *= decay_factor
 	
 	if move_dir.y != 0 and abs(character.velocity).y < max_speed:
@@ -70,8 +71,6 @@ func _update(delta: float) -> void:
 			character.velocity.y, max_speed * move_dir.y, accel * delta)
 	else:
 		character.velocity.y = move_toward(character.velocity.y, 0, friction_linear * delta)
-		## framerate independance
-		var decay_factor: float = pow(friction_decay, delta)
 		character.velocity.y *= decay_factor
 	
 	## run base function
