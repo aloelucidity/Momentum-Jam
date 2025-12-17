@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d1bi3o1ma83ce"]
+
+[ext_resource type="Shader" uid="uid://dt4b5dy22nyut" path="res://shaders/glow.gdshader" id="1_k1drm"]
+
+[resource]
+shader = ExtResource("1_k1drm")
+shader_parameter/is_smooth = true
+shader_parameter/width = 6.000000285
+shader_parameter/outline_color = Color(1, 0.627451, 0, 0.3764706)
+shader_parameter/pixel_size = 4
+shader_parameter/step_count = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=75 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -27,6 +27,7 @@
 [ext_resource type="Shader" uid="uid://dt4b5dy22nyut" path="res://shaders/glow.gdshader" id="11_kxp0i"]
 [ext_resource type="Script" uid="uid://dyoj328we508k" path="res://character/lantern/lantern_target.gd" id="11_yn8gt"]
 [ext_resource type="Script" uid="uid://db8n4al6qi8ji" path="res://character/lantern/lantern.gd" id="12_4ekbm"]
+[ext_resource type="Material" uid="uid://d1bi3o1ma83ce" path="res://character/misc/glow_shader.tres" id="12_yp81j"]
 [ext_resource type="Script" uid="uid://d0kxrujyqivry" path="res://character/states/physics/water.gd" id="14_hq3og"]
 [ext_resource type="Script" uid="uid://rgxdfuawxo3h" path="res://character/states/action/swim.gd" id="15_orckd"]
 [ext_resource type="Script" uid="uid://b84f6plg0kbok" path="res://character/states/physics/collect.gd" id="16_1dqym"]
@@ -873,13 +874,16 @@ saturation = 0.25
 rainbow_speed = 1.0
 
 [node name="Character" type="AnimatedSprite2D" parent="Animator"]
+material = ExtResource("12_yp81j")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_hq3og")
 animation = &"idle"
 script = ExtResource("16_psflj")
-materials = Array[ShaderMaterial]([null, ExtResource("17_h0hwg")])
+materials = Array[ShaderMaterial]([null, ExtResource("17_h0hwg"), ExtResource("12_yp81j")])
 unblur_speed = 4.0
 trail_divider = 8.0
+unglow_speed = 4.0
+glow_width = 10.0
 
 [node name="Trail" type="AnimatedSprite2D" parent="Animator/Character"]
 visible = false
@@ -915,13 +919,16 @@ priority = 1
 do_flip_scale = false
 metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
-[node name="Float" type="Node" parent="PhysicsStates/Air"]
+[node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light")]
 script = ExtResource("5_dy06j")
 jump_power = 400.0
 gravity_subtract = 0.3
 float_time = 0.4
 subsequent_damp = 1.5
 variable_jump_factor = 0.63
+sprite = NodePath("../../../Animator/Character")
+light = NodePath("../../../Lantern/Light")
+animation = "fall"
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
 [node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("pop", "light", "sprite", "water_check", "shape_override")]

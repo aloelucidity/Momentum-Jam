@@ -12,6 +12,9 @@ var floats_counter: int
 @export var variable_jump_factor: float = 1
 var jump_released: bool
 
+@export var sprite: AnimatedSprite2D
+@export var light: RainbowGlow
+
 
 ## runs this check every frame while inactive and 
 ## in the character's current pool of states
@@ -30,6 +33,10 @@ func _transition_check() -> String:
 
 ## runs once when this state begins being active
 func _on_enter() -> void:
+	sprite.glow()
+	sprite.can_unglow = false
+	light.strength_factor = 0.5
+	
 	float_timer = float_time
 	
 	character.on_ground = false
@@ -45,6 +52,12 @@ func _on_enter() -> void:
 	gravity_factor = 1 - gravity_subtract / damp_amount
 	
 	floats_counter += 1
+
+
+## runs once when this state stops being active
+func _on_exit() -> void:
+	sprite.can_unglow = true
+	light.strength_factor = 0
 
 
 ## runs every frame while active
