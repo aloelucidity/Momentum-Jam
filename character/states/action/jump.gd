@@ -2,6 +2,9 @@ class_name JumpAction
 extends ActionState
 
 
+@export var voice: AudioStreamPlayer
+@export var sound: AudioStreamPlayer
+
 @export var jump_power: float
 @export var fall_threshold: float
 @export var air_physics: PhysicsState
@@ -38,6 +41,8 @@ func _on_enter() -> void:
 	
 	snap_timer = snap_buffer
 	press_timer = 0
+	voice.play()
+	sound.play()
 	
 	character.set_state("physics", air_physics)
 	character.override_time = 0

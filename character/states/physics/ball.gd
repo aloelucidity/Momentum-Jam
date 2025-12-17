@@ -2,6 +2,10 @@ class_name BallPhysics
 extends AirPhysics
 
 
+@export var bounce_sound: AudioStreamPlayer
+@export var voice: AudioStreamPlayer
+@export var voice_threshold: float
+
 @export var min_bounce_vel: float
 @export var bounce_damp: float = 1
 var ball_direction := Vector2.ZERO
@@ -40,6 +44,9 @@ func _startup_check() -> bool:
 func _transition_check() -> String:
 	if not character.input["ball"][0]:
 		if can_launch:
+			if launch_speed > voice_threshold:
+				voice.play()
+			
 			if not water_check.get_overlapping_bodies().is_empty():
 				launch_speed *= 1.5
 			
@@ -63,6 +70,10 @@ func _transition_check() -> String:
 
 ## runs once when this state begins being active
 func _on_enter() -> void:
+	if can_launch:
+		var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target
+		light.strength_factor = strength_factor
+	
 	landed = false
 	scaler.scale = Vector2.ONE
 	
@@ -129,7 +140,11 @@ func _update(delta: float) -> void:
 		var bounce_velocity: Vector2 = last_velocity.normalized() * (last_velocity.length() / bounce_damp)
 		
 		var normal: Vector2 = collision.get_normal()
-		if normal.round().x * ball_direction.x == 1 or normal.round().y * ball_direction.y == 1:
+		var ball_hit: bool = normal.round().x * ball_direction.x == 1 or normal.round().y * ball_direction.y == 1
+		var one_way_check: bool = last_velocity.dot(normal) < -0.1
+		if one_way_check and ball_hit:
+			bounce_sound.play()
+			
 			character.velocity = bounce_velocity.bounce(normal)
 			launch_speed = base_launch_speed + last_velocity.length() / launch_damp
 			

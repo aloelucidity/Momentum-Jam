@@ -15,7 +15,12 @@ extends PhysicsState
 @export var coyote_time: float
 
 @export var anim_target_speed: float
+@export var footstep_sound: AudioStreamPlayer
+@export var footstep_interval: float
 @export var sprite: AnimatedSprite2D
+
+
+var footstep_timer: float
 
 
 func do_movement(delta: float, move_dir: int) -> void:
@@ -60,6 +65,11 @@ func _transition_check() -> String:
 	return name
 
 
+## runs once when this state begins being active
+func _on_enter() -> void:
+	footstep_timer = 0.0
+
+
 ## runs every frame while active
 func _update(delta: float) -> void:
 	var move_dir: int = 0
@@ -75,6 +85,12 @@ func _update(delta: float) -> void:
 	if abs(character.velocity.x) > 50:
 		sprite.speed_scale = abs(character.velocity.x) / anim_target_speed
 		animation = "walk"
+	
+	footstep_timer -= delta
+	if abs(character.velocity.x) > 5 and is_instance_valid(footstep_sound) and footstep_timer <= 0:
+		footstep_sound.play()
+		footstep_timer = footstep_interval / (abs(character.velocity.x) / anim_target_speed)
+		footstep_timer = min(footstep_timer, 0.5)
 	
 	## run base function
 	super(delta)
