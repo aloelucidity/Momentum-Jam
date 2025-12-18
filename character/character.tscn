@@ -820,35 +820,40 @@ shape = SubResource("RectangleShape2D_orckd")
 
 [node name="JumpVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_s2csv")
+volume_db = 1.0
 attenuation = 1e-05
 bus = &"Voices"
 
 [node name="LaunchVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_4mbdx")
-volume_db = 2.5
+volume_db = 3.5
 pitch_scale = 0.98
 attenuation = 1e-05
 bus = &"Voices"
 
 [node name="VictoryVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_0l5d1")
+volume_db = 1.0
 pitch_scale = 0.98
 attenuation = 1e-05
 bus = &"Voices"
 
 [node name="FootstepSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_nl6b6")
+volume_db = 1.0
 pitch_scale = 0.9
 attenuation = 1e-05
 bus = &"Sounds"
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("11_s2csv")
+volume_db = 1.0
 attenuation = 1e-05
 bus = &"Sounds"
 
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_flvo5")
+volume_db = 2.0
 attenuation = 1e-05
 bus = &"Sounds"
 
@@ -859,7 +864,7 @@ bus = &"Sounds"
 
 [node name="AimSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("14_2yldb")
-volume_db = -4.0
+volume_db = -3.0
 attenuation = 1e-05
 bus = &"Sounds"
 
@@ -1094,6 +1099,7 @@ start_speed = 100.0
 run_physics = NodePath("../../Run")
 windup_duration = 0.3
 max_release_time = 0.08
+allow_priority_override = true
 animation = "jump"
 metadata/_custom_type_script = "uid://ddorebuj6vyp7"
 

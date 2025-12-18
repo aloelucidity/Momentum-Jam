@@ -1,12 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://caqbx734ke4b3"]
 
 [ext_resource type="Script" uid="uid://dg3jcyvxhve25" path="res://level/objects/rings/rings.gd" id="2_lrv7a"]
-[ext_resource type="Shader" uid="uid://0aiwcmtbqvvg" path="res://shaders/petal.gdshader" id="4_u82hx"]
+[ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://shaders/clover.gdshader" id="2_tsk7x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ux1n"]
-shader = ExtResource("4_u82hx")
+shader = ExtResource("2_tsk7x")
+shader_parameter/global_pos = Vector2(0, 0)
 shader_parameter/influence = 0.5
-shader_parameter/saturation = 1.30000000447036
+shader_parameter/offset = 0.0
+shader_parameter/effect_scale = 4.0
+shader_parameter/effect_divide = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4jrmn"]
 radius = 48.0
