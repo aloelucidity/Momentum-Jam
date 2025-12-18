@@ -182,6 +182,7 @@ func decorate_terrain():
 	details.multimesh.instance_count = detail_amount
 	
 	for point: Vector2 in get_random_points():
-		var point_trans := Transform2D(PI, point)
+		var point_trans := Transform2D(0, point)
+		point_trans.y *= -1
 		details.multimesh.set_instance_transform_2d(index, point_trans)
 		index += 1
