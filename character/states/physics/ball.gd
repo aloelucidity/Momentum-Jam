@@ -3,10 +3,10 @@ extends AirPhysics
 
 
 @onready var initial_launch_vol: float = launch_sound.volume_db
-@export var aim_sound: AudioStreamPlayer
-@export var bounce_sound: AudioStreamPlayer
-@export var launch_sound: AudioStreamPlayer
-@export var voice: AudioStreamPlayer
+@export var aim_sound: AudioStreamPlayer2D
+@export var bounce_sound: AudioStreamPlayer2D
+@export var launch_sound: AudioStreamPlayer2D
+@export var voice: AudioStreamPlayer2D
 @export var voice_threshold: float
 
 @export var min_bounce_vel: float

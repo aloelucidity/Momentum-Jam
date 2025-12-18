@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://cobk8lnewpxif"]
 
-[ext_resource type="Script" uid="uid://cimamf4iibvtd" path="res://line_2d.gd" id="1_81cir"]
+[ext_resource type="Script" uid="uid://cimamf4iibvtd" path="res://level/terrain/line_2d.gd" id="1_81cir"]
 [ext_resource type="Script" uid="uid://r1y7h7ppfe0j" path="res://level/level_scene.gd" id="1_gbniv"]
 [ext_resource type="Script" uid="uid://bema7mhup8qn0" path="res://animation_player.gd" id="2_csaot"]
-[ext_resource type="Script" uid="uid://dlwr37a2j3bdo" path="res://polygon_2d.gd" id="3_56yq2"]
+[ext_resource type="Script" uid="uid://dlwr37a2j3bdo" path="res://level/terrain/polygon_2d.gd" id="4_ksba8"]
 [ext_resource type="Script" uid="uid://bxwwlyk64urqt" path="res://level/character_camera.gd" id="4_q8ubn"]
 [ext_resource type="Script" uid="uid://c1n8j1ba2i8mt" path="res://level/transitioner.gd" id="5_csaot"]
 [ext_resource type="PackedScene" uid="uid://cg1xca6iswg5y" path="res://level/objects/clover/clover.tscn" id="5_p86dk"]
@@ -197,10 +197,9 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Water"]
 polygon = PackedVector2Array(4023, 15, 2839, 79, 2839, 591, 4023, 591)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain/Water/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Water/CollisionPolygon2D"]
 color = Color(0, 0.7529412, 1, 0.5019608)
-script = ExtResource("3_56yq2")
-collision_polygon = NodePath("..")
+script = ExtResource("4_ksba8")
 
 [node name="Water2" type="StaticBody2D" parent="Terrain"]
 position = Vector2(-4256, 128)
@@ -210,10 +209,9 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Water2"]
 polygon = PackedVector2Array(3840, 32, 2752, 32, 2752, 352, 3840, 352)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain/Water2/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Water2/CollisionPolygon2D"]
 color = Color(0, 0.7529412, 1, 0.5019608)
-script = ExtResource("3_56yq2")
-collision_polygon = NodePath("..")
+script = ExtResource("4_ksba8")
 
 [node name="Terrain" type="StaticBody2D" parent="Terrain"]
 collision_mask = 0
@@ -221,9 +219,8 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Terrain"]
 polygon = PackedVector2Array(-480, 96, -128, 96, 416, 192, 608, 96, 1216, 96, 1280, -32, 1568, 0, 1696, 128, 2432, 128, 2496, -224, 2912, -192, 2912, 256, 3904, 320, 3904, -448, 4704, -448, 4704, 1024, -1920, 1088, -1920, -448, -1408, -448, -1408, -192, -800, -192, -800, -32, -1088, -32, -1088, 224, -1280, 224, -1280, -32, -1440, -32, -1440, 384, -480, 384)
 
-[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
-script = ExtResource("3_56yq2")
-collision_polygon = NodePath("..")
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D"]
+script = ExtResource("4_ksba8")
 
 [node name="OneWay" type="CollisionPolygon2D" parent="Terrain/Terrain"]
 build_mode = 1
