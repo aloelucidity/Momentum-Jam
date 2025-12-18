@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyu3lut5kxpll"
-path="res://.godot/imported/snow_corner_inner.png-e7f8d5d351417596fb33771c72798606.ctex"
+uid="uid://dui5d50qy5twa"
+path="res://.godot/imported/inner.png-9e4056880d4ea3d068ed37425b851245.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/terrain/snow/snow_corner_inner.png"
-dest_files=["res://.godot/imported/snow_corner_inner.png-e7f8d5d351417596fb33771c72798606.ctex"]
+source_file="res://level/terrain/ice/inner.png"
+dest_files=["res://.godot/imported/inner.png-9e4056880d4ea3d068ed37425b851245.ctex"]
 
 [params]
 

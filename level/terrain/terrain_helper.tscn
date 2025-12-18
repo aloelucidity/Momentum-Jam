@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dd3w6rjoobiq"]
 
 [ext_resource type="Script" uid="uid://dtl435faa38x" path="res://level/terrain/terrain_helper.gd" id="1_ddmml"]
-[ext_resource type="Texture2D" uid="uid://3y3wi5ahxy2f" path="res://level/terrain/snow/snow_top.png" id="2_wecw4"]
-[ext_resource type="Texture2D" uid="uid://df36c5du7citk" path="res://level/terrain/snow/snow_edge.png" id="3_oqjc0"]
-[ext_resource type="Texture2D" uid="uid://e4tty3bkknb1" path="res://level/terrain/snow/snow_inner.png" id="4_2p5vg"]
-[ext_resource type="Texture2D" uid="uid://72j8saircvyp" path="res://level/terrain/snow/detail0.png" id="5_8hib3"]
+[ext_resource type="Texture2D" uid="uid://3y3wi5ahxy2f" path="res://level/terrain/snow/top.png" id="2_wecw4"]
+[ext_resource type="Texture2D" uid="uid://df36c5du7citk" path="res://level/terrain/snow/edge.png" id="3_oqjc0"]
+[ext_resource type="Texture2D" uid="uid://e4tty3bkknb1" path="res://level/terrain/snow/inner.png" id="4_2p5vg"]
+[ext_resource type="Texture2D" uid="uid://72j8saircvyp" path="res://level/terrain/snow/detail.png" id="5_8hib3"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_8hib3"]
 instance_count = 1000
@@ -30,6 +30,10 @@ seamless_blend_skirt = 1.0
 
 [node name="TerrainHelper" type="CollisionPolygon2D"]
 script = ExtResource("1_ddmml")
+detail_amount = 800
+detail_margin = 24
+top_offset = 22
+edge_offset = 8
 top_texture = ExtResource("2_wecw4")
 edge_texture = ExtResource("3_oqjc0")
 

@@ -24,6 +24,11 @@ extends CollisionPolygon2D
 		detail_margin = new_value
 		decorate_terrain()
 
+@export var top_offset: int:
+	set(new_value):
+		top_offset = new_value
+		decorate_terrain()
+
 @export var edge_offset: int:
 	set(new_value):
 		edge_offset = new_value
@@ -93,24 +98,27 @@ func get_random_points() -> Array[Vector2]:
 
 
 func place_edge(points: PackedVector2Array, tex: Texture2D, container: Node2D) -> void:
-	if tex != edge_texture:
-		## shrink the edges so we can place some manually
-		var end_index: int = points.size() - 1
-		
-		var start_distance: float = points[0].distance_to(points[1])
-		var start_weight: float = clamp(edge_offset / start_distance, 0.0, 1.0)
-		points[0] = points[0].lerp(points[1], start_weight)
-
-		var end_distance: float = points[end_index].distance_to(points[end_index - 1])
-		var end_weight: float = clamp(edge_offset / end_distance, 0.0, 1.0)
-		points[end_index] = points[end_index].lerp(points[end_index - 1], end_weight)
+	## shrink the edges so we can place some manually
+	var offset = edge_offset if tex == edge_texture else top_offset
+	var end_index: int = points.size() - 1
 	
+	var start_distance: float = points[0].distance_to(points[1])
+	var start_weight: float = clamp(offset / start_distance, 0.0, 1.0)
+	points[0] = points[0].lerp(points[1], start_weight)
+
+	var end_distance: float = points[end_index].distance_to(points[end_index - 1])
+	var end_weight: float = clamp(offset / end_distance, 0.0, 1.0)
+	points[end_index] = points[end_index].lerp(points[end_index - 1], end_weight)
+
 	var line_2d := Line2D.new()
 	line_2d.points = points
 	
 	var texture: Texture2D = tex
 	line_2d.texture = texture
 	line_2d.width = texture.get_height()
+	
+	line_2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line_2d.end_cap_mode = Line2D.LINE_CAP_ROUND
 	
 	line_2d.texture_mode = Line2D.LINE_TEXTURE_TILE
 	line_2d.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED

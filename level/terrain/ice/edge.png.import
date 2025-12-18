@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://72j8saircvyp"
-path="res://.godot/imported/detail0.png-b9de5fec9c31eeed9f9c428f32d70286.ctex"
+uid="uid://ukihj5ofpm73"
+path="res://.godot/imported/edge.png-7f49d1395013cdf6f309c2e3f93eba46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/terrain/snow/detail0.png"
-dest_files=["res://.godot/imported/detail0.png-b9de5fec9c31eeed9f9c428f32d70286.ctex"]
+source_file="res://level/terrain/ice/edge.png"
+dest_files=["res://.godot/imported/edge.png-7f49d1395013cdf6f309c2e3f93eba46.ctex"]
 
 [params]
 
