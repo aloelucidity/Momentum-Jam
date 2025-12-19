@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://biusd4cylqi6a"]
+[gd_scene load_steps=27 format=3 uid="uid://biusd4cylqi6a"]
 
 [ext_resource type="Script" uid="uid://r1y7h7ppfe0j" path="res://level/level_scene.gd" id="1_2jjn4"]
 [ext_resource type="Script" uid="uid://cimamf4iibvtd" path="res://line_2d.gd" id="2_apqmw"]
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2944, -32)]
+"values": [Vector2(1200, -1000)]
 }
 
 [sub_resource type="Animation" id="Animation_272bh"]
@@ -44,7 +44,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3.0499997, 4, 7),
 "transitions": PackedFloat32Array(-2, 1, -2, 1),
 "update": 0,
-"values": [Vector2(2944, -32), Vector2(2814, 320), Vector2(2814, 320), Vector2(2944, -32)]
+"values": [Vector2(1000, -1200), Vector2(1000, -660), Vector2(1000, -660), Vector2(1000, -1200)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kek77"]
@@ -55,15 +55,21 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_ec8w2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -64, 0, 0, 0, 0, -96, -64)
+"points": PackedVector2Array(0, 0, 0, 0, -128, 0, 0, 0, 0, 0, -128, -128, 0, 0, 0, 0, 0, -128, 0, 0, 0, 0, 0, 0)
 }
-point_count = 6
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_2jjn4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 90, -41, 0, 0, 0, 0, 53, 0, 0, 0, 0, 0, 13, -37, 0, 0, 0, 0, 60, -83)
+}
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_ksba8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 256, -128, 0, 0, 0, 0, 768, -128, 0, 0, 0, 0, 832, -320, 0, 0, 0, 0, 608, -416, 0, 0, 0, 0, 128, -384, 0, 0, 0, 0, 32, -288, 0, 0, 0, 0, 224, -224, 0, 0, 0, 0, 576, -224, 0, 0, 0, 0, 544, -352, 0, 0, 0, 0, 352, -288)
+"points": PackedVector2Array(0, 0, 0, 0, 351, -85.14878, 0, 0, 0, 0, 337, 337.3841, 0, 0, 0, 0, 155, 413.12112, 0, 0, 0, 0, 23, 279.58478, 0, 0, 0, 0, -136, 299.5156, 0, 0, 0, 0, -106, 560.6091, 0, 0, 0, 0, 52, 570.57446, 0, 0, 0, 0, 158, 507.7924, 0, 0, 0, 0, 567, 421.09348, 0, 0, 0, 0, 732, 403.15573, 0, 0, 0, 0, 918, 415.1142, 0, 0, 0, 0, 1117, 374.25607, 0, 0, 0, 0, 1318, 241.71628, 0, 0, 0, 0, 1426, -23.363312, 0, 0, 0, 0, 1493, 252.67822, 0, 0, 0, 0, 1477, 515.7648, 0, 0, 0, 0, 1100, 616.4153)
 }
-point_count = 10
+point_count = 17
 
 [sub_resource type="Curve2D" id="Curve2D_qeywc"]
 _data = {
@@ -160,7 +166,7 @@ _data = {
 &"collect": SubResource("Animation_p86dk")
 }
 
-[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("player_spawner", "character_camera")]
+[node name="Icebergs" type="Node2D" node_paths=PackedStringArray("player_spawner", "character_camera")]
 script = ExtResource("1_2jjn4")
 player_spawner = NodePath("PlayerSpawner")
 character_camera = NodePath("Camera2D")
@@ -169,11 +175,11 @@ character_camera = NodePath("Camera2D")
 z_index = 1
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Terrain"]
-position = Vector2(2944, -32)
+position = Vector2(1200, -1000)
 
 [node name="OneWay" type="CollisionPolygon2D" parent="Terrain/AnimatableBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(-576, -192, -448, -192, -448, -160, -576, -160)
+polygon = PackedVector2Array(-576, -192, -467, -192, -448, -192, -448, -160, -576, -160)
 one_way_collision = true
 
 [node name="Line2D" type="Line2D" parent="Terrain/AnimatableBody2D/OneWay" node_paths=PackedStringArray("collision_polygon")]
@@ -189,13 +195,34 @@ libraries = {
 }
 script = ExtResource("3_7fust")
 
+[node name="AnimatableBody2D2" type="AnimatableBody2D" parent="Terrain"]
+position = Vector2(1200, -1000)
+
+[node name="OneWay" type="CollisionPolygon2D" parent="Terrain/AnimatableBody2D2"]
+build_mode = 1
+polygon = PackedVector2Array(-576, -192, -467, -192, -448, -192, -448, -160, -576, -160)
+one_way_collision = true
+
+[node name="Line2D" type="Line2D" parent="Terrain/AnimatableBody2D2/OneWay" node_paths=PackedStringArray("collision_polygon")]
+position = Vector2(0, 3)
+width = 6.0
+script = ExtResource("2_apqmw")
+collision_polygon = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Terrain/AnimatableBody2D2"]
+callback_mode_process = 0
+libraries = {
+&"": SubResource("AnimationLibrary_kek77")
+}
+script = ExtResource("3_7fust")
+
 [node name="Water" type="StaticBody2D" parent="Terrain"]
 position = Vector2(9, -207)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Water"]
-position = Vector2(-113, -1099)
+position = Vector2(-75, -1722)
 polygon = PackedVector2Array(4023, 15, 2839, 79, 2839, 591, 4023, 591)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain/Water/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
@@ -209,7 +236,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Water2"]
-polygon = PackedVector2Array(8337, 32, 2431, 32, 2405, 744, 8337, 733)
+polygon = PackedVector2Array(8755, 32, 2431, 32, 2405, 1028, 8764, 939)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain/Water2/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
 color = Color(0, 0.7529412, 1, 0.5019608)
@@ -220,14 +247,15 @@ collision_polygon = NodePath("..")
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Terrain/Terrain"]
-position = Vector2(-1, 0)
-polygon = PackedVector2Array(-480, 96, -128, 96, 446, 122, 608, 96, 1216, 96, 1280, -32, 1568, 0, 1696, 128, 2432, 128, 2496, -224, 2912, -192, 2912, 256, 3904, 320, 3904, -448, 4704, -448, 4704, 1024, -1920, 1088, -1919, -342, -1762, -335, -1611, -260, -1441.6569, -262.29846, -1440, -32, -1441, 244, -1502, 241, -1505, 0, -1568, -130, -1731, -126, -1795, 3, -1795, 247, -1744, 381, -1440, 384, -1441, 760, -493, 780, 449, 662, 803, 799, 1470, 752, 1613, 636, 1721, 348, 1341, 242, 940, 238, 599, 304, 418, 466, -472, 602)
+position = Vector2(-1, -1)
+polygon = PackedVector2Array(-480, 96, -128, 96, 446, 122, 608, 96, 1216, 96, 1284, 31, 1568, 0, 1696, 128, 2432, 128, 2425, 209, 2430, 418, 2334, 437, 2268, 252, 2160, 254, 1916, 351, 1949, 695, 2132, 792, 2314, 727, 2419, 734, 2458, 797, 2827, 853, 3892, 682, 4115, 674, 4128.434, 828.6814, 4206, 860, 4429, 852, 4486, 822, 4495, 335, 4403, 219, 4402, -127, 4345, -203, 4261, -203, 4191, -128, 4195, 226, 4094, 314, 3904, 320, 3903.9998, 122.58154, 3773, -4, 3769, -41, 3858.9727, -39.85385, 3882, -156, 3928, -158, 3925, -444, 4001, -470, 4339, -451, 4704, -448, 4704, 1359, -1920, 1373, -1919, -342, -1762, -335, -1611, -260, -1440, -259, -1440, -32, -1441, 244, -1502, 241, -1505, 0, -1568, -130, -1731, -126, -1795, 3, -1795, 247, -1744, 381, -1440, 384, -1413, 1058, -1156, 1056, -1099, 867, -493, 780, 449, 662, 803, 799, 1470, 752, 1613, 636, 1721, 348, 1341, 242, 940, 238, 599, 304, 418, 466, -374, 590, -472, 537)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D" node_paths=PackedStringArray("collision_polygon")]
 script = ExtResource("4_51mii")
 collision_polygon = NodePath("..")
 
 [node name="OneWay" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(-194, 61)
 build_mode = 1
 polygon = PackedVector2Array(-800, -192, -256, -192, -256, -160, -800, -160)
 one_way_collision = true
@@ -238,19 +266,71 @@ width = 6.0
 script = ExtResource("2_apqmw")
 collision_polygon = NodePath("..")
 
+[node name="OneWay3" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(134, -104)
+build_mode = 1
+polygon = PackedVector2Array(-800, -192, -256, -192, -256, -160, -800, -160)
+one_way_collision = true
+
+[node name="Line2D" type="Line2D" parent="Terrain/Terrain/OneWay3" node_paths=PackedStringArray("collision_polygon")]
+position = Vector2(0, 3)
+width = 6.0
+script = ExtResource("2_apqmw")
+collision_polygon = NodePath("..")
+
+[node name="OneWay4" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(1268, -65)
+build_mode = 1
+polygon = PackedVector2Array(-800, -192, -256, -192, -256, -160, -589.9795, -160, -800, -160)
+one_way_collision = true
+
+[node name="Line2D" type="Line2D" parent="Terrain/Terrain/OneWay4" node_paths=PackedStringArray("collision_polygon")]
+position = Vector2(0, 3)
+width = 6.0
+script = ExtResource("2_apqmw")
+collision_polygon = NodePath("..")
+
+[node name="OneWay2" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(4491, -113)
+build_mode = 1
+polygon = PackedVector2Array(-800, -192, -256, -192, -256, -160, -800, -160)
+one_way_collision = true
+
+[node name="Line2D" type="Line2D" parent="Terrain/Terrain/OneWay2" node_paths=PackedStringArray("collision_polygon")]
+position = Vector2(0, 3)
+width = 6.0
+script = ExtResource("2_apqmw")
+collision_polygon = NodePath("..")
+
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Terrain/Terrain"]
-position = Vector2(-44, -10)
-polygon = PackedVector2Array(-905, -380, -705, -378, -699, -116, -840, 492, -1074, 490, -1067, 235, -1258, 79, -1251, -322, -1067, -336)
+position = Vector2(-1061, -72)
+polygon = PackedVector2Array(111.70294, -320.87473, 311.70294, -318.87473, 317.70294, -56.87472, 176.70294, 551.1253, -57.29706, 549.1253, -50.29706, 294.12527, -241.29706, 138.12527, -241, -86, -188, -85, -184, -167, -242, -181, -240, -259, -50.29706, -276.87473)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D2" node_paths=PackedStringArray("collision_polygon")]
 script = ExtResource("4_51mii")
 collision_polygon = NodePath("..")
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Terrain/Terrain"]
-position = Vector2(691, -139)
-polygon = PackedVector2Array(-1264, -493, -1143, -494, -1141, -174, -1250, -174)
+position = Vector2(691, -93)
+polygon = PackedVector2Array(-1264, -493, -1143, -494, -938, -620, -615, -635, -633, -461, -678, -383, -721, -64, -836, -14, -947, -47, -1025, -145, -1141, -174, -1250, -174)
 
 [node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D3" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("4_51mii")
+collision_polygon = NodePath("..")
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(1711, -113)
+polygon = PackedVector2Array(-1027, -198, -864, -206, -854, -328, -777, -338, -767, -497, -440, -494, -445, -177, -687, -103, -803, -37, -947, -47, -1025, -145)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D8" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("4_51mii")
+collision_polygon = NodePath("..")
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(1226, -521)
+polygon = PackedVector2Array(-1083, -646, -1091, -878, -757, -869, -770, -647, -753, -244, -535, -244, -311, -241, -316, -180, -432, -147, -753, 41, -803, -37, -947, -47, -985, -431)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D9" node_paths=PackedStringArray("collision_polygon")]
 script = ExtResource("4_51mii")
 collision_polygon = NodePath("..")
 
@@ -262,35 +342,72 @@ polygon = PackedVector2Array(-1404, -409, -916, -451, -653, -378, -765, -284, -1
 script = ExtResource("4_51mii")
 collision_polygon = NodePath("..")
 
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(4071, 519)
+polygon = PackedVector2Array(-1456, -389, -1032, -390, -1031, -678, -861, -678, -766, -457, -652, -440, -654, -344, -904, -70, -1225, -80, -1317, -288, -1449, -318)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D5" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("4_51mii")
+collision_polygon = NodePath("..")
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(4433, 132)
+polygon = PackedVector2Array(-1017, -353, -1015, -387, -900, -391, -788, -436, -652, -440, -654, -344, -860, -297)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D6" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("4_51mii")
+collision_polygon = NodePath("..")
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Terrain/Terrain"]
+position = Vector2(3877, -106)
+polygon = PackedVector2Array(-902, -545, -827, -561, -815, -491, -678, -493, -706, -302, -788, -292, -838, -365, -895, -387)
+
+[node name="Polygon2D" type="Polygon2D" parent="Terrain/Terrain/CollisionPolygon2D7" node_paths=PackedStringArray("collision_polygon")]
+script = ExtResource("4_51mii")
+collision_polygon = NodePath("..")
+
 [node name="Objects" type="Node2D" parent="."]
+
+[node name="CloverRise" parent="Objects" instance=ExtResource("5_vbgjs")]
+position = Vector2(4304, -112)
+
+[node name="CloverBounce" parent="Objects" instance=ExtResource("5_vbgjs")]
+position = Vector2(3127, -713)
+
+[node name="CloverPeak" parent="Objects" instance=ExtResource("5_vbgjs")]
+position = Vector2(291, -1498)
 
 [node name="CloverRings" parent="Objects" instance=ExtResource("5_vbgjs")]
 position = Vector2(-669, 688)
 
 [node name="CloverPetals" parent="Objects" instance=ExtResource("5_vbgjs")]
-position = Vector2(1098, 34)
+position = Vector2(2176, 33)
 
 [node name="CollectiblePlacer" parent="Objects" instance=ExtResource("6_umfqk")]
-position = Vector2(-1575, 125)
+position = Vector2(-1576, 96)
 curve = SubResource("Curve2D_ec8w2")
 collectible_count = 16
 
 [node name="CollectiblePlacer2" parent="Objects" instance=ExtResource("6_umfqk")]
-position = Vector2(-1575, 125)
-curve = SubResource("Curve2D_ec8w2")
-collectible_count = 16
-
-[node name="PetalPlacer" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("7_byuui")]
-position = Vector2(800, 96)
-curve = SubResource("Curve2D_ksba8")
-clover = NodePath("../CloverPetals")
+position = Vector2(74, -5)
+curve = SubResource("Curve2D_2jjn4")
 collectible_count = 10
 
+[node name="PetalPlacer" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("7_byuui")]
+position = Vector2(2176, 91)
+scale = Vector2(1, 1.0034722)
+curve = SubResource("Curve2D_ksba8")
+clover = NodePath("../CloverPetals")
+collectible_count = 30
+
 [node name="PathFollow2D" parent="Objects/PetalPlacer" index="0"]
-position = Vector2(256, -128)
+position = Vector2(351, -85.14878)
 
 [node name="Spawner" parent="Objects/PetalPlacer" index="2"]
 position = Vector2(128, -64)
+
+[node name="Timer" parent="Objects/PetalPlacer" index="3"]
+wait_time = 30.0
 
 [node name="Rings" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("8_it4hg")]
 position = Vector2(-461, 692)
