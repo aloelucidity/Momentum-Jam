@@ -1,12 +1,70 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg1xca6iswg5y"]
+[gd_scene load_steps=17 format=3 uid="uid://cg1xca6iswg5y"]
 
 [ext_resource type="Script" uid="uid://cvnlowip10k3n" path="res://level/objects/clover/clover.gd" id="1_cejkl"]
 [ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://shaders/clover.gdshader" id="1_gwlkb"]
+[ext_resource type="Texture2D" uid="uid://cbml0wov4a6py" path="res://level/objects/clover/clover1.png" id="2_4jaap"]
+[ext_resource type="Texture2D" uid="uid://dlnov01mo4ib6" path="res://level/objects/clover/clover2.png" id="3_2ursc"]
+[ext_resource type="Texture2D" uid="uid://cs6u8arbqhab2" path="res://level/objects/clover/clover3.png" id="4_hbu2b"]
+[ext_resource type="Texture2D" uid="uid://rstq6gyvqlyj" path="res://level/objects/clover/clover4.png" id="5_84e4l"]
+[ext_resource type="Texture2D" uid="uid://c6h07oe11i1u0" path="res://level/objects/clover/clover5.png" id="6_454u8"]
+[ext_resource type="Texture2D" uid="uid://vmc0awpugrxe" path="res://level/objects/clover/clover6.png" id="7_lfax4"]
+[ext_resource type="Shader" uid="uid://btuc7wsl22b2x" path="res://shaders/blur.gdshader" id="9_2ursc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ec8w2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x3gl0"]
 shader = ExtResource("1_gwlkb")
-shader_parameter/influence = 1.0
+shader_parameter/global_pos = Vector2(0, 0)
+shader_parameter/influence = 0.40000000596048
 shader_parameter/offset = 0.0
+shader_parameter/effect_scale = 4.0
+shader_parameter/effect_divide = 1.0
+
+[sub_resource type="Animation" id="Animation_euosq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4jaap")]
+}
+
+[sub_resource type="Animation" id="Animation_nqd1o"]
+resource_name = "spin"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_4jaap"), ExtResource("3_2ursc"), ExtResource("4_hbu2b"), ExtResource("5_84e4l"), ExtResource("6_454u8"), ExtResource("7_lfax4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6q02p"]
+_data = {
+&"RESET": SubResource("Animation_euosq"),
+&"spin": SubResource("Animation_nqd1o")
+}
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ursc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbu2b"]
+shader = ExtResource("9_2ursc")
+shader_parameter/is_additive = true
+shader_parameter/blur_radius = 5.0000002375
+shader_parameter/sample_count = 7
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gbniv"]
 radius = 24.0
@@ -16,19 +74,37 @@ collision_layer = 0
 collision_mask = 4
 monitorable = false
 script = ExtResource("1_cejkl")
-active_color = Color(0.32156864, 0.32156864, 0.32156864, 1)
-inactive_color = Color(0.6392157, 0.6392157, 0.6392157, 0.7529412)
+rainbow_material = SubResource("ShaderMaterial_x3gl0")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_ec8w2")
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-color = Color(0.32, 0.32, 0.32, 1)
+[node name="Spin" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6q02p")
+}
+
+[node name="Viewport" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_2ursc")
+
+[node name="Glow" type="Sprite2D" parent="Viewport"]
+modulate = Color(1.8247963, 1.8247963, 1.8247963, 0.5019608)
+show_behind_parent = true
+texture_filter = 2
+material = SubResource("ShaderMaterial_hbu2b")
+texture = SubResource("ViewportTexture_2ursc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_gbniv")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+oversampling = false
+size = Vector2i(48, 48)
+
+[node name="Sprite" type="Sprite2D" parent="SubViewport"]
+material = SubResource("ShaderMaterial_x3gl0")
+texture = ExtResource("2_4jaap")
+centered = false
+offset = Vector2(8, 8)
 
 [connection signal="body_entered" from="." to="." method="body_entered"]

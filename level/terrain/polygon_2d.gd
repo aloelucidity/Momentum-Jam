@@ -1,7 +1,7 @@
 extends Polygon2D
 
 
-@export var collision_polygon: CollisionPolygon2D
+@onready var collision_polygon = get_parent()
 
 
 func _ready() -> void:

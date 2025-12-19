@@ -1,17 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://drha351nbsdeu"]
+[gd_scene load_steps=11 format=3 uid="uid://drha351nbsdeu"]
 
 [ext_resource type="PackedScene" uid="uid://bge0n8af06jnl" path="res://level/objects/collectible_placer/collectible_placer.tscn" id="1_daiuu"]
 [ext_resource type="Script" uid="uid://blgo5crvh2d17" path="res://level/objects/petal_placer/petal_placer.gd" id="1_nc2yb"]
 [ext_resource type="PackedScene" uid="uid://47d5qr13mh7m" path="res://level/objects/petal/petal.tscn" id="3_4ux1n"]
-[ext_resource type="Shader" uid="uid://0aiwcmtbqvvg" path="res://shaders/petal.gdshader" id="3_daiuu"]
+[ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://shaders/clover.gdshader" id="4_4ux1n"]
+[ext_resource type="Texture2D" uid="uid://b2pacguxo7a0t" path="res://level/objects/petal_placer/timer.png" id="5_2hdcd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ux1n"]
-shader = ExtResource("3_daiuu")
-shader_parameter/influence = 0.5
-shader_parameter/saturation = 1.30000000447036
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hdcd"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_q3by1"]
+offsets = PackedFloat32Array(0.2, 0.46666667)
+colors = PackedColorArray(1, 1, 1, 0.2509804, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 15
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7s1y2"]
+gradient = SubResource("Gradient_q3by1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hdcd"]
+shader = ExtResource("4_4ux1n")
+shader_parameter/global_pos = Vector2(0, 0)
+shader_parameter/influence = 0.30000000447036
+shader_parameter/offset = 0.0
+shader_parameter/effect_scale = 30.000001425
+shader_parameter/effect_divide = 9.000000134110799
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hdcd"]
-radius = 48.0
+radius = 16.0
 
 [node name="PetalPlacer" instance=ExtResource("1_daiuu")]
 script = ExtResource("1_nc2yb")
@@ -23,14 +43,21 @@ collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="ColorRect" type="ColorRect" parent="Spawner" index="0"]
-material = SubResource("ShaderMaterial_4ux1n")
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="TextureRect" type="TextureRect" parent="Spawner" index="0"]
+material = SubResource("CanvasItemMaterial_2hdcd")
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("GradientTexture2D_7s1y2")
+expand_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner" index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="Spawner" index="1"]
+material = SubResource("ShaderMaterial_2hdcd")
+texture = ExtResource("5_2hdcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner" index="2"]
+visible = false
 shape = SubResource("CircleShape2D_2hdcd")
 
 [node name="Timer" type="Timer" parent="." index="3"]

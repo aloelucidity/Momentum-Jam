@@ -2,8 +2,8 @@ class_name JumpAction
 extends ActionState
 
 
-@export var voice: AudioStreamPlayer
-@export var sound: AudioStreamPlayer
+@export var voice: AudioStreamPlayer2D
+@export var sound: AudioStreamPlayer2D
 
 @export var jump_power: float
 @export var fall_threshold: float

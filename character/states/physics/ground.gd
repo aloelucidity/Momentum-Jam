@@ -15,7 +15,7 @@ extends PhysicsState
 @export var coyote_time: float
 
 @export var anim_target_speed: float
-@export var footstep_sound: AudioStreamPlayer
+@export var footstep_sound: AudioStreamPlayer2D
 @export var footstep_interval: float
 @export var sprite: AnimatedSprite2D
 

@@ -62,7 +62,7 @@ func _update(delta: float) -> void:
 	## Gravity
 	var factor: float = 1
 	var target_velocity: float = max_fall
-	if is_buoyant and not water_check.get_overlapping_bodies().is_empty():
+	if is_buoyant and not water_check.get_overlapping_areas().is_empty():
 		target_velocity = -target_velocity
 		factor = float_factor
 	

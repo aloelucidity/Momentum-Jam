@@ -3,10 +3,10 @@ extends AirPhysics
 
 
 @onready var initial_launch_vol: float = launch_sound.volume_db
-@export var aim_sound: AudioStreamPlayer
-@export var bounce_sound: AudioStreamPlayer
-@export var launch_sound: AudioStreamPlayer
-@export var voice: AudioStreamPlayer
+@export var aim_sound: AudioStreamPlayer2D
+@export var bounce_sound: AudioStreamPlayer2D
+@export var launch_sound: AudioStreamPlayer2D
+@export var voice: AudioStreamPlayer2D
 @export var voice_threshold: float
 
 @export var min_bounce_vel: float
@@ -50,7 +50,7 @@ func _transition_check() -> String:
 			if launch_speed > voice_threshold:
 				voice.play()
 			
-			if not water_check.get_overlapping_bodies().is_empty():
+			if not water_check.get_overlapping_areas().is_empty():
 				launch_speed *= 1.5
 			
 			var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target

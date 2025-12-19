@@ -3,9 +3,10 @@ extends Area2D
 
 
 @onready var globals_id: String = get_path().get_concatenated_names()
-@onready var color_rect: ColorRect = $ColorRect
-@export var active_color: Color
-@export var inactive_color: Color
+@onready var spin: AnimationPlayer = $Spin
+@onready var glow: Sprite2D = $Viewport/Glow
+@onready var sprite: Sprite2D = $SubViewport/Sprite
+@export var rainbow_material: ShaderMaterial
 
 var activated: bool = true
 
@@ -14,6 +15,15 @@ func _ready() -> void:
 	if globals_id in Globals.collected_clovers:
 		queue_free()
 		return
+	
+	sprite.material = sprite.material.duplicate()
+	spin.play("spin")
+
+
+func _process(_delta: float) -> void:
+	if not is_instance_valid(sprite.material): return
+	sprite.material.set_shader_parameter("global_pos", 
+		get_global_transform_with_canvas().origin / get_viewport_rect().size)
 
 
 func body_entered(body: Node2D) -> void:
@@ -30,9 +40,15 @@ func body_entered(body: Node2D) -> void:
 
 func deactivate() -> void:
 	activated = false
-	color_rect.color = inactive_color
+	sprite.material = null
+	sprite.modulate.a = 0.75
+	spin.play("RESET")
+	glow.hide()
 
 
 func activate() -> void:
-	color_rect.color = active_color
+	sprite.material = rainbow_material
+	sprite.modulate.a = 1.0
 	activated = true
+	spin.play("spin")
+	glow.show()
