@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=91 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -45,7 +45,6 @@
 [ext_resource type="AudioStream" uid="uid://cyr4o1rqukflr" path="res://character/voices/launch1.mp3" id="27_0l5d1"]
 [ext_resource type="AudioStream" uid="uid://bfhfupx88t2i8" path="res://character/voices/launch2.mp3" id="28_6y17u"]
 [ext_resource type="AudioStream" uid="uid://chw3phg15r7jy" path="res://character/voices/jump0.mp3" id="28_oxui7"]
-[ext_resource type="AudioStream" uid="uid://cuampqr7yxrtd" path="res://character/voices/jump1.mp3" id="29_7f6i4"]
 [ext_resource type="AudioStream" uid="uid://ermjadf5n33j" path="res://character/voices/jump4.mp3" id="30_komqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
@@ -59,11 +58,10 @@ size = Vector2(16, 20)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s2csv"]
 random_pitch = 1.02
-streams_count = 4
+streams_count = 3
 stream_0/stream = ExtResource("28_oxui7")
-stream_1/stream = ExtResource("29_7f6i4")
-stream_2/stream = ExtResource("4_6y17u")
-stream_3/stream = ExtResource("30_komqb")
+stream_1/stream = ExtResource("4_6y17u")
+stream_2/stream = ExtResource("30_komqb")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4mbdx"]
 random_pitch = 1.02
