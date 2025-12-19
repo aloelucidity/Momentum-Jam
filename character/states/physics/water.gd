@@ -23,14 +23,14 @@ var can_move: bool = true
 ## runs this check every frame while inactive and 
 ## in the character's current pool of states
 func _startup_check() -> bool:
-	return not water_check.get_overlapping_bodies().is_empty()
+	return not water_check.get_overlapping_areas().is_empty()
 
 
 ## runs this check every frame while active
 ## the string returned is the name of the state to change to
 ## return self.name for no change!
 func _transition_check() -> String:
-	if water_check.get_overlapping_bodies().is_empty():
+	if water_check.get_overlapping_areas().is_empty():
 		return air_name
 	return name
 

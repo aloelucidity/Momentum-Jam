@@ -89,8 +89,8 @@ stream_0/stream = ExtResource("12_nl6b6")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn8gt"]
 shader = ExtResource("11_kxp0i")
 shader_parameter/is_smooth = true
-shader_parameter/width = 6.000000285
-shader_parameter/outline_color = Color(1, 0.627451, 0, 0.3764706)
+shader_parameter/width = 8.00000038
+shader_parameter/outline_color = Color(1, 0.78039217, 0.4, 0.3764706)
 shader_parameter/pixel_size = 4
 shader_parameter/step_count = 4
 
@@ -820,7 +820,7 @@ shape = SubResource("RectangleShape2D_orckd")
 
 [node name="JumpVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_s2csv")
-volume_db = 1.0
+volume_db = 0.75
 attenuation = 1e-05
 bus = &"Voices"
 
@@ -1149,7 +1149,7 @@ script = ExtResource("11_8brn5")
 link_to = NodePath("../../Air/RideBall")
 metadata/_custom_type_script = "uid://64e26a6bvbu7"
 
-[node name="Swim" type="Node" parent="PhysicsStates/Water"]
+[node name="Swim" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("sprite", "light")]
 script = ExtResource("15_orckd")
 swim_power = 125.0
 perfect_swim_power = 250.0
@@ -1161,6 +1161,9 @@ control_regain_window = 0.1
 perfect_swim_interval = 0.55
 perfect_swim_window = 0.15
 press_buffer = 0.2
+sprite = NodePath("../../../Scaler/Animator/Character")
+light = NodePath("../../../Lantern/Light")
+unglow_speed = 0.5
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"
 
 [node name="Collect" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("rotator")]

@@ -15,12 +15,17 @@ extends ActionState
 @export var perfect_swim_window: float
 @export var press_buffer: float
 
+@export var sprite: AnimatedSprite2D
+@export var light: RainbowGlow
+@export var unglow_speed: float
+
 var do_perfect_swim: bool
 var perfect_swimming: bool
 var delay_timer: float
 var swim_timer: float
 var buffer_timer: float
 var swim_dir: Vector2
+var start_unglow: float
 
 
 ## runs this check every frame while inactive and 
@@ -40,6 +45,12 @@ func _transition_check() -> String:
 
 ## runs once when this state begins being active
 func _on_enter() -> void:
+	start_unglow = sprite.unglow_speed
+	if do_perfect_swim:
+		sprite.unglow_speed = unglow_speed
+		sprite.glow()
+		light.strength_factor = 0.5
+	
 	perfect_swimming = do_perfect_swim
 	do_perfect_swim = false
 	
@@ -52,6 +63,8 @@ func _on_enter() -> void:
 
 ## runs once when this state stops being active
 func _on_exit() -> void:
+	sprite.unglow_speed = start_unglow
+	light.strength_factor = 0.0
 	parent_physics.can_move = true
 
 

@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://c7kbs53vkl1tx"]
+
+[ext_resource type="Script" uid="uid://l75y4ft1rmfi" path="res://level/terrain/water_helper.gd" id="1_y8f4m"]
+[ext_resource type="Script" uid="uid://ducdj30l5rqc3" path="res://level/terrain/water_notifier.gd" id="2_g8tyx"]
+[ext_resource type="Shader" uid="uid://bdvbq76h2gfa0" path="res://shaders/wavy.gdshader" id="3_i2dh1"]
+
+[sub_resource type="Gradient" id="Gradient_d0ajy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jcpdl"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kvvhj"]
+noise = SubResource("FastNoiseLite_jcpdl")
+color_ramp = SubResource("Gradient_d0ajy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1idy2"]
+shader = ExtResource("3_i2dh1")
+shader_parameter/refraction_map = SubResource("NoiseTexture2D_kvvhj")
+shader_parameter/refraction_stretch = Vector2(1, 1)
+shader_parameter/refraction_strength = 0.0050000002375
+shader_parameter/water_tint = Color(0, 0.20000005, 1, 0.15686275)
+shader_parameter/speed = 0.1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kvvhj"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_jcpdl"]
+colors = PackedColorArray(0.53, 0.6788334, 1, 0.1254902, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kvvhj"]
+frequency = 0.001
+fractal_type = 2
+domain_warp_type = 1
+domain_warp_frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1idy2"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_kvvhj")
+color_ramp = SubResource("Gradient_jcpdl")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="Gradient" id="Gradient_kvvhj"]
+offsets = PackedFloat32Array(0, 0.8, 0.9, 1)
+colors = PackedColorArray(0.694, 0.45999998, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.2509804, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1idy2"]
+gradient = SubResource("Gradient_kvvhj")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[node name="Water" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_y8f4m")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(8337, 32, 3572, 32, 2431, 32, 2405, 744, 8337, 733)
+script = ExtResource("2_g8tyx")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Inner" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_1idy2")
+color = Color(0, 0.7529412, 1, 0.5019608)
+polygon = PackedVector2Array(8337, 32, 3572, 32, 2431, 32, 2405, 744, 8337, 733)
+metadata/_edit_lock_ = true
+
+[node name="Overlay" type="Polygon2D" parent="."]
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_kvvhj")
+texture = SubResource("NoiseTexture2D_1idy2")
+polygon = PackedVector2Array(8337, 32, 3572, 32, 2431, 32, 2405, 744, 8337, 733)
+metadata/_edit_lock_ = true
+
+[node name="Edge" type="Line2D" parent="."]
+texture_filter = 2
+points = PackedVector2Array(8337, 32, 3572, 32, 2431, 32, 2405, 744, 8337, 733)
+closed = true
+width = 20.0
+texture = SubResource("GradientTexture2D_1idy2")
+texture_mode = 1
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="body_entered"]
+[connection signal="polygon_changed" from="Collision" to="." method="decorate_water"]
