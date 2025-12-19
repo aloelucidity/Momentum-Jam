@@ -10,8 +10,10 @@ const HSV_SHADER: Shader = preload("res://shaders/hsv.gdshader")
 @onready var main_camera: Camera2D = owner.character_camera
 
 @export var layer_index: int = -64
-@export var blur_amount: float = 1.0
-@export var saturation: float = 1.0
+
+@export var saturation_mult: float = 1.0
+@export var brightness_add: float = 0.0
+@export var contrast_mult: float = 1.0
 
 var canvas_layer: CanvasLayer
 var viewport_rect: TextureRect
@@ -42,13 +44,8 @@ func _ready() -> void:
 	viewport_rect.texture = viewport_node.get_texture()
 	canvas_layer.add_child.call_deferred(viewport_rect)
 	
-	blur_rect = viewport_rect.duplicate()
-	canvas_layer.add_child.call_deferred(blur_rect)
-	
 	viewport_rect.material = ShaderMaterial.new()
 	viewport_rect.material.shader = HSV_SHADER
-	viewport_rect.material.set_shader_parameter("s", saturation)
-	
-	blur_rect.material = ShaderMaterial.new()
-	blur_rect.material.shader = BLUR_SHADER
-	blur_rect.material.set_shader_parameter("blur_amount", blur_amount)
+	viewport_rect.material.set_shader_parameter("saturation_mult", saturation_mult)
+	viewport_rect.material.set_shader_parameter("brightness_add", brightness_add)
+	viewport_rect.material.set_shader_parameter("contrast_mult", contrast_mult)

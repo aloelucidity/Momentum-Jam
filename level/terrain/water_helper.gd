@@ -2,6 +2,7 @@
 extends Area2D
 
 
+@onready var visiblity_enabler: VisibleOnScreenEnabler2D = $VisibleOnScreenEnabler2D
 @onready var collision: CollisionPolygon2D = $Collision
 @onready var inner: Polygon2D = $Inner
 @onready var overlay: Polygon2D = $Overlay
@@ -38,9 +39,27 @@ class Spring:
 		height += velocity * delta
 
 
+func get_polygon_rect(polygon: PackedVector2Array) -> Rect2:
+	if polygon.is_empty():
+		return Rect2()
+		
+	var min_v: Vector2 = polygon[0]
+	var max_v: Vector2 = polygon[0]
+
+	for index: int in range(1, polygon.size()):
+		min_v.x = min(min_v.x, polygon[index].x)
+		min_v.y = min(min_v.y, polygon[index].y)
+		max_v.x = max(max_v.x, polygon[index].x)
+		max_v.y = max(max_v.y, polygon[index].y)
+	
+	return Rect2(min_v, max_v - min_v)
+
+
 func _ready() -> void:
 	subdivide_surface()
 	initialize_springs()
+	await get_tree().physics_frame
+	visiblity_enabler.rect = get_polygon_rect(collision.polygon)
 
 
 func subdivide_surface() -> void:

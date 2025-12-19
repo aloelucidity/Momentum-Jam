@@ -62,9 +62,9 @@ tension = 25.0
 wave_damp = 3.0
 wave_spread = 100.0
 velocity_divide = 0.5
-idle_amplitude = 2.5
-idle_period_1 = 15.0
-idle_period_2 = 25.0
+idle_amplitude = 2.0
+idle_period_1 = 19.0
+idle_period_2 = 7.0
 idle_speed = 2.0
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
@@ -98,6 +98,8 @@ width = 20.0
 texture = SubResource("GradientTexture2D_1idy2")
 texture_mode = 1
 metadata/_edit_lock_ = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="body_entered" from="." to="." method="handle_body"]
 [connection signal="body_exited" from="." to="." method="handle_body" binds= [0.35]]
