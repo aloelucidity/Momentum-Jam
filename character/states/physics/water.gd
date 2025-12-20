@@ -11,9 +11,7 @@ extends PhysicsState
 @export_group("Misc")
 @export var water_check: Area2D
 @export var enter_factor: float = 1
-@export var exit_factor: float = 1
-
-@export_group("Misc")
+@export var exit_factor: float = 1 
 @export var air_name: String
 @export var set_facing: bool = true
 
@@ -49,7 +47,6 @@ func _on_exit() -> void:
 func _update(delta: float) -> void:
 	## framerate independance
 	var decay_factor: float = pow(friction_decay, delta)
-	
 	var move_dir := Vector2.ZERO
 	
 	if can_move:

@@ -1454,7 +1454,7 @@ script = ExtResource("2_apqmw")
 collision_polygon = NodePath("..")
 
 [node name="OneWay3" type="CollisionPolygon2D" parent="Terrain/Terrain"]
-position = Vector2(1201, -128)
+position = Vector2(1201, -80)
 build_mode = 1
 polygon = PackedVector2Array(-800, -192, -256, -192, -256, -160, -800, -160)
 one_way_collision = true
@@ -2192,7 +2192,7 @@ ground_offset = 200.0
 
 [node name="Transitioner" type="Node2D" parent="Camera2D"]
 script = ExtResource("13_852y8")
-left_scene = "res://level/level_scenes/test_level.tscn"
+left_scene = "res://level/level_scenes/tundra.tscn"
 right_scene = "res://level/level_scenes/test_level.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D"]

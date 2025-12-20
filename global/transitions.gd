@@ -21,10 +21,9 @@ func change_scene(scene_path: String, character: Character, transition_dir: int)
 	## continue to update after the screen is grabbed
 	screenshot.texture = ImageTexture.create_from_image(
 		get_viewport().get_texture().get_image())
-
-	get_tree().call_deferred("change_scene_to_file", scene_path)
-	animation_player.call_deferred("play", "left" if transition_dir < 0 else "right")
+	animation_player.play("prepare")
 	
+	get_tree().call_deferred("change_scene_to_file", scene_path)
 	await get_tree().scene_changed
 	
 	var level: LevelScene = get_tree().get_current_scene()
@@ -34,6 +33,7 @@ func change_scene(scene_path: String, character: Character, transition_dir: int)
 		else level.character_camera.limit_left - TRANSITION_MARGIN)
 	
 	get_tree().paused = false
+	animation_player.call_deferred("play", "left" if transition_dir < 0 else "right")
 	
 	var cam_offset := Vector2(0, -level.character_camera.air_offset / 2)
 	if character.on_ground:

@@ -70,6 +70,11 @@ func _on_enter() -> void:
 	footstep_timer = 0.0
 
 
+## runs once when this state stops being active
+func _on_exit() -> void:
+	sprite.speed_scale = 1.0
+
+
 ## runs every frame while active
 func _update(delta: float) -> void:
 	var move_dir: int = 0

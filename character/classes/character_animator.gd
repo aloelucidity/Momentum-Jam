@@ -76,7 +76,6 @@ func _update(delta: float) -> void:
 		reset_physics_interpolation()
 		for child in get_children():
 			child.reset_physics_interpolation()
-		
 	
 	if is_instance_valid(animator):
 		animator._update()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=108 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -42,7 +42,7 @@
 [ext_resource type="Script" uid="uid://rgxdfuawxo3h" path="res://character/states/action/swim.gd" id="15_orckd"]
 [ext_resource type="Script" uid="uid://b84f6plg0kbok" path="res://character/states/physics/collect.gd" id="16_1dqym"]
 [ext_resource type="AudioStream" uid="uid://ddy6up566bmme" path="res://character/sounds/swim.mp3" id="16_1hmya"]
-[ext_resource type="Script" uid="uid://bmfihedv1njep" path="res://character/misc/lantern_sound.gd" id="16_j0gbq"]
+[ext_resource type="Script" uid="uid://bmfihedv1njep" path="res://character/misc/wind_sound.gd" id="16_j0gbq"]
 [ext_resource type="Script" uid="uid://15g1y80ayb7n" path="res://character/classes/sprite_effects.gd" id="16_psflj"]
 [ext_resource type="AudioStream" uid="uid://c14i8osl8dopu" path="res://character/sounds/swim_perfect.mp3" id="17_54gay"]
 [ext_resource type="Material" uid="uid://cnepyk3onvhj" path="res://character/misc/blur_shader.tres" id="17_h0hwg"]
@@ -53,6 +53,7 @@
 [ext_resource type="AudioStream" uid="uid://chw3phg15r7jy" path="res://character/voices/jump0.mp3" id="28_oxui7"]
 [ext_resource type="AudioStream" uid="uid://ermjadf5n33j" path="res://character/voices/jump4.mp3" id="30_komqb"]
 [ext_resource type="Script" uid="uid://ctk2ndsd4ly2a" path="res://character/misc/clover_parent.gd" id="34_2yldb"]
+[ext_resource type="Texture2D" uid="uid://csx2ckj4rt0x3" path="res://character/sprites/swim.png" id="36_wpbs7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(16, 32)
@@ -648,6 +649,64 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_dg8ty"]
+resource_name = "water"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"water"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"water", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wpbs7"]
+resource_name = "swim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"water"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"water", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dy06j"]
 _data = {
 &"RESET": SubResource("Animation_tgjim"),
@@ -656,7 +715,9 @@ _data = {
 &"idle": SubResource("Animation_o6jyn"),
 &"jump": SubResource("Animation_c0nog"),
 &"run": SubResource("Animation_4ekbm"),
-&"walk": SubResource("Animation_6610h")
+&"swim": SubResource("Animation_wpbs7"),
+&"walk": SubResource("Animation_6610h"),
+&"water": SubResource("Animation_dg8ty")
 }
 
 [sub_resource type="Gradient" id="Gradient_yn8gt"]
@@ -738,6 +799,22 @@ region = Rect2(288, 0, 48, 48)
 atlas = ExtResource("10_c0nog")
 region = Rect2(336, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpbs7"]
+atlas = ExtResource("36_wpbs7")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg8ty"]
+atlas = ExtResource("36_wpbs7")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewpg8"]
+atlas = ExtResource("36_wpbs7")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7r6o"]
+atlas = ExtResource("36_wpbs7")
+region = Rect2(144, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hq3og"]
 animations = [{
 "frames": [{
@@ -817,6 +894,23 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpbs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg8ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewpg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7r6o")
+}],
+"loop": true,
+"name": &"water",
+"speed": 4.5
 }]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("default_collision")]
@@ -898,6 +992,7 @@ bus = &"Sounds"
 [node name="WindSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("15_j0gbq")
 volume_db = 6.0
+pitch_scale = 1.5
 attenuation = 1e-05
 bus = &"Sounds"
 script = ExtResource("16_j0gbq")
@@ -1196,6 +1291,7 @@ water_check = NodePath("../../WaterCheck")
 enter_factor = 0.25
 exit_factor = 1.5
 priority = 1
+animation = "water"
 rotator = NodePath("../../Rotators/Water")
 snap_override = 0
 metadata/_custom_type_script = "uid://d0kxrujyqivry"
@@ -1222,6 +1318,7 @@ light = NodePath("../../../Lantern/Light")
 unglow_speed = 0.5
 swim_sound = NodePath("../../../Sounds/SwimSound")
 swim_perfect_sound = NodePath("../../../Sounds/SwimPerfectSound")
+animation = "swim"
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"
 
 [node name="Collect" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("rotator")]

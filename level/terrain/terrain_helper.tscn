@@ -29,6 +29,7 @@ seamless = true
 seamless_blend_skirt = 1.0
 
 [node name="TerrainHelper" type="CollisionPolygon2D"]
+self_modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_ddmml")
 detail_amount = 800
 detail_margin = 24

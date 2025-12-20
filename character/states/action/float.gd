@@ -37,7 +37,7 @@ func _on_enter() -> void:
 	sprite.glow()
 	sprite.can_unglow = false
 	light.strength_factor = 0.5
-	wind_sound.start_sound(0.2)
+	wind_sound.start_sound(0.2, 0.35)
 	
 	float_timer = float_time
 	

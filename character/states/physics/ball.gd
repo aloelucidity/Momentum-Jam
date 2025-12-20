@@ -142,6 +142,7 @@ func _update(delta: float) -> void:
 	sprite_rot = lerp_angle(sprite_rot, ball_direction.angle() + PI/2, rot_alpha)
 	sprite.flip_v = wrapf(sprite_rot, -PI, PI) > 0
 	
+	landed = character.on_ground
 	for index: int in character.get_slide_collision_count():
 		var collision: KinematicCollision2D = character.get_slide_collision(index)
 		var bounce_velocity: Vector2 = last_velocity.normalized() * (last_velocity.length() / bounce_damp)
@@ -157,6 +158,7 @@ func _update(delta: float) -> void:
 			
 			can_launch = true
 			character.on_ground = false
+			landed = false
 			
 			var total_shrink: float = max_shrink * (character.velocity.length() / max_fall)
 			scaler.scale = Vector2.ONE - abs(normal) * total_shrink
@@ -170,6 +172,8 @@ func _update(delta: float) -> void:
 			light.strength_factor = strength_factor
 			
 			break
+		elif not water_check.get_overlapping_areas().is_empty():
+			landed = true
 
 	## framerate independance
 	var scale_alpha: float = 1.0 - exp(-scale_speed * delta)
@@ -177,5 +181,3 @@ func _update(delta: float) -> void:
 
 	## run base function
 	super(delta)
-	
-	landed = character.on_ground
