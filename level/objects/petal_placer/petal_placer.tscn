@@ -1,10 +1,232 @@
-[gd_scene load_steps=11 format=3 uid="uid://drha351nbsdeu"]
+[gd_scene load_steps=23 format=3 uid="uid://drha351nbsdeu"]
 
 [ext_resource type="PackedScene" uid="uid://bge0n8af06jnl" path="res://level/objects/collectible_placer/collectible_placer.tscn" id="1_daiuu"]
 [ext_resource type="Script" uid="uid://blgo5crvh2d17" path="res://level/objects/petal_placer/petal_placer.gd" id="1_nc2yb"]
 [ext_resource type="PackedScene" uid="uid://47d5qr13mh7m" path="res://level/objects/petal/petal.tscn" id="3_4ux1n"]
 [ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://shaders/clover.gdshader" id="4_4ux1n"]
 [ext_resource type="Texture2D" uid="uid://b2pacguxo7a0t" path="res://level/objects/petal_placer/timer.png" id="5_2hdcd"]
+[ext_resource type="AudioStream" uid="uid://b81kaej86pls0" path="res://level/objects/petal/collect0.mp3" id="6_55cx2"]
+[ext_resource type="AudioStream" uid="uid://dmlmy84m5h7xd" path="res://level/objects/petal_placer/timer.mp3" id="6_te8x6"]
+[ext_resource type="AudioStream" uid="uid://748jeq7tqqj5" path="res://level/objects/petal_placer/tick.mp3" id="7_1xl3i"]
+[ext_resource type="AudioStream" uid="uid://1brhpmfjvuvs" path="res://level/objects/petal/collect1.mp3" id="7_te8x6"]
+[ext_resource type="AudioStream" uid="uid://b2d12m7eoq6si" path="res://level/objects/petal/collect2.mp3" id="8_1xl3i"]
+[ext_resource type="AudioStream" uid="uid://jiu5fijhhwmn" path="res://level/objects/petal/collect3.mp3" id="9_urjm4"]
+[ext_resource type="AudioStream" uid="uid://ddyj5xitp8ajj" path="res://level/objects/petal/collectlast.mp3" id="10_bkpo6"]
+
+[sub_resource type="Animation" id="Animation_84e4l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawner/Clock:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawner/Clock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner/Clock:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spawner/Clock:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spawner/Glow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hbu2b"]
+resource_name = "start"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawner/Clock:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(3.2944162, 3.2944162, 3.2944162, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawner/Clock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.5),
+"transitions": PackedFloat32Array(0.35, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -8), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner/Clock:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09999998, 0.4),
+"transitions": PackedFloat32Array(0.35, 3, 1),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(1.15, 1.2), Vector2(0.4, 0.4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spawner/Clock:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.4),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [0.0, 0.08726646259971647, 0.3490658503988659]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spawner/Glow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Spawner/TimerSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_te8x6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="Animation" id="Animation_1xl3i"]
+resource_name = "respawn"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawner/Clock:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(3.294, 3.294, 3.294, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawner/Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawner/Clock:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Spawner/Clock:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Spawner/Clock:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.3490658503988659, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajr1j"]
+_data = {
+&"RESET": SubResource("Animation_84e4l"),
+&"respawn": SubResource("Animation_1xl3i"),
+&"start": SubResource("Animation_hbu2b")
+}
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2hdcd"]
 blend_mode = 1
@@ -33,17 +255,39 @@ shader_parameter/effect_divide = 9.000000134110799
 [sub_resource type="CircleShape2D" id="CircleShape2D_2hdcd"]
 radius = 16.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rw50o"]
+random_volume_offset_db = 0.5
+streams_count = 4
+stream_0/stream = ExtResource("6_55cx2")
+stream_1/stream = ExtResource("7_te8x6")
+stream_2/stream = ExtResource("8_1xl3i")
+stream_3/stream = ExtResource("9_urjm4")
+
 [node name="PetalPlacer" instance=ExtResource("1_daiuu")]
 script = ExtResource("1_nc2yb")
+sin_speed = 1.5
+sin_amplitude = 3.0
+min_tick_delay = 0.025
+max_tick_delay = 0.25
+speedup_threshold = 10.0
 collectible_scene = ExtResource("3_4ux1n")
 place_on_ready = false
 
-[node name="Spawner" type="Area2D" parent="." index="2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_ajr1j")
+}
+
+[node name="Spawner" type="Area2D" parent="." index="3"]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="TextureRect" type="TextureRect" parent="Spawner" index="0"]
+[node name="TimerSound" type="AudioStreamPlayer2D" parent="Spawner" index="0"]
+volume_db = 8.0
+bus = &"Sounds"
+
+[node name="Glow" type="TextureRect" parent="Spawner" index="1"]
 material = SubResource("CanvasItemMaterial_2hdcd")
 offset_left = -32.0
 offset_top = -32.0
@@ -52,17 +296,32 @@ offset_bottom = 32.0
 texture = SubResource("GradientTexture2D_7s1y2")
 expand_mode = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Spawner" index="1"]
+[node name="Clock" type="Sprite2D" parent="Spawner" index="2"]
 material = SubResource("ShaderMaterial_2hdcd")
 texture = ExtResource("5_2hdcd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner" index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner" index="3"]
 visible = false
 shape = SubResource("CircleShape2D_2hdcd")
 
-[node name="Timer" type="Timer" parent="." index="3"]
+[node name="Timer" type="Timer" parent="." index="4"]
 wait_time = 3.0
 one_shot = true
+
+[node name="TickSound" type="AudioStreamPlayer2D" parent="." index="5"]
+stream = ExtResource("7_1xl3i")
+volume_db = 2.0
+bus = &"Sounds"
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = SubResource("AudioStreamRandomizer_rw50o")
+volume_db = 10.0
+bus = &"Sounds"
+
+[node name="SoundLast" type="AudioStreamPlayer2D" parent="." index="7"]
+stream = ExtResource("10_bkpo6")
+volume_db = 8.0
+bus = &"Sounds"
 
 [connection signal="body_entered" from="Spawner" to="." method="spawner_entered"]
 [connection signal="timeout" from="Timer" to="." method="timeout"]

@@ -15,4 +15,4 @@ func update_rotation(_delta: float) -> float:
 
 
 func update_skew(_delta: float) -> float:
-	return animator.skew
+	return 0

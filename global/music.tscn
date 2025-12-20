@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://r5rrb23p2dbr"]
+[gd_scene load_steps=4 format=3 uid="uid://r5rrb23p2dbr"]
 
 [ext_resource type="Script" uid="uid://24wmengrbdrq" path="res://global/music.gd" id="1_1k5wo"]
 [ext_resource type="AudioStream" uid="uid://msa1oks5siq5" path="res://music/bgm.mp3" id="2_x21ct"]
+[ext_resource type="AudioStream" uid="uid://dvcglu88dwgea" path="res://music/victory.mp3" id="3_hw6si"]
 
 [node name="Music" type="Node"]
 script = ExtResource("1_1k5wo")
@@ -9,6 +10,12 @@ script = ExtResource("1_1k5wo")
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("2_x21ct")
-volume_db = -3.0
+volume_db = -4.0
 autoplay = true
+bus = &"Music"
+
+[node name="Victory" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_hw6si")
+volume_db = -3.0
 bus = &"Music"

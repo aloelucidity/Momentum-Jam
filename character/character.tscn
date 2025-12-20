@@ -1,8 +1,9 @@
-[gd_scene load_steps=91 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=101 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
 [ext_resource type="Script" uid="uid://dodc7pappdgl2" path="res://character/classes/character_animator.gd" id="2_1l1n4"]
+[ext_resource type="Script" uid="uid://drdhratk62pgp" path="res://character/classes/water_check.gd" id="2_6ynxc"]
 [ext_resource type="Script" uid="uid://cd4cd7tf82m87" path="res://character/rotators/ground.gd" id="2_6610h"]
 [ext_resource type="Texture2D" uid="uid://cqtsxjnqlfb5i" path="res://character/sprites/idle.png" id="3_b4qc5"]
 [ext_resource type="Texture2D" uid="uid://ceymbhu4il1q0" path="res://character/sprites/ball.png" id="3_hd715"]
@@ -36,9 +37,14 @@
 [ext_resource type="AudioStream" uid="uid://c3mt32ceulxqn" path="res://character/sounds/launch.mp3" id="13_flvo5"]
 [ext_resource type="AudioStream" uid="uid://by0cuf583yo73" path="res://character/sounds/aim.mp3" id="14_2yldb"]
 [ext_resource type="Script" uid="uid://d0kxrujyqivry" path="res://character/states/physics/water.gd" id="14_hq3og"]
+[ext_resource type="AudioStream" uid="uid://c83500e1c6f3c" path="res://character/sounds/splash.mp3" id="15_blitr"]
+[ext_resource type="AudioStream" uid="uid://rddyjnjsje7v" path="res://character/sounds/wind.wav" id="15_j0gbq"]
 [ext_resource type="Script" uid="uid://rgxdfuawxo3h" path="res://character/states/action/swim.gd" id="15_orckd"]
 [ext_resource type="Script" uid="uid://b84f6plg0kbok" path="res://character/states/physics/collect.gd" id="16_1dqym"]
+[ext_resource type="AudioStream" uid="uid://ddy6up566bmme" path="res://character/sounds/swim.mp3" id="16_1hmya"]
+[ext_resource type="Script" uid="uid://bmfihedv1njep" path="res://character/misc/lantern_sound.gd" id="16_j0gbq"]
 [ext_resource type="Script" uid="uid://15g1y80ayb7n" path="res://character/classes/sprite_effects.gd" id="16_psflj"]
+[ext_resource type="AudioStream" uid="uid://c14i8osl8dopu" path="res://character/sounds/swim_perfect.mp3" id="17_54gay"]
 [ext_resource type="Material" uid="uid://cnepyk3onvhj" path="res://character/misc/blur_shader.tres" id="17_h0hwg"]
 [ext_resource type="Script" uid="uid://drhhnqn0igpqn" path="res://character/misc/trail.gd" id="18_iaewr"]
 [ext_resource type="AudioStream" uid="uid://cseg17eq88m16" path="res://character/voices/launch0.mp3" id="26_b862g"]
@@ -46,6 +52,7 @@
 [ext_resource type="AudioStream" uid="uid://bfhfupx88t2i8" path="res://character/voices/launch2.mp3" id="28_6y17u"]
 [ext_resource type="AudioStream" uid="uid://chw3phg15r7jy" path="res://character/voices/jump0.mp3" id="28_oxui7"]
 [ext_resource type="AudioStream" uid="uid://ermjadf5n33j" path="res://character/voices/jump4.mp3" id="30_komqb"]
+[ext_resource type="Script" uid="uid://ctk2ndsd4ly2a" path="res://character/misc/clover_parent.gd" id="34_2yldb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(16, 32)
@@ -83,6 +90,27 @@ random_pitch = 1.15
 random_volume_offset_db = 0.2
 streams_count = 1
 stream_0/stream = ExtResource("12_nl6b6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_blitr"]
+playback_mode = 1
+random_pitch = 1.1
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("15_blitr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_54gay"]
+playback_mode = 1
+random_pitch = 1.1
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("16_1hmya")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_upvyv"]
+playback_mode = 1
+random_pitch = 1.1
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("17_54gay")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn8gt"]
 shader = ExtResource("11_kxp0i")
@@ -806,9 +834,11 @@ position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_orckd")
 disabled = true
 
-[node name="WaterCheck" type="Area2D" parent="."]
+[node name="WaterCheck" type="Area2D" parent="." node_paths=PackedStringArray("splash_sound")]
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("2_6ynxc")
+splash_sound = NodePath("../Sounds/SplashSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCheck"]
 position = Vector2(0, -22)
@@ -832,7 +862,6 @@ bus = &"Voices"
 [node name="VictoryVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("8_0l5d1")
 volume_db = 1.0
-pitch_scale = 0.98
 attenuation = 1e-05
 bus = &"Voices"
 
@@ -865,6 +894,31 @@ stream = ExtResource("14_2yldb")
 volume_db = -3.0
 attenuation = 1e-05
 bus = &"Sounds"
+
+[node name="WindSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_j0gbq")
+volume_db = 6.0
+attenuation = 1e-05
+bus = &"Sounds"
+script = ExtResource("16_j0gbq")
+
+[node name="SplashSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_blitr")
+volume_db = -1.5
+attenuation = 1e-05
+bus = &"Sounds"
+
+[node name="SwimSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_54gay")
+volume_db = 6.0
+attenuation = 1e-05
+bus = &"Underwater"
+
+[node name="SwimPerfectSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_upvyv")
+volume_db = 6.0
+attenuation = 1e-05
+bus = &"Underwater"
 
 [node name="Rotators" type="Node2D" parent="."]
 
@@ -991,6 +1045,9 @@ script = ExtResource("18_iaewr")
 position = Vector2(-26, -32)
 script = ExtResource("11_yn8gt")
 
+[node name="CloverParent" type="Node2D" parent="Scaler/Animator"]
+script = ExtResource("34_2yldb")
+
 [node name="PhysicsStates" type="Node" parent="."]
 unique_name_in_owner = true
 
@@ -1013,7 +1070,7 @@ priority = 1
 do_flip_scale = false
 metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
-[node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light")]
+[node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light", "wind_sound")]
 script = ExtResource("5_dy06j")
 jump_power = 400.0
 gravity_subtract = 0.3
@@ -1022,6 +1079,7 @@ subsequent_damp = 1.5
 variable_jump_factor = 0.63
 sprite = NodePath("../../../Scaler/Animator/Character")
 light = NodePath("../../../Lantern/Light")
+wind_sound = NodePath("../../../Sounds/WindSound")
 animation = "fall"
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
@@ -1147,7 +1205,7 @@ script = ExtResource("11_8brn5")
 link_to = NodePath("../../Air/RideBall")
 metadata/_custom_type_script = "uid://64e26a6bvbu7"
 
-[node name="Swim" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("sprite", "light")]
+[node name="Swim" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("sprite", "light", "swim_sound", "swim_perfect_sound")]
 script = ExtResource("15_orckd")
 swim_power = 125.0
 perfect_swim_power = 250.0
@@ -1162,13 +1220,15 @@ press_buffer = 0.2
 sprite = NodePath("../../../Scaler/Animator/Character")
 light = NodePath("../../../Lantern/Light")
 unglow_speed = 0.5
+swim_sound = NodePath("../../../Sounds/SwimSound")
+swim_perfect_sound = NodePath("../../../Sounds/SwimPerfectSound")
 metadata/_custom_type_script = "uid://rgxdfuawxo3h"
 
 [node name="Collect" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("rotator")]
 unique_name_in_owner = true
 script = ExtResource("16_1dqym")
 ground_name = "Ground"
-animate_time = 3.0
+animate_time = 4.0
 x_correct_speed = 200.0
 max_fall = 750.0
 priority = 2

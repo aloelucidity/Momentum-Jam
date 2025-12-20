@@ -11,6 +11,8 @@
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kvvhj"]
 noise = SubResource("FastNoiseLite_jcpdl")
 color_ramp = SubResource("Gradient_d0ajy")
+seamless = true
+seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1idy2"]
 shader = ExtResource("3_i2dh1")
@@ -27,14 +29,15 @@ blend_mode = 1
 colors = PackedColorArray(0.53, 0.6788334, 1, 0.1254902, 0, 0, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kvvhj"]
-frequency = 0.001
+frequency = 0.0003
 fractal_type = 2
+fractal_lacunarity = 1.895
+fractal_gain = 1.695
+fractal_weighted_strength = 0.9
 domain_warp_type = 1
 domain_warp_frequency = 0.1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1idy2"]
-width = 128
-height = 128
 noise = SubResource("FastNoiseLite_kvvhj")
 color_ramp = SubResource("Gradient_jcpdl")
 seamless = true

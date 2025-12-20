@@ -19,6 +19,9 @@ extends ActionState
 @export var light: RainbowGlow
 @export var unglow_speed: float
 
+@export var swim_sound: AudioStreamPlayer2D
+@export var swim_perfect_sound: AudioStreamPlayer2D
+
 var do_perfect_swim: bool
 var perfect_swimming: bool
 var delay_timer: float
@@ -47,9 +50,12 @@ func _transition_check() -> String:
 func _on_enter() -> void:
 	start_unglow = sprite.unglow_speed
 	if do_perfect_swim:
+		swim_perfect_sound.play()
 		sprite.unglow_speed = unglow_speed
 		sprite.glow()
 		light.strength_factor = 0.5
+	else:
+		swim_sound.play()
 	
 	perfect_swimming = do_perfect_swim
 	do_perfect_swim = false

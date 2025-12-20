@@ -14,6 +14,7 @@ var jump_released: bool
 
 @export var sprite: AnimatedSprite2D
 @export var light: RainbowGlow
+@export var wind_sound: AudioStreamPlayer2D
 
 
 ## runs this check every frame while inactive and 
@@ -36,6 +37,7 @@ func _on_enter() -> void:
 	sprite.glow()
 	sprite.can_unglow = false
 	light.strength_factor = 0.5
+	wind_sound.start_sound(0.2)
 	
 	float_timer = float_time
 	
@@ -58,6 +60,7 @@ func _on_enter() -> void:
 func _on_exit() -> void:
 	sprite.can_unglow = true
 	light.strength_factor = 0.0
+	wind_sound.stop_sound(0.5)
 
 
 ## runs every frame while active

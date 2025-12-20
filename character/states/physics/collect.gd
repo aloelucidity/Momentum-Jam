@@ -23,6 +23,7 @@ func _transition_check() -> String:
 
 ## runs once when this state begins being active
 func _on_enter() -> void:
+	Music.fade_bgm()
 	character.set_state("action", null)
 	character.velocity.x = 0
 	character.velocity.y = min(character.velocity.y, 0)
@@ -39,12 +40,15 @@ func _update(delta: float) -> void:
 			total_gravity * delta
 		)
 		character.velocity.x = (target_x - character.position.x) * x_correct_speed * delta
+		animation = "fall"
 	else:
 		## if just landed
 		if stop_timer == animate_time:
 			character.emit_signal("start_collect_cutscene")
+			Music.play_victory_theme()
 		
 		character.velocity.x = move_toward(character.velocity.x, 0, x_correct_speed * delta)
 		stop_timer -= delta
+		animation = "idle"
 	
 	super(delta)

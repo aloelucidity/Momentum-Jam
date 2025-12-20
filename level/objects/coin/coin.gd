@@ -2,13 +2,15 @@ class_name Collectible
 extends Area2D
 
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var magnet_speed: float
+
 
 var character: Character
 var is_collected: bool
 var placed_index: int
 
-signal collected(placed_index: int)
+signal collected(placed_index: int, collect_pos: Vector2)
 
 
 func body_entered(body: Node2D) -> void:
@@ -30,8 +32,9 @@ func _physics_process(delta: float) -> void:
 
 
 func collect_body_entered(body: Node2D) -> void:
+	if is_collected: return
 	if body is Character:
-		queue_free()
 		is_collected = true
-		emit_signal("collected", placed_index)
+		animation_player.play("collect")
+		emit_signal("collected", placed_index, global_position)
 		character = null

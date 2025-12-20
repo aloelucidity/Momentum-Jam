@@ -11,19 +11,22 @@ extends Path2D
 
 @export var place_on_ready: bool = true
 
+var collectibles_rect: Rect2
+
 
 func _ready() -> void:
 	if place_on_ready:
 		place()
 
 
-func collected(index: int) -> void:
+func collected(index: int, _collect_pos: Vector2) -> void:
 	var collected_array: PackedByteArray = Globals.collected_coins.get(globals_id, [])
 	collected_array.append(index)
 	Globals.collected_coins.set(globals_id, collected_array)
 
 
 func place() -> void:
+	collectibles_rect = Rect2i(global_position, Vector2.ZERO)
 	for i: float in range(collectible_count):
 		path_follow_2d.progress_ratio = (i + 1) / collectible_count
 		
@@ -33,3 +36,8 @@ func place() -> void:
 			collectible.placed_index = i
 			collectible.connect("collected", collected)
 			collectibles.add_child.call_deferred(collectible)
+			
+			collectibles_rect.position.x = min(collectibles_rect.position.x, collectible.global_position.x)
+			collectibles_rect.position.y = min(collectibles_rect.position.y, collectible.global_position.y)
+			collectibles_rect.end.x = max(collectibles_rect.end.x, collectible.global_position.x)
+			collectibles_rect.end.y = max(collectibles_rect.end.y, collectible.global_position.y)

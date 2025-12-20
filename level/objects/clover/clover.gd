@@ -6,9 +6,11 @@ extends Area2D
 @onready var spin: AnimationPlayer = $Spin
 @onready var glow: Sprite2D = $Viewport/Glow
 @onready var sprite: Sprite2D = $SubViewport/Sprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var rainbow_material: ShaderMaterial
 
 var activated: bool = true
+var collected: bool
 
 
 func _ready() -> void:
@@ -28,14 +30,17 @@ func _process(_delta: float) -> void:
 
 func body_entered(body: Node2D) -> void:
 	if not activated: return
+	if collected: return
 	if not body is Character: return
+	
+	collected = true
+	animation_player.play("collect")
 	
 	Globals.collected_clovers.append(globals_id)
 	var character: Character = body
 	var collect_physics: CollectPhysics = character.get_node("%Collect")
 	collect_physics.target_x = global_position.x
 	character.set_state("physics", collect_physics)
-	queue_free()
 
 
 func deactivate() -> void:
