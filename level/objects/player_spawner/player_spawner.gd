@@ -11,7 +11,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	if Transitions.transitioning:
+	if Transitions.is_screen_change:
 		queue_free()
 		return
 	

@@ -5,3 +5,4 @@ extends Resource
 @export var next_stage: Level
 @export_file_path var start_scene: String
 var current_clovers: int
+var completion_time: float

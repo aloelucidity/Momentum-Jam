@@ -17,7 +17,13 @@ var target_x: float
 ## return self.name for no change!
 func _transition_check() -> String:
 	if stop_timer <= 0:
-		return ground_name
+		var cur_level: Level = Globals.levels[Globals.level_index]
+		if cur_level.current_clovers >= cur_level.total_clovers:
+			cur_level.completion_time = Globals.time
+			Globals.new_level(cur_level.next_stage)
+			Transitions.change_scene(cur_level.next_stage.start_scene, character, 0)
+		else:
+			return ground_name
 	return name
 
 

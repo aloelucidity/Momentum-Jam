@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ydkjf")
-total_clovers = 14
+total_clovers = 18
 start_scene = "res://level/level_scenes/icebergs.tscn"
 metadata/_custom_type_script = "uid://c83bw4vk8thc6"
