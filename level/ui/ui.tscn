@@ -1,0 +1,1208 @@
+[gd_scene load_steps=43 format=3 uid="uid://m0otgbp4rhtt"]
+
+[ext_resource type="FontFile" uid="uid://cc18r750p6qjm" path="res://fonts/ReggaeOne-Regular.ttf" id="1_3d1qu"]
+[ext_resource type="Script" uid="uid://2drwnm6iru87" path="res://level/ui/coins.gd" id="2_25awg"]
+[ext_resource type="Script" uid="uid://dh5ijgni4gm68" path="res://level/ui/timer.gd" id="2_bpsub"]
+[ext_resource type="Shader" uid="uid://cw0wphwhg5eqg" path="res://shaders/bevel.gdshader" id="3_by7uj"]
+[ext_resource type="Script" uid="uid://dl2j1spans8cj" path="res://level/ui/victory_text.gd" id="4_25awg"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nbx26"]
+color = Color(0, 0, 0, 0.3137255)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_25awg"]
+color = Color(0, 0, 0, 0.3137255)
+vertical = true
+
+[sub_resource type="Theme" id="Theme_by7uj"]
+default_font = ExtResource("1_3d1qu")
+default_font_size = 18
+HSeparator/styles/separator = SubResource("StyleBoxLine_nbx26")
+VSeparator/styles/separator = SubResource("StyleBoxLine_25awg")
+
+[sub_resource type="Gradient" id="Gradient_nt68a"]
+offsets = PackedFloat32Array(0, 0.33850932, 0.5652174, 1)
+colors = PackedColorArray(0, 0.0627451, 0.1254902, 1, 0.11237143, 0.18403527, 0.24391913, 1, 0.3174, 0.40533665, 0.46, 1, 0.107083365, 0.1783275, 0.23834601, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w4lhn"]
+gradient = SubResource("Gradient_nt68a")
+fill_from = Vector2(0, 0.6)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_hysrn"]
+offsets = PackedFloat32Array(0.1, 0.3, 0.7)
+colors = PackedColorArray(0.6156863, 0.5529412, 0.7019608, 1, 0.92, 0.976, 1, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nt68a"]
+gradient = SubResource("Gradient_hysrn")
+width = 16
+height = 4
+fill_from = Vector2(0, 0.8)
+fill_to = Vector2(0, 0)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_by7uj"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_by7uj"]
+colors = PackedColorArray(0.5776, 0.61712, 0.76, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0hbl8"]
+gradient = SubResource("Gradient_by7uj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_25awg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coins:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coins:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coins:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nbx26"]
+resource_name = "collect"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Coins:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, -3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Coins:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1.8247963, 1.8247963, 1.8247963, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Coins:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bpsub"]
+_data = {
+&"RESET": SubResource("Animation_25awg"),
+&"collect": SubResource("Animation_nbx26")
+}
+
+[sub_resource type="Gradient" id="Gradient_25awg"]
+offsets = PackedFloat32Array(0.5, 0.6, 0.8, 0.85)
+colors = PackedColorArray(0.2784314, 0.078431375, 0.1254902, 1, 0.7019608, 0.3137255, 0.14509805, 1, 0.8509804, 0.6862745, 0.5764706, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bpsub"]
+gradient = SubResource("Gradient_25awg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_nbx26"]
+offsets = PackedFloat32Array(0.85, 1)
+colors = PackedColorArray(0.2784314, 0.078431375, 0.1254902, 1, 0.28, 0.07839999, 0.12543996, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25awg"]
+gradient = SubResource("Gradient_nbx26")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_ufeon"]
+offsets = PackedFloat32Array(0.2, 0.3, 0.4, 0.7, 0.9)
+colors = PackedColorArray(0.7, 0.31289998, 0.14699998, 0, 0.44705883, 0.18431373, 0.21568628, 1, 0.54, 0.2403, 0.1404, 1, 0.7019608, 0.3137255, 0.14509805, 1, 0.7019608, 0.3137255, 0.14509805, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_awyk0"]
+gradient = SubResource("Gradient_ufeon")
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_awyk0"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.3, 0.102, 0.13830002, 0.5019608)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k5424"]
+gradient = SubResource("Gradient_awyk0")
+fill_from = Vector2(0.5, 0)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nbx26"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_bpsub"]
+offsets = PackedFloat32Array(0.6, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.8, 0.48235294, 0.42352942, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ufeon"]
+gradient = SubResource("Gradient_bpsub")
+fill = 1
+fill_from = Vector2(0.5, 0.8)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hbl8"]
+shader = ExtResource("3_by7uj")
+shader_parameter/highlight_color = Color(0.3825, 0.51, 0.45049998, 0)
+shader_parameter/shadow_color = Color(0.15294118, 0.21176471, 0.47843137, 0.827451)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 1.5
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pmsjn"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0hbl8"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_by7uj"]
+shader = ExtResource("3_by7uj")
+shader_parameter/highlight_color = Color(0.22320001, 0.32256, 0.72, 0)
+shader_parameter/shadow_color = Color(0.19607843, 0.050980393, 0.23137255, 1)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 1.0
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[sub_resource type="Animation" id="Animation_ufeon"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Awesome:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Awesome:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Awesome/Outline:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Awesome/Shadow:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.1254902)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Awesome/Shadow2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.2509804)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Awesome:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Awesome/BG:texture:gradient:colors")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0.384, 0.43946666, 0.64, 1, 1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VBoxContainer/InfoHolder/Info:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VBoxContainer/InfoHolder/Info/MissionName/MissionOutline:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("VBoxContainer/InfoHolder/Info/MissionName/MissionLabel:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("VBoxContainer/InfoHolder/Info/Counter/CounterLabel:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VBoxContainer/InfoHolder/Info/Counter/CounterOutline:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VBoxContainer/InfoHolder/Info:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bpsub"]
+resource_name = "transition"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Awesome:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Awesome:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Awesome/Outline:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Awesome/Shadow:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.1254902)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Awesome/Shadow2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.2509804)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Awesome:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.05235987755982989, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%Awesome/BG:texture:gradient:colors")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2, 0.8),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1), PackedColorArray(0.384, 0.43946666, 0.64, 1, 1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VBoxContainer/InfoHolder/Info:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1, 0.7),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [16.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VBoxContainer/InfoHolder/Info:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1, 0.79999995),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [-0.05235987755982989, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("VBoxContainer/InfoHolder/Info/MissionName/MissionOutline:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 0.94, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("VBoxContainer/InfoHolder/Info/MissionName/MissionLabel:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 0.94, 0), Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VBoxContainer/InfoHolder/Info/Counter/CounterLabel:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 0.94, 0), Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("VBoxContainer/InfoHolder/Info/Counter/CounterOutline:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 0.94, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_awyk0"]
+_data = {
+&"RESET": SubResource("Animation_ufeon"),
+&"transition": SubResource("Animation_bpsub")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbx26"]
+shader = ExtResource("3_by7uj")
+shader_parameter/highlight_color = Color(1, 1, 1, 0)
+shader_parameter/shadow_color = Color(0.72, 0.4068, 0.30240002, 1)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 1.5
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nbx26"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="Gradient" id="Gradient_k5424"]
+colors = PackedColorArray(0.384, 0.43946666, 0.64, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hysrn"]
+gradient = SubResource("Gradient_k5424")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_25awg"]
+viewport_path = NodePath("SubViewport4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25awg"]
+shader = ExtResource("3_by7uj")
+shader_parameter/highlight_color = Color(0.61, 0.42720336, 0.2318, 0)
+shader_parameter/shadow_color = Color(0.36, 0.01079999, 0.23195998, 1)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 1.0
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[node name="UI" type="CanvasLayer"]
+layer = 128
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(368, 80)
+size_2d_override = Vector2i(92, 20)
+size_2d_override_stretch = true
+
+[node name="CoinLabel" type="Label" parent="SubViewport"]
+unique_name_in_owner = true
+offset_top = -4.0
+offset_right = 60.0
+offset_bottom = 23.0
+theme = SubResource("Theme_by7uj")
+theme_override_colors/font_color = Color(0.47, 0.7363333, 0.94, 1)
+text = "10000 :-‎"
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(368, 80)
+size_2d_override = Vector2i(92, 20)
+size_2d_override_stretch = true
+
+[node name="CoinLabelOutline" type="Label" parent="SubViewport2"]
+unique_name_in_owner = true
+offset_top = -4.0
+offset_right = 60.0
+offset_bottom = 23.0
+theme = SubResource("Theme_by7uj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "10000 :-‎"
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 80)
+size_2d_override = Vector2i(128, 20)
+size_2d_override_stretch = true
+
+[node name="AwesomeLabel" type="Label" parent="SubViewport3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_by7uj")
+theme_override_colors/font_color = Color(1, 0.8640001, 0.32, 1)
+text = "Awesome!"
+horizontal_alignment = 1
+
+[node name="SubViewport4" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 80)
+size_2d_override = Vector2i(128, 20)
+size_2d_override_stretch = true
+
+[node name="AwesomeOutline" type="Label" parent="SubViewport4"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_by7uj")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Awesome!"
+horizontal_alignment = 1
+
+[node name="Main" type="MarginContainer" parent="."]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_by7uj")
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="TimerHolder" type="Control" parent="Main"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Timer" type="MarginContainer" parent="Main/TimerHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_bottom = 18.0
+grow_horizontal = 0
+rotation = 0.034906585
+script = ExtResource("2_bpsub")
+
+[node name="Outline" type="Label" parent="Main/TimerHolder/Timer"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3764706)
+theme_override_colors/font_outline_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "0:00.00"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/TimerHolder/Timer/Outline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_right = 1.1
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_w4lhn")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Main/TimerHolder/Timer"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "0:00.00"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/TimerHolder/Timer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nt68a")
+expand_mode = 1
+
+[node name="BGHolder" type="Control" parent="Main/TimerHolder/Timer"]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="BG" type="TextureRect" parent="Main/TimerHolder/Timer/BGHolder"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_by7uj")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.2
+anchor_right = 1.2
+anchor_bottom = 1.2
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0hbl8")
+expand_mode = 1
+
+[node name="CoinsHolder" type="Control" parent="Main"]
+layout_mode = 2
+script = ExtResource("2_25awg")
+
+[node name="CoinAnimPlayer" type="AnimationPlayer" parent="Main/CoinsHolder"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_bpsub")
+}
+
+[node name="BG" type="TextureRect" parent="Main/CoinsHolder"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_by7uj")
+custom_minimum_size = Vector2(108, 20)
+layout_mode = 0
+offset_left = -12.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 24.0
+rotation = -0.017453292
+texture = SubResource("GradientTexture2D_0hbl8")
+expand_mode = 1
+
+[node name="Icon" type="TextureRect" parent="Main/CoinsHolder"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 20.0
+offset_bottom = 22.0
+rotation = -0.034906585
+texture = SubResource("GradientTexture2D_bpsub")
+expand_mode = 1
+
+[node name="Icon3" type="TextureRect" parent="Main/CoinsHolder/Icon"]
+modulate = Color(0.11858133, 0.11858139, 0.11858136, 1)
+show_behind_parent = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1.1)
+pivot_offset = Vector2(16, 10)
+texture = SubResource("GradientTexture2D_25awg")
+expand_mode = 1
+
+[node name="Icon2" type="TextureRect" parent="Main/CoinsHolder/Icon"]
+show_behind_parent = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_25awg")
+expand_mode = 1
+
+[node name="Icon5" type="TextureRect" parent="Main/CoinsHolder/Icon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.425
+anchor_top = 0.15
+anchor_right = 0.575
+anchor_bottom = 0.85
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.13962634
+pivot_offset = Vector2(1.8, 8.4)
+texture = SubResource("GradientTexture2D_awyk0")
+expand_mode = 1
+
+[node name="Shade" type="TextureRect" parent="Main/CoinsHolder/Icon/Icon5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_k5424")
+expand_mode = 1
+
+[node name="Icon6" type="TextureRect" parent="Main/CoinsHolder/Icon/Icon5"]
+modulate = Color(1.1661321, 1.2311625, 1.0016431, 1)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset = Vector2(1.8, 8.4)
+texture = SubResource("GradientTexture2D_awyk0")
+expand_mode = 1
+
+[node name="Shade" type="TextureRect" parent="Main/CoinsHolder/Icon/Icon5/Icon6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_k5424")
+expand_mode = 1
+
+[node name="Icon4" type="TextureRect" parent="Main/CoinsHolder/Icon"]
+clip_children = 1
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_25awg")
+expand_mode = 1
+
+[node name="Icon5" type="TextureRect" parent="Main/CoinsHolder/Icon/Icon4"]
+clip_children = 1
+material = SubResource("CanvasItemMaterial_nbx26")
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ufeon")
+expand_mode = 1
+
+[node name="Coins" type="HBoxContainer" parent="Main/CoinsHolder"]
+layout_mode = 1
+offset_right = 124.0
+offset_bottom = 20.0
+rotation = -0.034906585
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="IconPadding" type="Control" parent="Main/CoinsHolder/Coins"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Text" type="TextureRect" parent="Main/CoinsHolder/Coins"]
+material = SubResource("ShaderMaterial_0hbl8")
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+texture = SubResource("ViewportTexture_pmsjn")
+expand_mode = 1
+
+[node name="Shadow" type="TextureRect" parent="Main/CoinsHolder/Coins/Text"]
+modulate = Color(1, 1, 1, 0.1254902)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.025, 1.05)
+pivot_offset = Vector2(28, 8)
+texture = SubResource("ViewportTexture_0hbl8")
+expand_mode = 1
+
+[node name="Shadow2" type="TextureRect" parent="Main/CoinsHolder/Coins/Text"]
+modulate = Color(1, 1, 1, 0.2509804)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = 1.0
+offset_right = -0.5
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.025, 1.05)
+pivot_offset = Vector2(28, 8)
+texture = SubResource("ViewportTexture_0hbl8")
+expand_mode = 1
+
+[node name="BevelOutline" type="TextureRect" parent="Main/CoinsHolder/Coins/Text"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_by7uj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_0hbl8")
+expand_mode = 1
+
+[node name="VictoryText" type="Control" parent="Main"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("4_25awg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/VictoryText"]
+libraries = {
+&"": SubResource("AnimationLibrary_awyk0")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/VictoryText"]
+layout_mode = 0
+offset_left = -76.0
+offset_top = -53.0
+offset_right = 76.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 6
+
+[node name="AwesomeHolder" type="Control" parent="Main/VictoryText/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Awesome" type="TextureRect" parent="Main/VictoryText/VBoxContainer/AwesomeHolder"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_nbx26")
+layout_mode = 0
+offset_right = 158.0
+offset_bottom = 24.687637
+texture = SubResource("ViewportTexture_nbx26")
+expand_mode = 5
+
+[node name="BG" type="TextureRect" parent="Main/VictoryText/VBoxContainer/AwesomeHolder/Awesome"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_by7uj")
+custom_minimum_size = Vector2(128, 24)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hysrn")
+expand_mode = 1
+
+[node name="Shadow" type="TextureRect" parent="Main/VictoryText/VBoxContainer/AwesomeHolder/Awesome"]
+modulate = Color(1, 1, 1, 0.1254902)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_25awg")
+expand_mode = 5
+
+[node name="Shadow2" type="TextureRect" parent="Main/VictoryText/VBoxContainer/AwesomeHolder/Awesome"]
+modulate = Color(1, 1, 1, 0.2509804)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_25awg")
+expand_mode = 5
+
+[node name="Outline" type="TextureRect" parent="Main/VictoryText/VBoxContainer/AwesomeHolder/Awesome"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_25awg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_25awg")
+expand_mode = 5
+
+[node name="InfoHolder" type="Control" parent="Main/VictoryText/VBoxContainer"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Info" type="HBoxContainer" parent="Main/VictoryText/VBoxContainer/InfoHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -9.0
+offset_right = 79.0
+offset_bottom = 9.000015
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MissionName" type="MarginContainer" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info"]
+layout_mode = 2
+
+[node name="MissionOutline" type="Label" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/MissionName"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3764706)
+theme_override_colors/font_outline_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "Become The 10%"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/MissionName/MissionOutline"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_right = 1.1
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_w4lhn")
+expand_mode = 1
+
+[node name="MissionLabel" type="Label" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/MissionName"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Become The 10%"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/MissionName/MissionLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nt68a")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/MissionName"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_by7uj")
+layout_mode = 2
+texture = SubResource("GradientTexture2D_hysrn")
+expand_mode = 1
+
+[node name="Counter" type="MarginContainer" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info"]
+layout_mode = 2
+
+[node name="CounterLabel" type="Label" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/Counter"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3764706)
+theme_override_colors/font_outline_color = Color(0, 0.0627451, 0.1254902, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 12
+text = "(6/15)"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/Counter/CounterLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.1
+anchor_right = 1.1
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_w4lhn")
+expand_mode = 1
+
+[node name="CounterOutline" type="Label" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/Counter"]
+unique_name_in_owner = true
+clip_children = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "(6/15)"
+horizontal_alignment = 1
+
+[node name="Gradient" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/Counter/CounterOutline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nt68a")
+expand_mode = 1
+
+[node name="BG" type="TextureRect" parent="Main/VictoryText/VBoxContainer/InfoHolder/Info/Counter"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_by7uj")
+layout_mode = 2
+texture = SubResource("GradientTexture2D_hysrn")
+expand_mode = 1
+
+[connection signal="resized" from="Main/VictoryText/VBoxContainer/AwesomeHolder/Awesome" to="Main/VictoryText" method="update_holders"]

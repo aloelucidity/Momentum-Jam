@@ -8,6 +8,7 @@ extends Area2D
 @onready var sprite: Sprite2D = $SubViewport/Sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @export var rainbow_material: ShaderMaterial
+@export var mission_name: String
 
 var activated: bool = true
 var collected: bool
@@ -36,7 +37,7 @@ func body_entered(body: Node2D) -> void:
 	collected = true
 	animation_player.play("collect")
 	
-	Globals.collected_clovers.append(globals_id)
+	Globals.collect_clover(mission_name, globals_id)
 	var character: Character = body
 	var collect_physics: CollectPhysics = character.get_node("%Collect")
 	collect_physics.target_x = global_position.x

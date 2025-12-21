@@ -24,6 +24,7 @@ func collected(index: int, collect_pos: Vector2) -> void:
 	var collected_array: PackedByteArray = Globals.collected_coins.get(globals_id, [])
 	collected_array.append(index)
 	Globals.collected_coins.set(globals_id, collected_array)
+	Globals.money += 1
 	sound.global_position = collect_pos
 	sound.play()
 

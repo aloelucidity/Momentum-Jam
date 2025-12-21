@@ -46,6 +46,7 @@ func _update(delta: float) -> void:
 		if stop_timer == animate_time:
 			character.emit_signal("start_collect_cutscene")
 			Music.play_victory_theme()
+			Globals.display_victory()
 		
 		character.velocity.x = move_toward(character.velocity.x, 0, x_correct_speed * delta)
 		stop_timer -= delta

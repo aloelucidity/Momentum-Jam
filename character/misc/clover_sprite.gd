@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-@onready var glow: Sprite2D = $Glow
+@onready var glow: Sprite2D = $BackBufferCopy/Glow
 
 
 func _process(_delta: float) -> void:

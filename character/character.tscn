@@ -1573,7 +1573,11 @@ modulate = Color(1, 1, 1, 0)
 texture = SubResource("ViewportTexture_r8gpb")
 script = ExtResource("29_6tlts")
 
-[node name="Glow" type="Sprite2D" parent="Scaler/Animator/Clover"]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Scaler/Animator/Clover"]
+show_behind_parent = true
+copy_mode = 2
+
+[node name="Glow" type="Sprite2D" parent="Scaler/Animator/Clover/BackBufferCopy"]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 0.5019608)
 show_behind_parent = true
 texture_filter = 2
