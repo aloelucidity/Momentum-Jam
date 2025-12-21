@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="KinetiBall"
-run/main_scene="uid://cobk8lnewpxif"
+run/main_scene="uid://ceqrkk71yaaw2"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+general/default_playback_type.web=0
 
 [autoload]
 
@@ -32,17 +36,19 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/parallax2d_preview/plugin.cfg")
+enabled=PackedStringArray("res://addons/parallax2d_preview/plugin.cfg", "res://addons/simpleboards_plugin/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://character/": "teal",
+"res://ending/": "orange",
 "res://fonts/": "gray",
 "res://global/": "yellow",
 "res://level/": "blue",
 "res://music/": "pink",
-"res://shaders/": "gray"
+"res://shaders/": "gray",
+"res://splash/": "purple"
 }
 
 [gui]
@@ -117,3 +123,4 @@ common/physics_interpolation=true
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

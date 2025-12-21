@@ -16,7 +16,7 @@ func _ready() -> void:
 func coin_collected(new_coins: int) -> void:
 	coin_label.text = str(new_coins) + " :-"
 	coin_label_outline.text = coin_label.text
-	if debounce:
-		debounce = false
+	if not debounce:
 		coin_anim_player.stop()
 		coin_anim_player.play("collect")
+	debounce = false

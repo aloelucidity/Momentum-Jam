@@ -17,6 +17,7 @@ var fade_tween: Tween
 var victory_tween: Tween
 var water_tween: Tween
 var is_underwater: bool
+var stop_restore: bool
 
 
 func fade_bgm() -> void:
@@ -34,8 +35,9 @@ func play_victory_theme() -> void:
 	
 	victory_tween = create_tween()
 	victory_tween.set_parallel()
-
-	victory_tween.tween_callback(restore_bgm).set_delay(BGM_RESTORE_TIME)
+	
+	if not stop_restore:
+		victory_tween.tween_callback(restore_bgm).set_delay(BGM_RESTORE_TIME)
 
 	victory_tween.tween_property(victory, "volume_linear", victory_start_vol, 0.25)
 	victory_tween.tween_callback(victory.play).set_delay(0.25)

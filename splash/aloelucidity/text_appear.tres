@@ -1,0 +1,6 @@
+[gd_resource type="RichTextEffect" script_class="FlyRichTextEffect" load_steps=2 format=3 uid="uid://csttt1muf5k8y"]
+
+[ext_resource type="Script" uid="uid://lxi4nc1n3hul" path="res://splash/aloelucidity/text_appear.gd" id="1_clj0m"]
+
+[resource]
+script = ExtResource("1_clj0m")

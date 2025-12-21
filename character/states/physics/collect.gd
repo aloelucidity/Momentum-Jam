@@ -20,8 +20,15 @@ func _transition_check() -> String:
 		var cur_level: Level = Globals.levels[Globals.level_index]
 		if cur_level.current_clovers >= cur_level.total_clovers:
 			cur_level.completion_time = Globals.time
+			
+			var target_scene: String
+			if is_instance_valid(cur_level.next_stage):
+				target_scene = cur_level.next_stage.start_scene
+			else:
+				target_scene = "res://ending/ending.tscn"
+			
 			Globals.new_level(cur_level.next_stage)
-			Transitions.change_scene(cur_level.next_stage.start_scene, character, 0)
+			Transitions.change_scene(target_scene, character, 0)
 		else:
 			return ground_name
 	return name
@@ -50,6 +57,10 @@ func _update(delta: float) -> void:
 	else:
 		## if just landed
 		if stop_timer == animate_time:
+			var cur_level: Level = Globals.levels[Globals.level_index]
+			if not is_instance_valid(cur_level.next_stage):
+				Music.stop_restore = true
+			
 			character.emit_signal("start_collect_cutscene")
 			Music.play_victory_theme()
 			Globals.display_victory()

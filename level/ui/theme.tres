@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bhh6q0vtvmrly"]
+
+[ext_resource type="FontFile" uid="uid://cc18r750p6qjm" path="res://fonts/ReggaeOne-Regular.ttf" id="1_q3i7v"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nbx26"]
+color = Color(0, 0, 0, 0.3137255)
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_25awg"]
+color = Color(0, 0, 0, 0.3137255)
+vertical = true
+
+[resource]
+default_font = ExtResource("1_q3i7v")
+default_font_size = 18
+HSeparator/styles/separator = SubResource("StyleBoxLine_nbx26")
+VSeparator/styles/separator = SubResource("StyleBoxLine_25awg")

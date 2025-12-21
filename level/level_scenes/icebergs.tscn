@@ -913,59 +913,52 @@ flip_h = true
 position = Vector2(3906, -438)
 texture = ExtResource("8_vbgjs")
 
-[node name="Corner11" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="2"]
-z_index = 2
-position = Vector2(88.235306, -937.6472)
-scale = Vector2(1.0000002, 1.0000002)
-texture = ExtResource("8_vbgjs")
-flip_h = true
-
-[node name="Corner3" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="3"]
+[node name="Corner3" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="2"]
 position = Vector2(1276, -24)
 rotation = 0.24578631
 texture = ExtResource("8_vbgjs")
 
-[node name="Corner5" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="4"]
+[node name="Corner5" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="3"]
 position = Vector2(2495.75, -214.5)
 rotation = 0.12217305
 texture = ExtResource("8_vbgjs")
 
-[node name="Corner9" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="5"]
+[node name="Corner9" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="4"]
 position = Vector2(2910.0002, -181.99994)
 rotation = 0.05235988
 texture = ExtResource("8_vbgjs")
 flip_h = true
 
-[node name="Corner2" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="6"]
+[node name="Corner2" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="5"]
 position = Vector2(1210.75, 102)
 texture = ExtResource("9_umfqk")
 flip_h = true
 
-[node name="Corner13" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="7"]
+[node name="Corner13" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="6"]
 position = Vector2(-1739, 387)
 texture = ExtResource("9_umfqk")
 
-[node name="Corner14" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="8"]
+[node name="Corner14" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="7"]
 position = Vector2(-1438, 766)
 texture = ExtResource("9_umfqk")
 
-[node name="Corner12" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="9"]
+[node name="Corner12" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="8"]
 position = Vector2(1610.9996, 635.765)
 rotation = -0.6981317
 texture = ExtResource("9_umfqk")
 flip_h = true
 
-[node name="Corner4" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="10"]
+[node name="Corner4" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="9"]
 position = Vector2(2428, 133)
 texture = ExtResource("9_umfqk")
 flip_h = true
 
-[node name="Corner8" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="11"]
+[node name="Corner8" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="10"]
 position = Vector2(2917, 262.00003)
 rotation = 0.06981317
 texture = ExtResource("9_umfqk")
 
-[node name="Corner7" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="12"]
+[node name="Corner7" type="Sprite2D" parent="Parallax/Middle/TerrainHelper/DecorationManual" index="11"]
 position = Vector2(3899, 325.5)
 rotation = 0.05235988
 texture = ExtResource("9_umfqk")
@@ -2177,6 +2170,7 @@ mission_name = "Aquifer Ascent"
 
 [node name="CloverBounce" parent="Objects" instance=ExtResource("5_vbgjs")]
 position = Vector2(3127, -713)
+mission_name = "The Lonely Tree"
 
 [node name="CloverPeak" parent="Objects" instance=ExtResource("5_vbgjs")]
 position = Vector2(291, -1498)

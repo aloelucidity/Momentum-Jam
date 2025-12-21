@@ -17,6 +17,7 @@ var levels: Array[Level] = [
 var level_index: int = 0
 var time: float = 0
 
+var is_splash: bool = true
 var cached_mission: String
 
 signal coin_collected(new_value: int)
@@ -29,7 +30,7 @@ func new_level(level_resource: Level) -> void:
 
 
 func _process(delta: float) -> void:
-	if get_tree().paused: return
+	if get_tree().paused or is_splash: return
 	time += delta
 
 

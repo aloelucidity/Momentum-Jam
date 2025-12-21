@@ -1,0 +1,421 @@
+[gd_scene load_steps=26 format=3 uid="uid://dpbe3ct45qy52"]
+
+[ext_resource type="Theme" uid="uid://bhh6q0vtvmrly" path="res://level/ui/theme.tres" id="1_d5fxy"]
+[ext_resource type="Shader" uid="uid://6284i1vonqkd" path="res://shaders/sky.gdshader" id="1_tx7hk"]
+[ext_resource type="Shader" uid="uid://cw0wphwhg5eqg" path="res://shaders/bevel.gdshader" id="3_8f7i3"]
+[ext_resource type="Script" uid="uid://84e4k7324ns8" path="res://character/lantern/rainbow.gd" id="3_nckus"]
+[ext_resource type="Script" uid="uid://br8ijh5tbx1e4" path="res://splash/canvas_layer.gd" id="5_nckus"]
+
+[sub_resource type="Animation" id="Animation_oiih7"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_8iq5e"]
+resource_name = "splash"
+length = 2.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.043137256, 1), Color(0.25, 0.25, 0.5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oiih7"]
+_data = {
+&"RESET": SubResource("Animation_oiih7"),
+&"splash": SubResource("Animation_8iq5e")
+}
+
+[sub_resource type="Gradient" id="Gradient_d5fxy"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(0.04, 0.04, 0.04, 1, 0.32, 0.32, 0.32, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8f7i3"]
+noise_type = 5
+frequency = 0.0035
+offset = Vector3(396, 0, 0)
+fractal_type = 3
+fractal_lacunarity = 1.365
+fractal_gain = 0.94
+fractal_weighted_strength = 0.57
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nckus"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_8f7i3")
+color_ramp = SubResource("Gradient_d5fxy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veayr"]
+shader = ExtResource("1_tx7hk")
+shader_parameter/cloudscale = 1.25
+shader_parameter/speed = 0.05
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 1.0
+shader_parameter/cloudcover = 0.2
+shader_parameter/cloudalpha = 2.0
+shader_parameter/skytint = 0.5
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.135, 0.21, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+shader_parameter/waterscale = 0.75
+shader_parameter/watercolour1 = Vector3(0.11, 0.205, 0.6)
+shader_parameter/watercolour2 = Vector3(-0.245, 1.225, 1)
+shader_parameter/horizon = 0.7
+shader_parameter/perspective = 0.75
+shader_parameter/standard_noise_tex = SubResource("NoiseTexture2D_nckus")
+
+[sub_resource type="Gradient" id="Gradient_y0alk"]
+colors = PackedColorArray(1, 1, 1, 0.7529412, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xeeh2"]
+gradient = SubResource("Gradient_y0alk")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 0.4)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_852y8"]
+offsets = PackedFloat32Array(0.725, 0.975, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5000001, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2wj0s"]
+gradient = SubResource("Gradient_852y8")
+fill_to = Vector2(0, 0.7)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8f7i3"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_veayr"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_yn8gt"]
+offsets = PackedFloat32Array(0, 0.45, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0.5647059, 1, 1, 1, 0.1254902, 1, 1, 1, 1, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4hswp"]
+gradient = SubResource("Gradient_yn8gt")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8f7i3"]
+shader = ExtResource("3_8f7i3")
+shader_parameter/highlight_color = Color(0.44640002, 0.54312, 0.93, 0)
+shader_parameter/shadow_color = Color(0.19607843, 0.050980393, 0.23137255, 1)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 3.0
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nckus"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nckus"]
+shader = ExtResource("3_8f7i3")
+shader_parameter/highlight_color = Color(0.3825, 0.51, 0.45049998, 0)
+shader_parameter/shadow_color = Color(0.15294118, 0.21176471, 0.47843137, 0.827451)
+shader_parameter/strength = 1.0
+shader_parameter/bevel_type = 1
+shader_parameter/bevel_offset = 3.0
+shader_parameter/knockout = false
+shader_parameter/blur_radius = 9.0
+shader_parameter/sample_count = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d5fxy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3su3p"]
+blend_mode = 3
+
+[node name="Splash" type="Control"]
+texture_filter = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d5fxy")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 128)
+size_2d_override = Vector2i(256, 64)
+size_2d_override_stretch = true
+
+[node name="Label" type="Label" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d5fxy")
+theme_override_colors/font_color = Color(0.47058824, 0.7372549, 0.9411765, 1)
+theme_override_font_sizes/font_size = 48
+text = "KinetiBall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 128)
+size_2d_override = Vector2i(256, 64)
+size_2d_override_stretch = true
+
+[node name="Label" type="Label" parent="SubViewport2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d5fxy")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "KinetiBall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 128)
+size_2d_override = Vector2i(256, 64)
+size_2d_override_stretch = true
+
+[node name="Label" type="Label" parent="SubViewport3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d5fxy")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "KinetiBall"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oiih7")
+}
+autoplay = "splash"
+
+[node name="Clouds" type="ColorRect" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_veayr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gradient2" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_xeeh2")
+
+[node name="Gradient3" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.3764706)
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_xeeh2")
+
+[node name="Gradient4" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_2wj0s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36391342, 0.31160003, 0.76, 0.5019608)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+modulate = Color(0.5328399, 0.123200014, 0.77, 0.2509804)
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.061086524
+scale = Vector2(1.1, 1)
+pivot_offset = Vector2(128, 32)
+texture = SubResource("ViewportTexture_8f7i3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+modulate = Color(0.5328399, 0.123200014, 0.77, 0.2509804)
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.05235988
+scale = Vector2(1.05, 1)
+pivot_offset = Vector2(128, 32)
+texture = SubResource("ViewportTexture_8f7i3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Ball" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.3764706)
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_veayr")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_4hswp")
+expand_mode = 1
+script = ExtResource("3_nckus")
+saturation = 0.25
+rainbow_speed = 1.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_8f7i3")
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.9)
+pivot_offset = Vector2(128, 32)
+texture = SubResource("ViewportTexture_nckus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect2"]
+modulate = Color(0, 0, 0, 0.2509804)
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_nckus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="TextureRect2"]
+modulate = Color(0, 0, 0, 0.1254902)
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_nckus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect2"]
+material = SubResource("ShaderMaterial_nckus")
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_d5fxy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("5_nckus")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("CanvasItemMaterial_3su3p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true

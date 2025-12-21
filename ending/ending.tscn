@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://b26qqu726fnlo"]
+
+[ext_resource type="Theme" uid="uid://bhh6q0vtvmrly" path="res://level/ui/theme.tres" id="1_lvm68"]
+[ext_resource type="Script" uid="uid://bnsrrdnfqpumq" path="res://ending/ending.gd" id="2_r7gcc"]
+
+[sub_resource type="Gradient" id="Gradient_r7gcc"]
+colors = PackedColorArray(0, 0, 0, 1, 0.099772446, 0.09977088, 0.13664162, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o7yp5"]
+gradient = SubResource("Gradient_r7gcc")
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lvm68")
+script = ExtResource("2_r7gcc")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_o7yp5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.78765005, 0.7565, 0.89, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Hey, thanks so much for playing!
+
+I told myself i'd make a bit of a smaller game 
+this jam, but i think i ended up going a bit
+overboard. haha. i'm really proud of how this 
+game turned out! I hope you enjoyed it as 
+much as I did making it!
+
+Also, shoutouts to Linktober for
+helping me out with the level designs.
+This game wouldn't have been nearly as
+good without his help,
+so make sure to send some love his way :)"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="YourTime" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Your time: 00:00.00"
+horizontal_alignment = 1

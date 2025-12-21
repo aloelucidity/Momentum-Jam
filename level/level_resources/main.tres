@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Level" load_steps=2 format=3 uid="uid://dwi068gyhvbdy"]
+[gd_resource type="Resource" script_class="Level" load_steps=3 format=3 uid="uid://dwi068gyhvbdy"]
 
+[ext_resource type="Resource" uid="uid://pul1j5ixtecn" path="res://level/level_resources/final.tres" id="1_nuvam"]
 [ext_resource type="Script" uid="uid://c83bw4vk8thc6" path="res://level/level_resources/level_resource.gd" id="1_ydkjf"]
 
 [resource]
 script = ExtResource("1_ydkjf")
 total_clovers = 18
+next_stage = ExtResource("1_nuvam")
 start_scene = "res://level/level_scenes/icebergs.tscn"
 metadata/_custom_type_script = "uid://c83bw4vk8thc6"

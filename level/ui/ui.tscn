@@ -1,24 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://m0otgbp4rhtt"]
+[gd_scene load_steps=40 format=3 uid="uid://m0otgbp4rhtt"]
 
-[ext_resource type="FontFile" uid="uid://cc18r750p6qjm" path="res://fonts/ReggaeOne-Regular.ttf" id="1_3d1qu"]
+[ext_resource type="Theme" uid="uid://bhh6q0vtvmrly" path="res://level/ui/theme.tres" id="1_bpsub"]
 [ext_resource type="Script" uid="uid://2drwnm6iru87" path="res://level/ui/coins.gd" id="2_25awg"]
 [ext_resource type="Script" uid="uid://dh5ijgni4gm68" path="res://level/ui/timer.gd" id="2_bpsub"]
 [ext_resource type="Shader" uid="uid://cw0wphwhg5eqg" path="res://shaders/bevel.gdshader" id="3_by7uj"]
 [ext_resource type="Script" uid="uid://dl2j1spans8cj" path="res://level/ui/victory_text.gd" id="4_25awg"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_nbx26"]
-color = Color(0, 0, 0, 0.3137255)
-thickness = 2
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_25awg"]
-color = Color(0, 0, 0, 0.3137255)
-vertical = true
-
-[sub_resource type="Theme" id="Theme_by7uj"]
-default_font = ExtResource("1_3d1qu")
-default_font_size = 18
-HSeparator/styles/separator = SubResource("StyleBoxLine_nbx26")
-VSeparator/styles/separator = SubResource("StyleBoxLine_25awg")
 
 [sub_resource type="Gradient" id="Gradient_nt68a"]
 offsets = PackedFloat32Array(0, 0.33850932, 0.5652174, 1)
@@ -637,7 +623,7 @@ unique_name_in_owner = true
 offset_top = -4.0
 offset_right = 60.0
 offset_bottom = 23.0
-theme = SubResource("Theme_by7uj")
+theme = ExtResource("1_bpsub")
 theme_override_colors/font_color = Color(0.47, 0.7363333, 0.94, 1)
 text = "10000 :-‎"
 
@@ -652,7 +638,7 @@ unique_name_in_owner = true
 offset_top = -4.0
 offset_right = 60.0
 offset_bottom = 23.0
-theme = SubResource("Theme_by7uj")
+theme = ExtResource("1_bpsub")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -670,7 +656,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_by7uj")
+theme = ExtResource("1_bpsub")
 theme_override_colors/font_color = Color(1, 0.8640001, 0.32, 1)
 text = "Awesome!"
 horizontal_alignment = 1
@@ -687,7 +673,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_by7uj")
+theme = ExtResource("1_bpsub")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -701,7 +687,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_by7uj")
+theme = ExtResource("1_bpsub")
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 24
@@ -796,11 +782,11 @@ libraries = {
 [node name="BG" type="TextureRect" parent="Main/CoinsHolder"]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_by7uj")
-custom_minimum_size = Vector2(108, 20)
+custom_minimum_size = Vector2(80, 20)
 layout_mode = 0
 offset_left = -12.0
 offset_top = 4.0
-offset_right = 96.0
+offset_right = 68.0
 offset_bottom = 24.0
 rotation = -0.017453292
 texture = SubResource("GradientTexture2D_0hbl8")
