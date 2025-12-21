@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bge0n8af06jnl"]
+[gd_scene load_steps=7 format=3 uid="uid://bge0n8af06jnl"]
 
 [ext_resource type="Script" uid="uid://jm36w45h82u2" path="res://level/objects/collectible_placer/collectible_placer.gd" id="1_323w8"]
 [ext_resource type="PackedScene" uid="uid://mbhx7msyq6o7" path="res://level/objects/coin/coin.tscn" id="2_75x72"]
+[ext_resource type="AudioStream" uid="uid://by11n6hfh16ej" path="res://level/objects/coin/collect0.mp3" id="3_7mng2"]
+[ext_resource type="AudioStream" uid="uid://desa6bhas4low" path="res://level/objects/coin/collect1.mp3" id="4_2uja2"]
+[ext_resource type="AudioStream" uid="uid://phwwonxvinq7" path="res://level/objects/coin/collect2.mp3" id="5_26njq"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cxc4e"]
+random_volume_offset_db = 0.5
+streams_count = 3
+stream_0/stream = ExtResource("3_7mng2")
+stream_1/stream = ExtResource("4_2uja2")
+stream_1/weight = 0.5
+stream_2/stream = ExtResource("5_26njq")
+stream_2/weight = 0.5
 
 [node name="CollectiblePlacer" type="Path2D"]
 script = ExtResource("1_323w8")
@@ -12,3 +24,7 @@ rotation = 3.1415927
 rotates = false
 
 [node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_cxc4e")
+bus = &"Sounds"

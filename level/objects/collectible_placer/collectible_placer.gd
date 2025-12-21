@@ -5,6 +5,7 @@ extends Path2D
 @onready var globals_id: String = get_path().get_concatenated_names()
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var collectibles: Node2D = $Collectibles
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 @export var collectible_scene: PackedScene
 @export var collectible_count: int
@@ -19,10 +20,12 @@ func _ready() -> void:
 		place()
 
 
-func collected(index: int, _collect_pos: Vector2) -> void:
+func collected(index: int, collect_pos: Vector2) -> void:
 	var collected_array: PackedByteArray = Globals.collected_coins.get(globals_id, [])
 	collected_array.append(index)
 	Globals.collected_coins.set(globals_id, collected_array)
+	sound.global_position = collect_pos
+	sound.play()
 
 
 func place() -> void:

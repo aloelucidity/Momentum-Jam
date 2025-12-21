@@ -1,13 +1,12 @@
 extends Collectible
 
 
-@onready var spin: AnimationPlayer = $Spin
 @onready var sprite: Sprite2D = $SubViewport/Sprite
 
 
 func _ready() -> void:
+	super()
 	sprite.material = sprite.material.duplicate()
-	spin.play("spin")
 
 
 func _process(_delta: float) -> void:

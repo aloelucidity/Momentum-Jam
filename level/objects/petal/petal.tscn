@@ -186,7 +186,7 @@ shader_parameter/sample_count = 7
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4r5sp"]
-radius = 12.0
+radius = 24.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5oyd3"]
 shader = ExtResource("10_23amy")

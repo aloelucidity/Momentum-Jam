@@ -9,7 +9,6 @@ extends CollectiblePlacer
 @onready var clock: Sprite2D = $Spawner/Clock
 
 @onready var tick_sound: AudioStreamPlayer2D = $TickSound
-@onready var sound: AudioStreamPlayer2D = $Sound
 @onready var sound_last: AudioStreamPlayer2D = $SoundLast
 
 @export var sin_speed: float

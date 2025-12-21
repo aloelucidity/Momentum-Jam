@@ -3,14 +3,19 @@ extends Area2D
 
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var spin: AnimationPlayer = $Spin
 @export var magnet_speed: float
-
 
 var character: Character
 var is_collected: bool
 var placed_index: int
 
 signal collected(placed_index: int, collect_pos: Vector2)
+
+
+func _ready() -> void:
+	spin.play("spin")
+	spin.advance(randf() * 10)
 
 
 func body_entered(body: Node2D) -> void:
