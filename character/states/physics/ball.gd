@@ -201,8 +201,7 @@ func _update(delta: float) -> void:
 		var ball_hit: bool = not (normal.round().x == -ball_direction.x and ball_direction.x != 0)\
 			and not (normal.round().y == -ball_direction.y and ball_direction.y != 0)
 		
-		var one_way_check: bool = last_velocity.dot(normal) < -0.1
-		if one_way_check and ball_hit:
+		if ball_hit:
 			bounce_sound.play()
 			
 			if abs(normal.y) > 0.5:

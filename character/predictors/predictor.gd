@@ -62,13 +62,28 @@ func predict_point(pos: Vector2, velocity: Vector2, space_state: PhysicsDirectSp
 	params.shape = shape.shape
 	params.transform = Transform2D(0, pos)
 	params.motion = velocity * delta_predict
+	params.collision_mask = 1
 	
 	var results: PackedFloat32Array = space_state.cast_motion(params)
 	var hit_point: float = results[0]
 	
 	if hit_point < 1.0:
-		pos += (velocity * delta_predict) * hit_point
-		return [pos, velocity, Vector2.INF]
+		params.transform.origin += (velocity * delta_predict) * hit_point
+		var rest_info: Dictionary = space_state.get_rest_info(params)
+		if rest_info.size() > 0:
+			var hit_body: CollisionObject2D = instance_from_id(rest_info.collider_id)
+			var shape_index: int = rest_info.shape
+			var owner_id: int = hit_body.shape_find_owner(shape_index)
+			var hit_shape: Node2D = hit_body.shape_owner_get_owner(owner_id)
+			
+			if hit_shape.one_way_collision and params.motion.normalized().dot(-hit_shape.global_transform.y) > 0:
+				pos = next_pos
+			else:
+				pos += (velocity * delta_predict) * hit_point
+				return [pos, velocity, Vector2.INF]
+		else:
+			pos += (velocity * delta_predict) * hit_point
+			return [pos, velocity, Vector2.INF]
 	else:
 		pos = next_pos
 	

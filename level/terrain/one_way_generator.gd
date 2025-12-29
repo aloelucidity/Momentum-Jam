@@ -7,7 +7,9 @@ const Y_OFFSET: int = -3
 
 func _ready() -> void:
 	if polygon.is_empty():return
-
+	
+	build_mode = CollisionPolygon2D.BUILD_SOLIDS
+	
 	var min_pos: Vector2i = polygon[0]
 	var max_pos: Vector2i = polygon[0]
 

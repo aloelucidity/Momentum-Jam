@@ -1836,6 +1836,7 @@ rotator = NodePath("../../Rotators/Ground")
 metadata/_custom_type_script = "uid://b84f6plg0kbok"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
+visible = false
 z_index = 128
 offset_top = -64.0
 offset_right = 1.0
