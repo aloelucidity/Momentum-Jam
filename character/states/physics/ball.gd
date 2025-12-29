@@ -15,6 +15,7 @@ extends AirPhysics
 @export var bounce_sensor_predict: float = 1
 @export var sensor_buffer_time: float
 var ball_direction := Vector2.ZERO
+var buffered_direction := Vector2.ZERO
 var sensor_buffer_normal := Vector2.ZERO
 var sensor_buffer_timer: float
 
@@ -32,7 +33,10 @@ var can_launch: bool
 @export var blur_strength: float
 @export var light: RainbowGlow
 
-@export var direction_buffer: float
+@export var direction_charge_time: float
+var direction_charge_timer: float
+var last_input_dir: Vector2
+
 @export var rot_speed: float = 1
 @export var sprite: AnimatedSprite2D
 @export var scaler: Node2D
@@ -52,7 +56,10 @@ func _startup_check() -> bool:
 func _transition_check() -> String:
 	if not character.input["ball"][0]:
 		if can_launch:
-			ball_direction = get_input_intent()
+			if buffered_direction != Vector2.ZERO:
+				ball_direction = buffered_direction
+			else:
+				ball_direction = get_input_intent()
 			
 			if sign(ball_direction.x) != 0:
 				character.facing_dir = sign(ball_direction.x)
@@ -89,6 +96,7 @@ func _on_enter() -> void:
 		var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target
 		light.strength_factor = strength_factor
 	
+	direction_charge_time = 0.0
 	aim_sound.play()
 	
 	landed = false
@@ -137,6 +145,14 @@ func _update(delta: float) -> void:
 	var input_dir: Vector2 = get_input_intent()
 	ball_direction = input_dir
 	
+	if input_dir != last_input_dir:
+		direction_charge_timer = 0
+	
+	direction_charge_timer += delta
+	if buffered_direction != input_dir and direction_charge_timer > direction_charge_time:
+		buffered_direction = input_dir
+		direction_charge_timer = 0
+	
 	bounce_sensor.target_position = last_velocity * delta * bounce_sensor_predict
 	bounce_sensor.force_shapecast_update()
 	
@@ -158,7 +174,7 @@ func _update(delta: float) -> void:
 		var is_horizontal_surface: bool = abs(bounce_normal.y) > 0.5
 		var pushing_into_wall: bool = real_x != 0 and sign(real_x) != sign(bounce_dir.x)
 		
-		if is_horizontal_surface or pushing_into_wall:
+		if (is_horizontal_surface or pushing_into_wall) or abs(character.velocity.x) < 100:
 			ball_direction.x = input_dir.x
 		else:
 			ball_direction.x = bounce_dir.x
@@ -189,6 +205,10 @@ func _update(delta: float) -> void:
 		if one_way_check and ball_hit:
 			bounce_sound.play()
 			
+			if abs(normal.y) > 0.5:
+				normal.x /= 2
+				normal = normal.normalized() ## ah yes
+			
 			character.velocity = bounce_velocity.bounce(normal)
 			launch_speed = base_launch_speed + last_velocity.length() / launch_damp
 			
@@ -217,3 +237,5 @@ func _update(delta: float) -> void:
 
 	## run base function
 	super(delta)
+	
+	last_input_dir = input_dir

@@ -1347,6 +1347,7 @@ shader_parameter/sample_count = 7
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("default_collision")]
 collision_layer = 4
+floor_constant_speed = true
 floor_snap_length = 8.0
 script = ExtResource("1_oul6g")
 default_collision = NodePath("RegularShape")
@@ -1661,10 +1662,12 @@ metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
 [node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light", "wind_sound")]
 script = ExtResource("5_dy06j")
-jump_power = 275.0
-gravity_subtract = 0.3
+jump_power = 400.0
+gravity_subtract = 0.25
 float_time = 0.3
-subsequent_damp = 1.25
+gravity_decel = 0.25
+subsequent_damp = 1.5
+variable_jump_factor = 0.63
 sprite = NodePath("../../../Scaler/Animator/Character")
 light = NodePath("../../../Lantern/Light")
 wind_sound = NodePath("../../../Sounds/WindSound")
@@ -1692,7 +1695,7 @@ pop = NodePath("../../Pop")
 pop_speed_target = 600.0
 blur_strength = 2.0
 light = NodePath("../../Lantern/Light")
-direction_buffer = 0.07
+direction_charge_time = 0.5
 rot_speed = 6.0
 sprite = NodePath("../../Scaler/Animator/Character")
 scaler = NodePath("../../Scaler")
@@ -1833,7 +1836,7 @@ rotator = NodePath("../../Rotators/Ground")
 metadata/_custom_type_script = "uid://b84f6plg0kbok"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
-visible = false
+z_index = 128
 offset_top = -64.0
 offset_right = 1.0
 offset_bottom = -40.0

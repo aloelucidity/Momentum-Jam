@@ -498,7 +498,7 @@ point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_ksba8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 126, -64.775085, 0, 0, 0, 0, 111, -265.0796, 0, 0, 0, 0, -75, -278.0346, 0, 0, 0, 0, -72, -80.71973, 0, 0, 0, 0, -327, -105.633224, 0, 0, 0, 0, -325, -246.14534, 0, 0, 0, 0, -311, -102.6436, 0, 0, 0, 0, -83, -80.71973, 0, 0, 0, 0, -73, -475.34952, 0, 0, 0, 0, -70, -281.02423, 0, 0, 0, 0, 109, -263.08652, 0, 0, 0, 0, 108, -396.62286, 0, 0, 0, 0, 300, -389.6471, 0, 0, 0, 0, 284, -48.830452, 0, 0, 0, 0, 302, -385.66092, 0, 0, 0, 0, 109, -394.6298, 0, 0, 0, 0, 113, -265.0796, 0, 0, 0, 0, 126, -68.761246)
+"points": PackedVector2Array(0, 0, 0, 0, 128, -66.76817, 0, 0, 0, 0, 112, -266.07614, 0, 0, 0, 0, -72, -274.04846, 0, 0, 0, 0, -72, -74.74049, 0, 0, 0, 0, -296, -98.65744, 0, 0, 0, 0, -296, -266.07614, 0, 0, 0, 0, -296, -98.65744, 0, 0, 0, 0, -72, -74.74049, 0, 0, 0, 0, -72, -473.35645, 0, 0, 0, 0, -72, -274.04846, 0, 0, 0, 0, 112, -266.07614, 0, 0, 0, 0, 112, -393.63324, 0, 0, 0, 0, 296, -385.66092, 0, 0, 0, 0, 288, -42.85121, 0, 0, 0, 0, 296, -385.66092, 0, 0, 0, 0, 112, -393.63324, 0, 0, 0, 0, 112, -266.07614, 0, 0, 0, 0, 128, -66.76817)
 }
 point_count = 18
 
@@ -4063,16 +4063,16 @@ position = Vector2(-1016, 35)
 scale = Vector2(1, 1.0034722)
 curve = SubResource("Curve2D_ksba8")
 clover = NodePath("../CloverPetals")
-collectible_count = 30
+collectible_count = 40
 
 [node name="PathFollow2D" parent="Objects/PetalPlacer" index="1"]
-position = Vector2(126, -64.775085)
+position = Vector2(128, -66.76817)
 
 [node name="Spawner" parent="Objects/PetalPlacer" index="3"]
 position = Vector2(128, -64)
 
 [node name="Timer" parent="Objects/PetalPlacer" index="4"]
-wait_time = 15.0
+wait_time = 20.0
 
 [node name="Rings" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("23_ilotf")]
 position = Vector2(-461, -60)
@@ -4087,6 +4087,9 @@ position = Vector2(408, -144)
 
 [node name="Ring" parent="Objects/Rings" index="2"]
 position = Vector2(408, -146)
+
+[node name="Timer" parent="Objects/Rings" index="4"]
+wait_time = 4.0
 
 [node name="LousyBush" type="Sprite2D" parent="Objects"]
 position = Vector2(3276, 7)

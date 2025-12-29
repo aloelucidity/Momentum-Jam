@@ -199,47 +199,47 @@ mesh = SubResource("QuadMesh_32xgs")
 [sub_resource type="QuadMesh" id="QuadMesh_r3v6r"]
 size = Vector2(11, 11)
 
-[sub_resource type="MultiMesh" id="MultiMesh_kkh70"]
+[sub_resource type="MultiMesh" id="MultiMesh_4gtvy"]
 instance_count = 20
 mesh = SubResource("QuadMesh_r3v6r")
-buffer = PackedFloat32Array(1, 0, 0, -1787.7853, 0, -1, 0, -271.08176, 1, 0, 0, -1849.187, 0, -1, 0, -185.35503, 1, 0, 0, -1953.7689, 0, -1, 0, -203.4245, 1, 0, 0, -1836.2798, 0, -1, 0, -262.2524, 1, 0, 0, -1855.7134, 0, -1, 0, -200.63571, 1, 0, 0, -1814.8805, 0, -1, 0, -255.48924, 1, 0, 0, -1792.1282, 0, -1, 0, -195.10678, 1, 0, 0, -1803.5419, 0, -1, 0, -255.32925, 1, 0, 0, -1780.3474, 0, -1, 0, -270.16934, 1, 0, 0, -1800.1267, 0, -1, 0, -300.9358, 1, 0, 0, -1861.2532, 0, -1, 0, -235.9823, 1, 0, 0, -1803.0311, 0, -1, 0, -192.7738, 1, 0, 0, -1806.3865, 0, -1, 0, -258.6251, 1, 0, 0, -1810.9075, 0, -1, 0, -210.97624, 1, 0, 0, -1842.887, 0, -1, 0, -248.37115, 1, 0, 0, -1927.8025, 0, -1, 0, -195.40628, 1, 0, 0, -1802.6035, 0, -1, 0, -191.46957, 1, 0, 0, -1804.2521, 0, -1, 0, -246.46594, 1, 0, 0, -1779.5149, 0, -1, 0, -318.77444, 1, 0, 0, -1877.5837, 0, -1, 0, -245.80296)
+buffer = PackedFloat32Array(1, 0, 0, -1787.114, 0, -1, 0, -276.79318, 1, 0, 0, -1847.064, 0, -1, 0, -197.93356, 1, 0, 0, -1776.2214, 0, -1, 0, -224.7094, 1, 0, 0, -1834.4169, 0, -1, 0, -273.7335, 1, 0, 0, -1853.4174, 0, -1, 0, -214.08755, 1, 0, 0, -1813.5515, 0, -1, 0, -264.3617, 1, 0, 0, -1791.4078, 0, -1, 0, -200.89294, 1, 0, 0, -1802.4933, 0, -1, 0, -262.8396, 1, 0, 0, -1779.8606, 0, -1, 0, -274.98248, 1, 0, 0, -1799.904, 0, -1, 0, -302.83826, 1, 0, 0, -1858.7932, 0, -1, 0, -250.30692, 1, 0, 0, -1802.043, 0, -1, 0, -199.85513, 1, 0, 0, -1805.265, 0, -1, 0, -266.49628, 1, 0, 0, -1809.711, 0, -1, 0, -219.11009, 1, 0, 0, -1840.8716, 0, -1, 0, -260.5638, 1, 0, 0, -1924.3425, 0, -1, 0, -213.16245, 1, 0, 0, -1801.6271, 0, -1, 0, -198.4919, 1, 0, 0, -1803.1929, 0, -1, 0, -254.00946, 1, 0, 0, -1914.3522, 0, -1, 0, -239.44354, 1, 0, 0, -1876.1726, 0, -1, 0, -251.86829)
 
 [sub_resource type="QuadMesh" id="QuadMesh_4r3lg"]
 size = Vector2(11, 11)
 
-[sub_resource type="MultiMesh" id="MultiMesh_lyggs"]
+[sub_resource type="MultiMesh" id="MultiMesh_32xgs"]
 instance_count = 10
 mesh = SubResource("QuadMesh_4r3lg")
-buffer = PackedFloat32Array(1, 0, 0, -1658.8748, 0, -1, 0, -173.11133, 1, 0, 0, -1596.6528, 0, -1, 0, 179.11392, 1, 0, 0, -1621.9171, 0, -1, 0, 103.46328, 1, 0, 0, -1619.9321, 0, -1, 0, -176.85303, 1, 0, 0, -1671.8418, 0, -1, 0, -10.394104, 1, 0, 0, -1575.8318, 0, -1, 0, -29.198702, 1, 0, 0, -1665.8059, 0, -1, 0, 118.70965, 1, 0, 0, -1573.4525, 0, -1, 0, -7.6152763, 1, 0, 0, -1500.2703, 0, -1, 0, 43.12579, 1, 0, 0, -1644.8007, 0, -1, 0, -121.94754)
+buffer = PackedFloat32Array(1, 0, 0, -1655.3363, 0, -1, 0, -187.7806, 1, 0, 0, -1597.0557, 0, -1, 0, 179.06969, 1, 0, 0, -1623.7649, 0, -1, 0, 102.19844, 1, 0, 0, -1624.1223, 0, -1, 0, -190.89905, 1, 0, 0, -1682.3767, 0, -1, 0, -20.419151, 1, 0, 0, -1581.7778, 0, -1, 0, -34.83129, 1, 0, 0, -1669.4122, 0, -1, 0, 115.78524, 1, 0, 0, -1578.1611, 0, -1, 0, -11.984045, 1, 0, 0, -1500.3624, 0, -1, 0, 43.152832, 1, 0, 0, -1548.7625, 0, -1, 0, -100.441734)
 
-[sub_resource type="QuadMesh" id="QuadMesh_svhw6"]
+[sub_resource type="QuadMesh" id="QuadMesh_u47v6"]
 size = Vector2(11, 11)
 
-[sub_resource type="MultiMesh" id="MultiMesh_crjmb"]
+[sub_resource type="MultiMesh" id="MultiMesh_runeo"]
 instance_count = 10
-mesh = SubResource("QuadMesh_svhw6")
-buffer = PackedFloat32Array(1, 0, 0, -1857.7734, 0, -1, 0, -163.59056, 1, 0, 0, -2041.2498, 0, -1, 0, -111.11099, 1, 0, 0, -1947.6592, 0, -1, 0, 296.10535, 1, 0, 0, -1807.2466, 0, -1, 0, -167.56451, 1, 0, 0, -1968.6804, 0, -1, 0, 236.93352, 1, 0, 0, -1992.7054, 0, -1, 0, 276.503, 1, 0, 0, -1977.1836, 0, -1, 0, 295.80466, 1, 0, 0, -1800.5338, 0, -1, 0, 283.97345, 1, 0, 0, -1496.0992, 0, -1, 0, -217.77841, 1, 0, 0, -1827.5671, 0, -1, 0, -73.90065)
+mesh = SubResource("QuadMesh_u47v6")
+buffer = PackedFloat32Array(1, 0, 0, -1942.0537, 0, -1, 0, -86.3527, 1, 0, 0, -2108.0256, 0, -1, 0, 313.2845, 1, 0, 0, -1947.322, 0, -1, 0, 298.351, 1, 0, 0, -1807.2466, 0, -1, 0, -167.56451, 1, 0, 0, -1880.6018, 0, -1, 0, -89.641174, 1, 0, 0, -1992.6996, 0, -1, 0, 276.50375, 1, 0, 0, -1977.0483, 0, -1, 0, 296.66922, 1, 0, 0, -1804.3872, 0, -1, 0, 288.3296, 1, 0, 0, -1496.0992, 0, -1, 0, -217.77841, 1, 0, 0, -1849.8599, 0, -1, 0, 65.805115)
 
 [sub_resource type="QuadMesh" id="QuadMesh_u7je1"]
 size = Vector2(11, 11)
 
-[sub_resource type="MultiMesh" id="MultiMesh_7kqfi"]
+[sub_resource type="MultiMesh" id="MultiMesh_vdxky"]
 instance_count = 10
 mesh = SubResource("QuadMesh_u7je1")
 buffer = PackedFloat32Array(1, 0, 0, -1827.6617, 0, -1, 0, 262.1018, 1, 0, 0, -1929.8109, 0, -1, 0, 334.95245, 1, 0, 0, -1730.8083, 0, -1, 0, 145.56734, 1, 0, 0, -2073.383, 0, -1, 0, 326.75864, 1, 0, 0, -1897.2007, 0, -1, 0, -127.59197, 1, 0, 0, -1993.7654, 0, -1, 0, 10.511642, 1, 0, 0, -1841.207, 0, -1, 0, -152.92043, 1, 0, 0, -2001.0609, 0, -1, 0, -13.02515, 1, 0, 0, -1845.8158, 0, -1, 0, -231.41432, 1, 0, 0, -1968.7402, 0, -1, 0, 123.13365)
 
-[sub_resource type="QuadMesh" id="QuadMesh_im4a8"]
+[sub_resource type="QuadMesh" id="QuadMesh_svhw6"]
 size = Vector2(11, 11)
 
-[sub_resource type="MultiMesh" id="MultiMesh_o8hsj"]
+[sub_resource type="MultiMesh" id="MultiMesh_t7j1w"]
 instance_count = 10
-mesh = SubResource("QuadMesh_im4a8")
-buffer = PackedFloat32Array(1, 0, 0, -1995.309, 0, -1, 0, 185.37788, 1, 0, 0, -1039.7644, 0, -1, 0, 35.10172, 1, 0, 0, -1429.638, 0, -1, 0, -194.07124, 1, 0, 0, -2123.618, 0, -1, 0, -6.6456947, 1, 0, 0, -1489.6997, 0, -1, 0, -12.189255, 1, 0, 0, -1595.7118, 0, -1, 0, -65.73842, 1, 0, 0, -1374.9812, 0, -1, 0, -177.87802, 1, 0, 0, -1301.6938, 0, -1, 0, -59.8403, 1, 0, 0, -1488.6895, 0, -1, 0, -224.39182, 1, 0, 0, -1696.1079, 0, -1, 0, 95.33048)
+mesh = SubResource("QuadMesh_svhw6")
+buffer = PackedFloat32Array(1, 0, 0, -1995.309, 0, -1, 0, 185.37788, 1, 0, 0, -1039.7644, 0, -1, 0, 35.10172, 1, 0, 0, -1429.638, 0, -1, 0, -194.07124, 1, 0, 0, -2128.2166, 0, -1, 0, -11.68977, 1, 0, 0, -1489.6997, 0, -1, 0, -12.189255, 1, 0, 0, -1595.7118, 0, -1, 0, -65.73842, 1, 0, 0, -1374.9812, 0, -1, 0, -177.87802, 1, 0, 0, -1301.6938, 0, -1, 0, -59.8403, 1, 0, 0, -1488.6895, 0, -1, 0, -224.39182, 1, 0, 0, -1696.1079, 0, -1, 0, 95.33048)
 
 [sub_resource type="QuadMesh" id="QuadMesh_kkh70"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_imurc"]
+[sub_resource type="MultiMesh" id="MultiMesh_avhpb"]
 instance_count = 64
 mesh = SubResource("QuadMesh_kkh70")
 buffer = PackedFloat32Array(1, 0, 0, -2204.6147, 0, -1, 0, -611.56616, 1, 0, 0, -1747.2656, 0, -1, 0, -266.05176, 1, 0, 0, -2592.8865, 0, -1, 0, -115.940155, 1, 0, 0, -2010.0635, 0, -1, 0, -328.80798, 1, 0, 0, -1570.5283, 0, -1, 0, -252.74457, 1, 0, 0, -1794.9995, 0, -1, 0, -238.37674, 1, 0, 0, -2707.854, 0, -1, 0, -49.527786, 1, 0, 0, -1913.8352, 0, -1, 0, -212.9207, 1, 0, 0, -2274.429, 0, -1, 0, -260.44513, 1, 0, 0, -2549.0708, 0, -1, 0, -148.47809, 1, 0, 0, -2300.4707, 0, -1, 0, -292.0102, 1, 0, 0, -1595.2042, 0, -1, 0, -279.74316, 1, 0, 0, -2556.2114, 0, -1, 0, -49.301567, 1, 0, 0, -2167.1392, 0, -1, 0, -362.62726, 1, 0, 0, -2021.79, 0, -1, 0, -171.1269, 1, 0, 0, -2525.2285, 0, -1, 0, -156.53064, 1, 0, 0, -2189.709, 0, -1, 0, -450.0889, 1, 0, 0, -2395.9746, 0, -1, 0, -241.77658, 1, 0, 0, -2038.3594, 0, -1, 0, -214.41237, 1, 0, 0, -2584.508, 0, -1, 0, -197.12051, 1, 0, 0, -2147.837, 0, -1, 0, -322.54083, 1, 0, 0, -2603.814, 0, -1, 0, -189.07794, 1, 0, 0, -2244.6494, 0, -1, 0, -645.05475, 1, 0, 0, -2136.0002, 0, -1, 0, -371.2896, 1, 0, 0, -2577.2056, 0, -1, 0, -94.17532, 1, 0, 0, -1920.5889, 0, -1, 0, -306.59323, 1, 0, 0, -1865.6176, 0, -1, 0, -293.95825, 1, 0, 0, -2449.4753, 0, -1, 0, -161.79207, 1, 0, 0, -1818.7162, 0, -1, 0, -232.29303, 1, 0, 0, -2874.5303, 0, -1, 0, -32.905216, 1, 0, 0, -2414.5151, 0, -1, 0, -293.2412, 1, 0, 0, -2425.7312, 0, -1, 0, -335.10394, 1, 0, 0, -2513.8455, 0, -1, 0, -170.62958, 1, 0, 0, -2022.7756, 0, -1, 0, -225.81418, 1, 0, 0, -2159.7622, 0, -1, 0, -443.37463, 1, 0, 0, -2513.5105, 0, -1, 0, -218.63696, 1, 0, 0, -2284.4648, 0, -1, 0, -399.68427, 1, 0, 0, -1597.6522, 0, -1, 0, -219.97331, 1, 0, 0, -2118.377, 0, -1, 0, -642.9928, 1, 0, 0, -2114.793, 0, -1, 0, -603.8339, 1, 0, 0, -1805.1382, 0, -1, 0, -293.07132, 1, 0, 0, -2051.4546, 0, -1, 0, -97.55344, 1, 0, 0, -2173.1316, 0, -1, 0, -465.92847, 1, 0, 0, -1993.2693, 0, -1, 0, -207.7368, 1, 0, 0, -2542.8066, 0, -1, 0, -246.237, 1, 0, 0, -2551.4058, 0, -1, 0, -274.6502, 1, 0, 0, -2613.0518, 0, -1, 0, -122.08641, 1, 0, 0, -1947.2501, 0, -1, 0, -288.60303, 1, 0, 0, -2451.9724, 0, -1, 0, -149.97656, 1, 0, 0, -2358.8047, 0, -1, 0, -348.13632, 1, 0, 0, -2336.205, 0, -1, 0, -305.28293, 1, 0, 0, -2590.0532, 0, -1, 0, -136.10321, 1, 0, 0, -2342.811, 0, -1, 0, -287.08148, 1, 0, 0, -1579.9951, 0, -1, 0, -306.93738, 1, 0, 0, -2173.8994, 0, -1, 0, -462.67197, 1, 0, 0, -1967.449, 0, -1, 0, -344.1408, 1, 0, 0, -2283.6694, 0, -1, 0, -385.35385, 1, 0, 0, -1549.1404, 0, -1, 0, -281.9786, 1, 0, 0, -2197.1182, 0, -1, 0, -318.4597, 1, 0, 0, -2084.0537, 0, -1, 0, -362.03076, 1, 0, 0, -1988.6177, 0, -1, 0, -449.9054, 1, 0, 0, -2129.7637, 0, -1, 0, -563.6758, 1, 0, 0, -2008.759, 0, -1, 0, -154.9678, 1, 0, 0, -2125.6904, 0, -1, 0, -416.34576)
@@ -265,7 +265,7 @@ seamless_blend_skirt = 1.0
 [sub_resource type="QuadMesh" id="QuadMesh_lyggs"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_4gtvy"]
+[sub_resource type="MultiMesh" id="MultiMesh_6u81w"]
 instance_count = 16
 mesh = SubResource("QuadMesh_lyggs")
 buffer = PackedFloat32Array(1, 0, 0, -1571.1031, 0, -1, 0, -247.03546, 1, 0, 0, -1546.978, 0, -1, 0, -187.54091, 1, 0, 0, -1555.3175, 0, -1, 0, -182.92361, 1, 0, 0, -1533.2416, 0, -1, 0, -222.09978, 1, 0, 0, -1544.6741, 0, -1, 0, -180.44362, 1, 0, 0, -1574.2822, 0, -1, 0, -204.07675, 1, 0, 0, -1539.8037, 0, -1, 0, -232.89272, 1, 0, 0, -1554.2754, 0, -1, 0, -251.87251, 1, 0, 0, -1552.989, 0, -1, 0, -191.06631, 1, 0, 0, -1556.9832, 0, -1, 0, -187.34146, 1, 0, 0, -1536.1776, 0, -1, 0, -216.4647, 1, 0, 0, -1532.5901, 0, -1, 0, -182.94263, 1, 0, 0, -1639.6343, 0, -1, 0, -241.79507, 1, 0, 0, -1613.854, 0, -1, 0, -242.33337, 1, 0, 0, -1554.0774, 0, -1, 0, -239.28442, 1, 0, 0, -1550.78, 0, -1, 0, -190.69882)
@@ -273,7 +273,7 @@ buffer = PackedFloat32Array(1, 0, 0, -1571.1031, 0, -1, 0, -247.03546, 1, 0, 0, 
 [sub_resource type="QuadMesh" id="QuadMesh_o8hsj"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_32xgs"]
+[sub_resource type="MultiMesh" id="MultiMesh_j3evn"]
 instance_count = 16
 mesh = SubResource("QuadMesh_o8hsj")
 buffer = PackedFloat32Array(1, 0, 0, -1609.7197, 0, -1, 0, -247.64194, 1, 0, 0, -1629.7692, 0, -1, 0, -221.10391, 1, 0, 0, -1634.1532, 0, -1, 0, -229.40762, 1, 0, 0, -1515.5477, 0, -1, 0, -246.1121, 1, 0, 0, -1560.7072, 0, -1, 0, -182.4694, 1, 0, 0, -1539.7472, 0, -1, 0, -245.92882, 1, 0, 0, -1550.0251, 0, -1, 0, -202.72386, 1, 0, 0, -1600.8918, 0, -1, 0, -217.20325, 1, 0, 0, -1610.3301, 0, -1, 0, -226.57756, 1, 0, 0, -1617.42, 0, -1, 0, -230.66766, 1, 0, 0, -1548.436, 0, -1, 0, -208.63661, 1, 0, 0, -1543.1589, 0, -1, 0, -183.26227, 1, 0, 0, -1628.8242, 0, -1, 0, -210.12865, 1, 0, 0, -1607.6553, 0, -1, 0, -232.09665, 1, 0, 0, -1535.5775, 0, -1, 0, -212.7102, 1, 0, 0, -1614.4136, 0, -1, 0, -224.49664)
@@ -281,7 +281,7 @@ buffer = PackedFloat32Array(1, 0, 0, -1609.7197, 0, -1, 0, -247.64194, 1, 0, 0, 
 [sub_resource type="QuadMesh" id="QuadMesh_4gtvy"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_u47v6"]
+[sub_resource type="MultiMesh" id="MultiMesh_jpymi"]
 instance_count = 32
 mesh = SubResource("QuadMesh_4gtvy")
 buffer = PackedFloat32Array(1, 0, 0, -1344.8649, 0, -1, 0, -218.61813, 1, 0, 0, -1345.3425, 0, -1, 0, -312.94727, 1, 0, 0, -1281.2954, 0, -1, 0, -137.00647, 1, 0, 0, -1520.3716, 0, -1, 0, -239.39743, 1, 0, 0, -1505.5298, 0, -1, 0, -101.76606, 1, 0, 0, -1470.9117, 0, -1, 0, -185.22562, 1, 0, 0, -1446.7788, 0, -1, 0, -164.32953, 1, 0, 0, -1310.4181, 0, -1, 0, -198.21368, 1, 0, 0, -1372.262, 0, -1, 0, -285.35394, 1, 0, 0, -1308.2407, 0, -1, 0, -140.7396, 1, 0, 0, -1374.092, 0, -1, 0, -255.68613, 1, 0, 0, -1415.5298, 0, -1, 0, -321.83685, 1, 0, 0, -1392.1836, 0, -1, 0, -320.19177, 1, 0, 0, -1547.8481, 0, -1, 0, -141.48499, 1, 0, 0, -1400.7177, 0, -1, 0, -189.04617, 1, 0, 0, -1302.4529, 0, -1, 0, -164.80368, 1, 0, 0, -1330.7605, 0, -1, 0, -281.28757, 1, 0, 0, -1359.189, 0, -1, 0, -200.32806, 1, 0, 0, -1332.2941, 0, -1, 0, -169.66289, 1, 0, 0, -1380.1898, 0, -1, 0, -225.6019, 1, 0, 0, -1422.6052, 0, -1, 0, -258.94382, 1, 0, 0, -1349.365, 0, -1, 0, -232.75743, 1, 0, 0, -1284.2653, 0, -1, 0, -263.1426, 1, 0, 0, -1381.406, 0, -1, 0, -257.98312, 1, 0, 0, -1390.5142, 0, -1, 0, -174.85046, 1, 0, 0, -1567.9312, 0, -1, 0, -225.3601, 1, 0, 0, -1589.088, 0, -1, 0, -231.65393, 1, 0, 0, -1319.0013, 0, -1, 0, -263.08, 1, 0, 0, -1526.8037, 0, -1, 0, -253.20218, 1, 0, 0, -1404.6343, 0, -1, 0, -132.95692, 1, 0, 0, -1401.8337, 0, -1, 0, -169.54195, 1, 0, 0, -1311.357, 0, -1, 0, -104.9163)
@@ -289,7 +289,7 @@ buffer = PackedFloat32Array(1, 0, 0, -1344.8649, 0, -1, 0, -218.61813, 1, 0, 0, 
 [sub_resource type="QuadMesh" id="QuadMesh_0cexs"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_runeo"]
+[sub_resource type="MultiMesh" id="MultiMesh_7a5yf"]
 mesh = SubResource("QuadMesh_0cexs")
 
 [sub_resource type="Gradient" id="Gradient_jcpdl"]
@@ -312,34 +312,34 @@ seamless_blend_skirt = 1.0
 [sub_resource type="QuadMesh" id="QuadMesh_2fhqp"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_vdxky"]
+[sub_resource type="MultiMesh" id="MultiMesh_qyvwt"]
 mesh = SubResource("QuadMesh_2fhqp")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nwba7"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_t7j1w"]
+[sub_resource type="MultiMesh" id="MultiMesh_q435f"]
 mesh = SubResource("QuadMesh_nwba7")
 
 [sub_resource type="QuadMesh" id="QuadMesh_wdmu1"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_avhpb"]
+[sub_resource type="MultiMesh" id="MultiMesh_d1vx8"]
 mesh = SubResource("QuadMesh_wdmu1")
 
 [sub_resource type="QuadMesh" id="QuadMesh_6yg0m"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_6u81w"]
+[sub_resource type="MultiMesh" id="MultiMesh_7gfgi"]
 mesh = SubResource("QuadMesh_6yg0m")
 
 [sub_resource type="QuadMesh" id="QuadMesh_7v32t"]
 size = Vector2(12, 12)
 
-[sub_resource type="MultiMesh" id="MultiMesh_j3evn"]
+[sub_resource type="MultiMesh" id="MultiMesh_g7yn7"]
 mesh = SubResource("QuadMesh_7v32t")
 
-[sub_resource type="MultiMesh" id="MultiMesh_jpymi"]
+[sub_resource type="MultiMesh" id="MultiMesh_r6246"]
 mesh = SubResource("QuadMesh_7v32t")
 
 [sub_resource type="Curve2D" id="Curve2D_y2whf"]
@@ -1819,18 +1819,18 @@ metadata/_edit_lock_ = true
 
 [node name="TerrainHelper9" parent="Terrain/Terrain" instance=ExtResource("4_0cexs")]
 position = Vector2(1909, -427)
-polygon = PackedVector2Array(-1819, -337, -1737, -353, -1744, -160, -1978, -140, -1983, -230, -1908, -267)
+polygon = PackedVector2Array(-1832, -342, -1737, -353, -1744, -160, -1973, -168, -1979, -248, -1906, -267)
 detail_amount = 20
 
 [node name="Inner" parent="Terrain/Terrain/TerrainHelper9" index="0"]
-polygon = PackedVector2Array(-1819, -337, -1737, -352, -1744, -160, -1978, -140, -1983, -230, -1908, -267)
+polygon = PackedVector2Array(-1832, -342, -1737, -353, -1744, -160, -1973, -168, -1979, -248, -1907, -267)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper9" index="1"]
-multimesh = SubResource("MultiMesh_kkh70")
+multimesh = SubResource("MultiMesh_4gtvy")
 
-[node name="@Line2D@261640" type="Line2D" parent="Terrain/Terrain/TerrainHelper9/Edges" index="0"]
+[node name="@Line2D@140499" type="Line2D" parent="Terrain/Terrain/TerrainHelper9/Edges" index="0"]
 texture_repeat = 2
-points = PackedVector2Array(-1737.2915, -344.0053, -1744, -160, -1978, -140, -1983, -230, -1915.1744, -263.4606)
+points = PackedVector2Array(-1737.2899, -345.00525, -1744, -160, -1973, -168, -1979, -248, -1914.7352, -264.95877)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -1839,11 +1839,11 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Overlay" parent="Terrain/Terrain/TerrainHelper9" index="3"]
-polygon = PackedVector2Array(-1819, -337, -1737, -352, -1744, -160, -1978, -140, -1983, -230, -1908, -267)
+polygon = PackedVector2Array(-1832, -342, -1737, -353, -1744, -160, -1973, -168, -1979, -248, -1907, -267)
 
-[node name="@Line2D@261639" type="Line2D" parent="Terrain/Terrain/TerrainHelper9/Top" index="0"]
+[node name="@Line2D@140498" type="Line2D" parent="Terrain/Terrain/TerrainHelper9/Top" index="0"]
 texture_repeat = 2
-points = PackedVector2Array(-1890.7078, -280.60065, -1819, -337, -1758.6409, -348.0413)
+points = PackedVector2Array(-1891.4436, -282.55634, -1832, -342, -1758.854, -350.46954)
 width = 42.0
 texture = ExtResource("6_4r3lg")
 texture_mode = 1
@@ -1858,18 +1858,18 @@ flip_h = true
 
 [node name="TerrainHelper6" parent="Terrain/Terrain" instance=ExtResource("4_0cexs")]
 position = Vector2(2305, -163)
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1611, -260, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1360, -58, -1438, -29, -1526, 231, -1700, 210, -1779, -121)
+polygon = PackedVector2Array(-1796, -181, -1730, -185, -1572, -259, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1360, -58, -1438, -29, -1526, 231, -1700, 210, -1793, -105)
 detail_amount = 10
 
 [node name="Inner" parent="Terrain/Terrain/TerrainHelper6" index="0"]
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1611, -260, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1359, -58, -1438, -29, -1526, 231, -1700, 210, -1779, -121)
+polygon = PackedVector2Array(-1796, -181, -1730, -185, -1572, -259, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1360, -58, -1438, -29, -1526, 231, -1700, 210, -1793, -105)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper6" index="1"]
-multimesh = SubResource("MultiMesh_lyggs")
+multimesh = SubResource("MultiMesh_32xgs")
 
-[node name="@Line2D@193035" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="0"]
+[node name="@Line2D@145075" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="0"]
 texture_repeat = 2
-points = PackedVector2Array(-1776.8788, -128.71364, -1770.1212, -153.28636)
+points = PackedVector2Array(-1793.3156, -112.993774, -1795.6844, -173.00623)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -1877,7 +1877,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@193037" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="1"]
+[node name="@Line2D@145077" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="1"]
 texture_repeat = 2
 points = PackedVector2Array(-1441.5315, -254.29944, -1439.2827, -110.83335)
 width = 16.0
@@ -1887,9 +1887,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@193039" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="2"]
+[node name="@Line2D@145079" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Edges" index="2"]
 texture_repeat = 2
-points = PackedVector2Array(-1358.1702, -97.00181, -1359, -58, -1438, -29, -1526, 231, -1700, 210, -1777.1428, -113.21856)
+points = PackedVector2Array(-1358.3401, -97.00723, -1360, -58, -1438, -29, -1526, 231, -1700, 210, -1790.7347, -97.32741)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -1898,11 +1898,11 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Overlay" parent="Terrain/Terrain/TerrainHelper6" index="3"]
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1611, -260, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1359, -58, -1438, -29, -1526, 231, -1700, 210, -1779, -121)
+polygon = PackedVector2Array(-1796, -181, -1730, -185, -1572, -259, -1441.6569, -262.29846, -1439.1573, -102.834335, -1358, -105, -1360, -58, -1438, -29, -1526, 231, -1700, 210, -1793, -105)
 
-[node name="@Line2D@193036" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Top" index="0"]
+[node name="@Line2D@145076" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Top" index="0"]
 texture_repeat = 2
-points = PackedVector2Array(-1746.0062, -161.52367, -1726, -162, -1611, -260, -1463.6548, -261.99988)
+points = PackedVector2Array(-1774.0403, -182.33089, -1730, -185, -1572, -259, -1463.6498, -261.7419)
 width = 42.0
 texture = ExtResource("6_4r3lg")
 texture_mode = 1
@@ -1910,7 +1910,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@193038" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Top" index="1"]
+[node name="@Line2D@145078" type="Line2D" parent="Terrain/Terrain/TerrainHelper6/Top" index="1"]
 texture_repeat = 2
 points = PackedVector2Array(-1417.1652, -103.42119, -1379.9922, -104.41314)
 width = 42.0
@@ -1931,8 +1931,8 @@ texture = ExtResource("7_r3v6r")
 flip_h = true
 
 [node name="Corner5" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper6/DecorationManual" index="2"]
-position = Vector2(-1769, -153.99997)
-rotation = 0.12217305
+position = Vector2(-1794, -172)
+rotation = -0.0035022646
 texture = ExtResource("7_r3v6r")
 
 [node name="Corner" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper6/DecorationManual" index="3"]
@@ -1941,16 +1941,16 @@ texture = ExtResource("8_svhw6")
 
 [node name="TerrainHelper8" parent="Terrain/Terrain" instance=ExtResource("4_0cexs")]
 position = Vector2(1597, -730)
-polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2133, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
+polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1650, 239, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2133, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
 detail_amount = 10
 
 [node name="Inner" parent="Terrain/Terrain/TerrainHelper8" index="0"]
-polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2134, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
+polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1649, 239, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2133, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper8" index="1"]
-multimesh = SubResource("MultiMesh_crjmb")
+multimesh = SubResource("MultiMesh_runeo")
 
-[node name="@Line2D@280424" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="0"]
+[node name="@Line2D@135607" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="0"]
 texture_repeat = 2
 points = PackedVector2Array(-1905.7406, -169.90024, -1897.2595, -223.09976)
 width = 16.0
@@ -1960,7 +1960,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280426" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="1"]
+[node name="@Line2D@135609" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="1"]
 texture_repeat = 2
 points = PackedVector2Array(-1441.6854, -254.29851, -1442, -166, -1789, -142, -1784, 66, -1760.164, 228.08513)
 width = 16.0
@@ -1970,9 +1970,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280428" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="2"]
+[node name="@Line2D@135611" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="2"]
 texture_repeat = 2
-points = PackedVector2Array(-1509.3152, 302.89114, -1525, 397, -1768, 384, -2028, 351, -2134, 341, -2143.4841, 291.85507)
+points = PackedVector2Array(-1649.04, 246.9999, -1649.2401, 287.0001)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -1980,7 +1980,17 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280430" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="3"]
+[node name="@Line2D@135613" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="3"]
+texture_repeat = 2
+points = PackedVector2Array(-1509.3152, 302.89114, -1525, 397, -1768, 384, -2028, 351, -2133, 341, -2143.3518, 291.8284)
+width = 16.0
+texture = ExtResource("5_nwba7")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="@Line2D@135615" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Edges" index="4"]
 texture_repeat = 2
 points = PackedVector2Array(-1888.0592, 135.00021, -1889, 8, -1901, -52, -2076, -73, -2079.6284, -151.00864)
 width = 16.0
@@ -1991,9 +2001,9 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Overlay" parent="Terrain/Terrain/TerrainHelper8" index="3"]
-polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2134, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
+polygon = PackedVector2Array(-1896, -231, -1684, -238, -1611, -260, -1441.6569, -262.29846, -1442, -166, -1789, -142, -1784, 66, -1759, 236, -1649, 239, -1649.2802, 295, -1508, 295, -1525, 397, -1768, 384, -2028, 351, -2133, 341, -2145, 284, -2093, 278, -1888, 143, -1889, 8, -1901, -52, -2076, -73, -2080, -159, -2032, -161, -1907, -162)
 
-[node name="@Line2D@280425" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="0"]
+[node name="@Line2D@135608" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="0"]
 texture_repeat = 2
 points = PackedVector2Array(-1874.012, -231.72601, -1684, -238, -1611, -260, -1463.6548, -261.99988)
 width = 42.0
@@ -2003,9 +2013,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280427" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="1"]
+[node name="@Line2D@135610" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="1"]
 texture_repeat = 2
-points = PackedVector2Array(-1739.6238, 246.41925, -1649.2802, 295, -1530, 295)
+points = PackedVector2Array(-1737.0082, 236.59978, -1670.9918, 238.40022)
 width = 42.0
 texture = ExtResource("6_4r3lg")
 texture_mode = 1
@@ -2013,7 +2023,17 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280429" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="2"]
+[node name="@Line2D@135612" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="2"]
+texture_repeat = 2
+points = PackedVector2Array(-1627.2802, 295, -1530, 295)
+width = 42.0
+texture = ExtResource("6_4r3lg")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="@Line2D@135614" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="3"]
 texture_repeat = 2
 points = PackedVector2Array(-2123.145, 281.47827, -2093, 278, -1906.3738, 155.0998)
 width = 42.0
@@ -2023,7 +2043,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@280431" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="3"]
+[node name="@Line2D@135616" type="Line2D" parent="Terrain/Terrain/TerrainHelper8/Top" index="4"]
 texture_repeat = 2
 points = PackedVector2Array(-2058.019, -159.91588, -2032, -161, -1928.9993, -161.824)
 width = 42.0
@@ -2043,37 +2063,50 @@ position = Vector2(-2139, 291)
 texture = ExtResource("7_r3v6r")
 
 [node name="Corner11" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="2"]
-position = Vector2(-1511, 305)
+position = Vector2(-1513, 304)
 texture = ExtResource("7_r3v6r")
 flip_h = true
 
-[node name="Corner5" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="3"]
+[node name="Corner13" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="3"]
+position = Vector2(-1650, 248)
+texture = ExtResource("7_r3v6r")
+flip_h = true
+
+[node name="Corner5" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="4"]
 position = Vector2(-2078, -148.99997)
 rotation = -0.013244666
 texture = ExtResource("7_r3v6r")
 
-[node name="Corner6" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="4"]
+[node name="Corner6" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="5"]
 position = Vector2(-1901, -222.99997)
 rotation = -0.013244666
 texture = ExtResource("7_r3v6r")
 
-[node name="Corner" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="5"]
+[node name="Corner" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="6"]
 position = Vector2(-1765, 243)
 texture = ExtResource("8_svhw6")
 
-[node name="Corner3" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="6"]
+[node name="Corner7" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="7"]
+position = Vector2(-1765, 243)
+texture = ExtResource("8_svhw6")
+
+[node name="Corner8" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="8"]
+position = Vector2(-1653, 302)
+texture = ExtResource("8_svhw6")
+
+[node name="Corner3" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="9"]
 position = Vector2(-1882, 143)
 rotation = -0.56084204
 texture = ExtResource("8_svhw6")
 flip_h = true
 
-[node name="Corner4" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="7"]
+[node name="Corner4" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="10"]
 position = Vector2(-1905.0002, -156)
 rotation = 0.027521849
 texture = ExtResource("8_svhw6")
 flip_h = true
 
-[node name="Corner2" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="8"]
+[node name="Corner2" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper8/DecorationManual" index="11"]
 position = Vector2(-1593, 40)
 rotation = -0.59901536
 texture = ExtResource("8_svhw6")
@@ -2087,7 +2120,7 @@ detail_amount = 10
 polygon = PackedVector2Array(-1905, -267, -1684, -238, -1678, -155, -1786, -136, -1786, -67, -1925, -41, -1929, 36, -1909, 47, -1794, 43, -1651, 122, -1623, 117, -1626, 188, -1759, 236, -1861, 378, -2023, 359, -2181, 340, -2182, 290, -2036.7938, 286.47165, -2060, 29, -2067, -548, -2005, -548, -1943, -548)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper10" index="1"]
-multimesh = SubResource("MultiMesh_7kqfi")
+multimesh = SubResource("MultiMesh_vdxky")
 
 [node name="@Line2D@293641" type="Line2D" parent="Terrain/Terrain/TerrainHelper10/Edges" index="0"]
 texture_repeat = 2
@@ -2215,16 +2248,16 @@ texture = ExtResource("8_svhw6")
 
 [node name="TerrainHelper7" parent="Terrain/Terrain" instance=ExtResource("4_0cexs")]
 position = Vector2(2926, -895)
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2511, 79, -2397.7588, 56.514435, -2399, -51, -2388, -110)
+polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2515, 63, -2404, 47, -2399, -51, -2388, -110)
 detail_amount = 10
 
 [node name="Inner" parent="Terrain/Terrain/TerrainHelper7" index="0"]
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2511, 79, -2397.7588, 56.514435, -2399, -51, -2388, -110)
+polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2515, 63, -2404, 47, -2399, -51, -2388, -110)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper7" index="1"]
-multimesh = SubResource("MultiMesh_o8hsj")
+multimesh = SubResource("MultiMesh_t7j1w")
 
-[node name="@Line2D@281197" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="0"]
+[node name="@Line2D@159361" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="0"]
 texture_repeat = 2
 points = PackedVector2Array(-1312.7751, -348.67877, -1282.2249, -279.32123)
 width = 16.0
@@ -2234,9 +2267,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@281199" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="1"]
+[node name="@Line2D@159363" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="1"]
 texture_repeat = 2
-points = PackedVector2Array(-903.35004, -138.00766, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2512.051, 86.93066)
+points = PackedVector2Array(-903.35004, -138.00766, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2515.5642, 70.98008)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -2244,9 +2277,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@281201" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="2"]
+[node name="@Line2D@159365" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Edges" index="2"]
 texture_repeat = 2
-points = PackedVector2Array(-2397.851, 48.51497, -2399, -51, -2389.4663, -102.13552)
+points = PackedVector2Array(-2403.5923, 39.01039, -2399, -51, -2389.4663, -102.13552)
 width = 16.0
 texture = ExtResource("5_nwba7")
 texture_mode = 1
@@ -2255,9 +2288,9 @@ end_cap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Overlay" parent="Terrain/Terrain/TerrainHelper7" index="3"]
-polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2511, 79, -2397.7588, 56.514435, -2399, -51, -2388, -110)
+polygon = PackedVector2Array(-1768, -161, -1726, -162, -1595, -200, -1316, -356, -1279, -272, -903, -146, -909, -9, -928, 52, -1108, 160, -1526, 231, -1550, 251, -1688, 256, -1700, 210, -1897, 210, -1947, 235, -2060, 237, -2359, 157, -2522, 162, -2515, 63, -2404, 47, -2399, -51, -2388, -110)
 
-[node name="@Line2D@281196" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="0"]
+[node name="@Line2D@159360" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="0"]
 texture_repeat = 2
 points = PackedVector2Array(-2366.074, -111.80359, -1768, -161, -1726, -162, -1595, -200, -1335.2021, -345.2633)
 width = 42.0
@@ -2267,7 +2300,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@281198" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="1"]
+[node name="@Line2D@159362" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="1"]
 texture_repeat = 2
 points = PackedVector2Array(-1258.1401, -265.0097, -923.8599, -152.9903)
 width = 42.0
@@ -2277,9 +2310,9 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="@Line2D@281200" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="2"]
+[node name="@Line2D@159364" type="Line2D" parent="Terrain/Terrain/TerrainHelper7/Top" index="2"]
 texture_repeat = 2
-points = PackedVector2Array(-2489.4214, 74.715256, -2419.3374, 60.799175)
+points = PackedVector2Array(-2493.225, 59.861267, -2425.775, 50.13873)
 width = 42.0
 texture = ExtResource("6_4r3lg")
 texture_mode = 1
@@ -2303,8 +2336,8 @@ rotation = 0.12217305
 texture = ExtResource("7_r3v6r")
 
 [node name="Corner6" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper7/DecorationManual" index="3"]
-position = Vector2(-2511, 86.00003)
-rotation = 0.12217305
+position = Vector2(-2515, 72.00003)
+rotation = -0.012865402
 texture = ExtResource("7_r3v6r")
 
 [node name="Corner" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper7/DecorationManual" index="4"]
@@ -2312,7 +2345,7 @@ position = Vector2(-1286, -265)
 texture = ExtResource("8_svhw6")
 
 [node name="Corner2" type="Sprite2D" parent="Terrain/Terrain/TerrainHelper7/DecorationManual" index="5"]
-position = Vector2(-2392, 64)
+position = Vector2(-2401, 53)
 texture = ExtResource("8_svhw6")
 flip_h = true
 
@@ -2339,7 +2372,7 @@ texture = ExtResource("14_crjmb")
 polygon = PackedVector2Array(-2207, -665, -2101, -665, -2071, -503, -1958, -494, -1942, -341, -1495, -317, -1498, -214, -1543, -94, -1566, -99, -1594, -209, -1663, -233, -1833, -217, -1916, -200, -1995, -22, -2038, -25, -2100, -194, -2164, -225, -2322.946, -223.71259, -2510, 5, -2700, 25, -2891, 4, -2921, -77, -2808, -82, -2676, -80, -2640, -327, -2464, -332, -2377, -404, -2245, -412, -2228, -429, -2222, -589, -2284, -625, -2283, -660)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper2" index="1"]
-multimesh = SubResource("MultiMesh_imurc")
+multimesh = SubResource("MultiMesh_avhpb")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@286554" type="Line2D" parent="Terrain/Terrain/TerrainHelper2/Edges" index="0"]
@@ -2464,7 +2497,7 @@ texture = ExtResource("14_crjmb")
 polygon = PackedVector2Array(-1665, -265, -1474, -267, -1476, -243, -1498, -214, -1515, -166, -1566, -166, -1594, -209, -1663, -233)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper12" index="1"]
-multimesh = SubResource("MultiMesh_4gtvy")
+multimesh = SubResource("MultiMesh_6u81w")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@287359" type="Line2D" parent="Terrain/Terrain/TerrainHelper12/Edges" index="0"]
@@ -2519,7 +2552,7 @@ texture = ExtResource("14_crjmb")
 polygon = PackedVector2Array(-1667, -265, -1474, -267, -1476, -243, -1507, -206, -1515, -166, -1586, -171, -1628, -187, -1663, -233)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper14" index="1"]
-multimesh = SubResource("MultiMesh_32xgs")
+multimesh = SubResource("MultiMesh_j3evn")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@289684" type="Line2D" parent="Terrain/Terrain/TerrainHelper14/Edges" index="0"]
@@ -2574,7 +2607,7 @@ texture = ExtResource("14_crjmb")
 polygon = PackedVector2Array(-1667, -265, -1511, -263, -1505, -340, -1265, -355, -1222, -139, -1257, -94, -1526, -85, -1563, -99, -1566, -166, -1594, -209, -1663, -233)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper13" index="1"]
-multimesh = SubResource("MultiMesh_u47v6")
+multimesh = SubResource("MultiMesh_jpymi")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@289039" type="Line2D" parent="Terrain/Terrain/TerrainHelper13/Edges" index="0"]
@@ -2648,7 +2681,7 @@ texture = ExtResource("17_imurc")
 polygon = PackedVector2Array(-1680, -393, -1596.042, -400.90167, -1564, -342, -1500.042, -304.90167, -1468.042, -208.90167, -1640, -135, -1795, -127, -1872, -167, -1884.042, -240.90167, -1807, -278)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper3" index="1"]
-multimesh = SubResource("MultiMesh_runeo")
+multimesh = SubResource("MultiMesh_7a5yf")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@192551" type="Line2D" parent="Terrain/Terrain/TerrainHelper3/Edges" index="0"]
@@ -2712,7 +2745,7 @@ texture = ExtResource("17_imurc")
 polygon = PackedVector2Array(-1508, -351, -1518, -306, -1470, -270, -1468.042, -210.90167, -1517, -173, -1612, -166, -1766, -193, -1778, -210, -1787, -248, -1836, -260, -1844, -316, -1807, -342, -1776, -386, -1700, -403, -1547, -384)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper11" index="1"]
-multimesh = SubResource("MultiMesh_vdxky")
+multimesh = SubResource("MultiMesh_qyvwt")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@259234" type="Line2D" parent="Terrain/Terrain/TerrainHelper11/Edges" index="0"]
@@ -2808,7 +2841,7 @@ texture = ExtResource("19_32xgs")
 polygon = PackedVector2Array(-1851, -380, -1599.042, -401.90167, -1569, -338, -1503.042, -305.90167, -1462, -173, -1594, -156, -1855, -175, -1887.042, -241.90167)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper4" index="1"]
-multimesh = SubResource("MultiMesh_t7j1w")
+multimesh = SubResource("MultiMesh_q435f")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@191663" type="Line2D" parent="Terrain/Terrain/TerrainHelper4/Edges" index="0"]
@@ -2886,7 +2919,7 @@ texture = ExtResource("19_32xgs")
 polygon = PackedVector2Array(-1777, -347, -1752, -411, -1623, -376, -1503.042, -305.90167, -1462, -173, -1559, -106, -1787, -104, -1887.042, -241.90167)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper18" index="1"]
-multimesh = SubResource("MultiMesh_avhpb")
+multimesh = SubResource("MultiMesh_d1vx8")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@35118" type="Line2D" parent="Terrain/Terrain/TerrainHelper18/Edges" index="0"]
@@ -2954,7 +2987,7 @@ texture = ExtResource("19_32xgs")
 polygon = PackedVector2Array(-1731, -195, -1703, -277, -1658, -298, -1644, -240, -1559, -106, -1671, -81, -1787, -104)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper20" index="1"]
-multimesh = SubResource("MultiMesh_6u81w")
+multimesh = SubResource("MultiMesh_7gfgi")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@39637" type="Line2D" parent="Terrain/Terrain/TerrainHelper20/Edges" index="0"]
@@ -3012,7 +3045,7 @@ texture = ExtResource("19_32xgs")
 polygon = PackedVector2Array(-1724, -190, -1679, -275, -1631, -241, -1611, -193, -1559, -106, -1671, -81, -1787, -104)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper22" index="1"]
-multimesh = SubResource("MultiMesh_j3evn")
+multimesh = SubResource("MultiMesh_g7yn7")
 texture = ExtResource("15_7kqfi")
 
 [node name="@Line2D@42892" type="Line2D" parent="Terrain/Terrain/TerrainHelper22/Edges" index="0"]
@@ -3070,7 +3103,7 @@ texture = ExtResource("19_32xgs")
 polygon = PackedVector2Array(-1724, -190, -1679, -275, -1631, -241, -1611, -193, -1559, -106, -1671, -81, -1787, -104)
 
 [node name="Details" parent="Terrain/Terrain/TerrainHelper24" index="1"]
-multimesh = SubResource("MultiMesh_jpymi")
+multimesh = SubResource("MultiMesh_r6246")
 texture = ExtResource("15_7kqfi")
 
 [node name="_Line2D_42892" type="Line2D" parent="Terrain/Terrain/TerrainHelper24/Edges" index="0"]
@@ -3234,7 +3267,7 @@ position = Vector2(224, -64)
 position = Vector2(633, -88)
 
 [node name="Timer" parent="Objects/PetalPlacer" index="4"]
-wait_time = 25.0
+wait_time = 35.0
 
 [node name="Rings" parent="Objects" node_paths=PackedStringArray("clover") instance=ExtResource("24_avhpb")]
 position = Vector2(2694, -442)
@@ -3249,6 +3282,9 @@ position = Vector2(0, -1)
 
 [node name="Ring" parent="Objects/Rings" index="2"]
 position = Vector2(0, -2)
+
+[node name="Timer" parent="Objects/Rings" index="4"]
+wait_time = 5.0
 
 [node name="PlayerSpawner" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("camera")]
 position = Vector2(0, -24)

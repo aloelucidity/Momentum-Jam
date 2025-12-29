@@ -5,6 +5,7 @@ extends ActionState
 @export var jump_power: float
 @export var gravity_subtract: float
 @export var float_time: float
+@export var gravity_decel: float
 @export var subsequent_damp: float = 1
 var float_timer: float
 var floats_counter: int
@@ -47,7 +48,7 @@ func _on_enter() -> void:
 	var damp_amount: float = 1 + (floats_counter / subsequent_damp)
 	if damp_amount == 1:
 		character.velocity.y = min(character.velocity.y, -jump_power)
-	else:
+	elif character.velocity.y > 0:
 		character.velocity.y -= jump_power * 2 / damp_amount
 	gravity_factor = 1 - gravity_subtract / damp_amount
 	
@@ -64,6 +65,8 @@ func _on_exit() -> void:
 ## runs every frame while active
 func _update(delta: float) -> void:
 	float_timer -= delta
+	gravity_factor = move_toward(gravity_factor, 1, gravity_decel * delta)
+	
 	if not jump_released and not character.input["jump"][0]:
 		jump_released = true
 		character.velocity.y *= variable_jump_factor
