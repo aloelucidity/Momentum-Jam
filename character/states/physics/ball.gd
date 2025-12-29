@@ -11,7 +11,12 @@ extends AirPhysics
 
 @export var min_bounce_vel: float
 @export var bounce_damp: float = 1
+@export var bounce_sensor: ShapeCast2D
+@export var bounce_sensor_predict: float = 1
+@export var sensor_buffer_time: float
 var ball_direction := Vector2.ZERO
+var sensor_buffer_normal := Vector2.ZERO
+var sensor_buffer_timer: float
 
 @export var base_launch_speed: float
 @export var launch_damp: float = 1
@@ -21,6 +26,7 @@ var can_launch: bool
 @export var max_shrink: float
 @export var scale_speed: float = 1
 
+@export var predictor: Predictor
 @export var pop: Node2D
 @export var pop_speed_target: float
 @export var blur_strength: float
@@ -30,7 +36,6 @@ var can_launch: bool
 @export var rot_speed: float = 1
 @export var sprite: AnimatedSprite2D
 @export var scaler: Node2D
-var buffer_vector: Vector2
 
 var landed: bool
 
@@ -47,6 +52,11 @@ func _startup_check() -> bool:
 func _transition_check() -> String:
 	if not character.input["ball"][0]:
 		if can_launch:
+			ball_direction = get_input_intent()
+			
+			if sign(ball_direction.x) != 0:
+				character.facing_dir = sign(ball_direction.x)
+			
 			if launch_speed > voice_threshold:
 				voice.play()
 			
@@ -83,8 +93,8 @@ func _on_enter() -> void:
 	
 	landed = false
 	scaler.scale = Vector2.ONE
+	ball_direction = get_input_intent()
 	
-	calc_inputs()
 	sprite_rot = character.rotation
 	sprite_rot += PI/2 * character.facing_dir
 	
@@ -97,45 +107,69 @@ func _on_exit() -> void:
 	light.strength_factor = 0.0
 	scaler.scale = Vector2.ONE
 	character.animator.rotation -= PI/2 * 1.0 if sprite.flip_v else -1.0
+	
+	if predictor.visible:
+		predictor.create_ghost()
 
 
-func calc_inputs() -> Vector2:
-	var input_direction := Vector2.ZERO
-	if character.input["left"][0]: input_direction.x -= 1
-	if character.input["right"][0]: input_direction.x += 1
-	if character.input["up"][0]: input_direction.y -= 1
-	if character.input["down"][0]: input_direction.y += 1
+func get_input_intent() -> Vector2:
+	var base_y: int = 0
+	if character.input["up"][0]: base_y -= 1
+	if character.input["down"][0]: base_y += 1
 	
-	var working_buffer: float = direction_buffer
-	if input_direction != Vector2.ZERO:
-		if input_direction.x != 0:
-			## check if using joystick
-			var left_strength: float = Input.get_action_strength("left")
-			var right_strength: float = Input.get_action_strength("right")
-			if left_strength != round(left_strength) or right_strength != round(right_strength):
-				direction_buffer = 0.001
-			
-			buffer_vector.x = input_direction.x * working_buffer
-		if input_direction.y != 0:
-			## check if using joystick
-			var up_strength: float = Input.get_action_strength("up")
-			var down_strength: float = Input.get_action_strength("down")
-			if up_strength != round(up_strength) or down_strength != round(down_strength):
-				direction_buffer = 0.001
-			
-			buffer_vector.y = input_direction.y * working_buffer
-		ball_direction = buffer_vector.sign()
+	var base_x: int = 0
+	if character.input["left"][0]: base_x -= 1
+	if character.input["right"][0]: base_x += 1
 	
-	return input_direction
+	if base_x == 0 and base_y == 0:
+		base_x = sign(character.velocity.x)
+		base_y = -1
+	
+	var input_dir := Vector2.UP
+	input_dir.x = base_x
+	input_dir.y = base_y
+	
+	return input_dir
 
 
 ## runs every frame while active
 func _update(delta: float) -> void:
-	var input_direction: Vector2 = calc_inputs()
-	if input_direction.x == 0:
-		buffer_vector.x = move_toward(buffer_vector.x, 0, delta)
-	if input_direction.y == 0:
-		buffer_vector.y = move_toward(buffer_vector.y, 0, delta)
+	var input_dir: Vector2 = get_input_intent()
+	ball_direction = input_dir
+	
+	bounce_sensor.target_position = last_velocity * delta * bounce_sensor_predict
+	bounce_sensor.force_shapecast_update()
+	
+	if bounce_sensor.is_colliding() or sensor_buffer_timer > 0:
+		var bounce_normal: Vector2 = sensor_buffer_normal
+		if bounce_sensor.is_colliding():
+			bounce_normal = bounce_sensor.get_collision_normal(0)
+			sensor_buffer_normal = bounce_normal
+			sensor_buffer_timer = sensor_buffer_time
+		else:
+			sensor_buffer_timer -= delta
+		
+		var bounce_dir: Vector2 = bounce_normal.round().sign()
+		
+		var real_x: int = 0
+		if character.input["left"][0]: real_x -= 1
+		if character.input["right"][0]: real_x += 1
+		 
+		var is_horizontal_surface: bool = abs(bounce_normal.y) > 0.5
+		var pushing_into_wall: bool = real_x != 0 and sign(real_x) != sign(bounce_dir.x)
+		
+		if is_horizontal_surface or pushing_into_wall:
+			ball_direction.x = input_dir.x
+		else:
+			ball_direction.x = bounce_dir.x
+		
+		if input_dir.y != 1 and bounce_dir.y == -1:
+			var will_collide: bool = bounce_normal.round().y * input_dir.y == 1
+			if will_collide:
+				ball_direction.y = input_dir.y
+			else:
+				ball_direction.y = bounce_dir.y
+	
 	
 	## framerate independance
 	var rot_alpha: float = 1.0 - exp(-rot_speed * delta)
@@ -148,7 +182,9 @@ func _update(delta: float) -> void:
 		var bounce_velocity: Vector2 = last_velocity.normalized() * (last_velocity.length() / bounce_damp)
 		
 		var normal: Vector2 = collision.get_normal()
-		var ball_hit: bool = normal.round().x * ball_direction.x == 1 or normal.round().y * ball_direction.y == 1
+		var ball_hit: bool = not (normal.round().x == -ball_direction.x and ball_direction.x != 0)\
+			and not (normal.round().y == -ball_direction.y and ball_direction.y != 0)
+		
 		var one_way_check: bool = last_velocity.dot(normal) < -0.1
 		if one_way_check and ball_hit:
 			bounce_sound.play()

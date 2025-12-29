@@ -116,6 +116,7 @@ func update_states(delta: float, type: String, container: Node) -> void:
 ### Logic
 func _enter_tree() -> void:
 	gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+	input = get_input()
 
 
 func _physics_process(delta: float) -> void:

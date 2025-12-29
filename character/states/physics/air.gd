@@ -31,8 +31,10 @@ func do_movement(delta: float, move_dir: int) -> void:
 	if abs(projected_speed) > max_speed:
 		if abs(character.velocity.x) < max_speed:
 			working_accel = (max_speed * move_dir) - character.velocity.x
-		else:
+		elif move_dir != -sign(character.velocity.x):
 			working_accel = 0
+		else:
+			working_accel /= 2
 	
 	character.velocity.x += working_accel
 
@@ -68,7 +70,7 @@ func _update(delta: float) -> void:
 	
 	var total_gravity: float = character.get_gravity_sum()
 	character.velocity.y = move_toward(
-		character.velocity.y, 
+		character.velocity.y,
 		target_velocity, 
 		total_gravity * factor * delta
 	)

@@ -2,7 +2,7 @@ class_name CollectiblePlacer
 extends Path2D
 
 
-@onready var globals_id: String = get_path().get_concatenated_names()
+@onready var globals_id: String = get_owner().scene_file_path + get_owner().scene_file_path + get_path().get_concatenated_names()
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @onready var collectibles: Node2D = $Collectibles
 @onready var sound: AudioStreamPlayer2D = $Sound

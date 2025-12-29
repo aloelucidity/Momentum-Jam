@@ -12,11 +12,11 @@ extends Control
 func _ready() -> void:
 	await get_tree().process_frame
 	
-	wild_jam.show()
-	wild_player.play("splash")
-	
-	await wild_player.animation_finished
-	wild_jam.hide()
+	#wild_jam.show()
+	#wild_player.play("splash")
+	#
+	#await wild_player.animation_finished
+	#wild_jam.hide()
 	
 	luci.show()
 	luci_player.play("splash")

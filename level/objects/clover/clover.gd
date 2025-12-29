@@ -2,7 +2,7 @@ class_name Clover
 extends Area2D
 
 
-@onready var globals_id: String = get_path().get_concatenated_names()
+@onready var globals_id: String = get_owner().scene_file_path + get_path().get_concatenated_names()
 @onready var spin: AnimationPlayer = $Spin
 @onready var glow: Sprite2D = $Viewport/Glow
 @onready var sprite: Sprite2D = $SubViewport/Sprite

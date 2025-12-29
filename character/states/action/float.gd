@@ -45,12 +45,10 @@ func _on_enter() -> void:
 	jump_released = false
 	
 	var damp_amount: float = 1 + (floats_counter / subsequent_damp)
-	var final_power: float = jump_power / damp_amount
-	
-	if character.velocity.y - final_power < -jump_power:
-		final_power = max(0, character.velocity.y + jump_power)
-	
-	character.velocity.y -= final_power
+	if damp_amount == 1:
+		character.velocity.y = min(character.velocity.y, -jump_power)
+	else:
+		character.velocity.y -= jump_power * 2 / damp_amount
 	gravity_factor = 1 - gravity_subtract / damp_amount
 	
 	floats_counter += 1

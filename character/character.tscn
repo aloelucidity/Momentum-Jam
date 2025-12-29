@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://dqwlfcfa1tbol"]
+[gd_scene load_steps=135 format=3 uid="uid://dqwlfcfa1tbol"]
 
 [ext_resource type="Script" uid="uid://ddj2h3tjnqy5f" path="res://character/classes/character.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b42b2cxmwv8jk" path="res://character/rotators/air.gd" id="2_0shic"]
@@ -48,6 +48,7 @@
 [ext_resource type="AudioStream" uid="uid://c14i8osl8dopu" path="res://character/sounds/swim_perfect.mp3" id="17_54gay"]
 [ext_resource type="Material" uid="uid://cnepyk3onvhj" path="res://character/misc/blur_shader.tres" id="17_h0hwg"]
 [ext_resource type="Script" uid="uid://drhhnqn0igpqn" path="res://character/misc/trail.gd" id="18_iaewr"]
+[ext_resource type="Script" uid="uid://dbxr2rp6h2bvc" path="res://character/predictors/predictor.gd" id="24_fntj3"]
 [ext_resource type="AudioStream" uid="uid://cseg17eq88m16" path="res://character/voices/launch0.mp3" id="26_b862g"]
 [ext_resource type="AudioStream" uid="uid://cyr4o1rqukflr" path="res://character/voices/launch1.mp3" id="27_0l5d1"]
 [ext_resource type="Shader" uid="uid://bj0q8wafpmjw5" path="res://shaders/clover.gdshader" id="27_6tlts"]
@@ -128,6 +129,26 @@ random_pitch = 1.1
 random_volume_offset_db = 0.2
 streams_count = 1
 stream_0/stream = ExtResource("17_54gay")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fntj3"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4d2y3"]
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.95, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_xtv1v"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4y0r6"]
+gradient = SubResource("Gradient_xtv1v")
+width = 10
+height = 10
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn8gt"]
 shader = ExtResource("11_kxp0i")
@@ -1335,11 +1356,13 @@ position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="BounceShape" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_orckd")
 disabled = true
 
 [node name="WaterCheck" type="Area2D" parent="." node_paths=PackedStringArray("splash_sound")]
+visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_6ynxc")
@@ -1348,6 +1371,15 @@ splash_sound = NodePath("../Sounds/SplashSound")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCheck"]
 position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_orckd")
+
+[node name="BallCast" type="ShapeCast2D" parent="."]
+visible = false
+modulate = Color(1, 1, 0, 1)
+z_index = 20
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_orckd")
+target_position = Vector2(0, 0)
+margin = 4.0
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -1441,12 +1473,29 @@ skew_amount = 0.05
 script = ExtResource("2_6610h")
 
 [node name="Left" type="RayCast2D" parent="Rotators/Ground"]
+visible = false
 position = Vector2(-2, -32)
 target_position = Vector2(0, 64)
 
 [node name="Right" type="RayCast2D" parent="Rotators/Ground"]
+visible = false
 position = Vector2(2, -32)
 target_position = Vector2(0, 64)
+
+[node name="Predictor" type="Line2D" parent="." node_paths=PackedStringArray("air_physics", "ball_physics", "shape")]
+process_physics_priority = 1
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_fntj3")
+position = Vector2(0, -12)
+gradient = SubResource("Gradient_4d2y3")
+texture = SubResource("GradientTexture2D_4y0r6")
+texture_mode = 1
+script = ExtResource("24_fntj3")
+air_physics = NodePath("../PhysicsStates/Air")
+ball_physics = NodePath("../PhysicsStates/Ball")
+shape = NodePath("../BounceShape")
+metadata/_custom_type_script = "uid://dbxr2rp6h2bvc"
 
 [node name="Lantern" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("lantern_target")]
 material = SubResource("ShaderMaterial_yn8gt")
@@ -1612,18 +1661,17 @@ metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
 [node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light", "wind_sound")]
 script = ExtResource("5_dy06j")
-jump_power = 400.0
+jump_power = 275.0
 gravity_subtract = 0.3
-float_time = 0.4
-subsequent_damp = 1.5
-variable_jump_factor = 0.63
+float_time = 0.3
+subsequent_damp = 1.25
 sprite = NodePath("../../../Scaler/Animator/Character")
 light = NodePath("../../../Lantern/Light")
 wind_sound = NodePath("../../../Sounds/WindSound")
 animation = "fall"
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
-[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("aim_sound", "bounce_sound", "launch_sound", "voice", "pop", "light", "sprite", "scaler", "water_check", "shape_override")]
+[node name="Ball" type="Node" parent="PhysicsStates" node_paths=PackedStringArray("aim_sound", "bounce_sound", "launch_sound", "voice", "bounce_sensor", "predictor", "pop", "light", "sprite", "scaler", "water_check", "shape_override")]
 script = ExtResource("4_tgjim")
 aim_sound = NodePath("../../Sounds/AimSound")
 bounce_sound = NodePath("../../Sounds/BounceSound")
@@ -1632,16 +1680,20 @@ voice = NodePath("../../Sounds/LaunchVoice")
 voice_threshold = 500.0
 min_bounce_vel = 200.0
 bounce_damp = 1.003
+bounce_sensor = NodePath("../../BallCast")
+bounce_sensor_predict = 5.0
+sensor_buffer_time = 0.15
 base_launch_speed = 200.0
 launch_damp = 2.5
 max_shrink = 0.3
 scale_speed = 4.0
+predictor = NodePath("../../Predictor")
 pop = NodePath("../../Pop")
 pop_speed_target = 600.0
 blur_strength = 2.0
 light = NodePath("../../Lantern/Light")
 direction_buffer = 0.07
-rot_speed = 12.0
+rot_speed = 6.0
 sprite = NodePath("../../Scaler/Animator/Character")
 scaler = NodePath("../../Scaler")
 max_fall = 850.0
@@ -1663,8 +1715,8 @@ metadata/_custom_type_script = "uid://bobthsffwufj0"
 script = ExtResource("4_0rvpn")
 accel = 1500.0
 max_speed = 300.0
-friction_linear = 1000.0
-friction_decay = 0.5
+friction_linear = 750.0
+friction_decay = 0.05
 air_name = "Air"
 coyote_time = 0.15
 anim_target_speed = 300.0
