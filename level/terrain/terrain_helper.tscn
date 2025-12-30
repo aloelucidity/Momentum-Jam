@@ -60,3 +60,6 @@ metadata/_edit_lock_ = true
 
 [node name="DecorationManual" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+show_behind_parent = true

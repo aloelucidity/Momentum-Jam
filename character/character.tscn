@@ -1346,6 +1346,7 @@ shader_parameter/blur_radius = 5.0000002375
 shader_parameter/sample_count = 7
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("default_collision")]
+visibility_layer = 3
 collision_layer = 4
 floor_constant_speed = true
 floor_snap_length = 8.0
@@ -1353,29 +1354,34 @@ script = ExtResource("1_oul6g")
 default_collision = NodePath("RegularShape")
 
 [node name="RegularShape" type="CollisionShape2D" parent="."]
+visibility_layer = 3
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="BounceShape" type="CollisionShape2D" parent="."]
 visible = false
+visibility_layer = 3
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_orckd")
 disabled = true
 
 [node name="WaterCheck" type="Area2D" parent="." node_paths=PackedStringArray("splash_sound")]
 visible = false
+visibility_layer = 3
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("2_6ynxc")
 splash_sound = NodePath("../Sounds/SplashSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCheck"]
+visibility_layer = 3
 position = Vector2(0, -22)
 shape = SubResource("RectangleShape2D_orckd")
 
 [node name="BallCast" type="ShapeCast2D" parent="."]
 visible = false
 modulate = Color(1, 1, 0, 1)
+visibility_layer = 3
 z_index = 20
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_orckd")
@@ -1383,6 +1389,7 @@ target_position = Vector2(0, 0)
 margin = 4.0
 
 [node name="Sounds" type="Node2D" parent="."]
+visibility_layer = 3
 
 [node name="JumpVoice" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = SubResource("AudioStreamRandomizer_s2csv")
@@ -1461,30 +1468,37 @@ attenuation = 1e-05
 bus = &"Underwater"
 
 [node name="Rotators" type="Node2D" parent="."]
+visibility_layer = 3
 
 [node name="Air" type="Node2D" parent="Rotators"]
+visibility_layer = 3
 script = ExtResource("2_0shic")
 
 [node name="Water" type="Node2D" parent="Rotators" node_paths=PackedStringArray("water_physics")]
+visibility_layer = 3
 script = ExtResource("3_mbhnd")
 water_physics = NodePath("../../PhysicsStates/Water")
 skew_amount = 0.05
 
 [node name="Ground" type="Node2D" parent="Rotators"]
+visibility_layer = 3
 script = ExtResource("2_6610h")
 
 [node name="Left" type="RayCast2D" parent="Rotators/Ground"]
 visible = false
+visibility_layer = 3
 position = Vector2(-2, -32)
 target_position = Vector2(0, 64)
 
 [node name="Right" type="RayCast2D" parent="Rotators/Ground"]
 visible = false
+visibility_layer = 3
 position = Vector2(2, -32)
 target_position = Vector2(0, 64)
 
 [node name="Predictor" type="Line2D" parent="." node_paths=PackedStringArray("air_physics", "ball_physics", "shape")]
 process_physics_priority = 1
+visibility_layer = 3
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("CanvasItemMaterial_fntj3")
@@ -1499,6 +1513,7 @@ shape = NodePath("../BounceShape")
 metadata/_custom_type_script = "uid://dbxr2rp6h2bvc"
 
 [node name="Lantern" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("lantern_target")]
+visibility_layer = 3
 material = SubResource("ShaderMaterial_yn8gt")
 position = Vector2(-26, -30)
 sprite_frames = SubResource("SpriteFrames_4ekbm")
@@ -1511,6 +1526,7 @@ follow_speed = 12.0
 lantern_target = NodePath("../Scaler/Animator/LanternTarget")
 
 [node name="Light" type="TextureRect" parent="Lantern"]
+visibility_layer = 3
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_yn8gt")
 anchors_preset = 15
@@ -1529,6 +1545,7 @@ script = ExtResource("8_5tbnp")
 lerp_speed = 4.0
 saturation = 0.25
 rainbow_speed = 1.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Clover" type="SubViewport" parent="."]
 transparent_bg = true
@@ -1543,6 +1560,7 @@ libraries = {
 
 [node name="Sprite" type="Sprite2D" parent="Clover"]
 visible = false
+visibility_layer = 3
 material = SubResource("ShaderMaterial_2a2p4")
 texture = ExtResource("28_vbq3c")
 centered = false
@@ -1550,6 +1568,7 @@ offset = Vector2(8, 8)
 
 [node name="Pop" type="Node2D" parent="."]
 physics_interpolation_mode = 2
+visibility_layer = 3
 script = ExtResource("10_a87gu")
 scale_speed = 2.0
 scale_strength = 8.0
@@ -1557,6 +1576,7 @@ scale_strength = 8.0
 [node name="Ball" type="TextureRect" parent="Pop"]
 physics_interpolation_mode = 0
 visible = false
+visibility_layer = 3
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_yn8gt")
 offset_left = -12.0
@@ -1576,9 +1596,11 @@ libraries = {
 }
 
 [node name="Scaler" type="Node2D" parent="."]
+visibility_layer = 3
 
 [node name="Animator" type="Node2D" parent="Scaler"]
 unique_name_in_owner = true
+visibility_layer = 3
 script = ExtResource("2_1l1n4")
 metadata/_custom_type_script = "uid://dodc7pappdgl2"
 
@@ -1589,6 +1611,7 @@ libraries = {
 
 [node name="Ball" type="TextureRect" parent="Scaler/Animator"]
 visible = false
+visibility_layer = 3
 texture_filter = 2
 material = SubResource("CanvasItemMaterial_yn8gt")
 texture = SubResource("GradientTexture2D_q7srn")
@@ -1598,6 +1621,7 @@ saturation = 0.25
 rainbow_speed = 1.0
 
 [node name="Character" type="AnimatedSprite2D" parent="Scaler/Animator"]
+visibility_layer = 3
 material = ExtResource("12_yp81j")
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_hq3og")
@@ -1612,6 +1636,7 @@ glow_width = 10.0
 [node name="Trail" type="AnimatedSprite2D" parent="Scaler/Animator/Character"]
 visible = false
 show_behind_parent = true
+visibility_layer = 3
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_hq3og")
 animation = &"idle"
@@ -1620,21 +1645,25 @@ script = ExtResource("18_iaewr")
 [node name="Clover" type="Sprite2D" parent="Scaler/Animator"]
 visible = false
 modulate = Color(1, 1, 1, 0)
+visibility_layer = 3
 texture = SubResource("ViewportTexture_r8gpb")
 script = ExtResource("29_6tlts")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="Scaler/Animator/Clover"]
 show_behind_parent = true
+visibility_layer = 3
 copy_mode = 2
 
 [node name="Glow" type="Sprite2D" parent="Scaler/Animator/Clover/BackBufferCopy"]
 modulate = Color(1.8247963, 1.8247963, 1.8247963, 0.5019608)
 show_behind_parent = true
+visibility_layer = 3
 texture_filter = 2
 material = SubResource("ShaderMaterial_qrjck")
 texture = SubResource("ViewportTexture_r8gpb")
 
 [node name="LanternTarget" type="Node2D" parent="Scaler/Animator"]
+visibility_layer = 3
 position = Vector2(-26, -32)
 script = ExtResource("11_yn8gt")
 
@@ -1837,6 +1866,7 @@ metadata/_custom_type_script = "uid://b84f6plg0kbok"
 
 [node name="DebugLabels" type="VBoxContainer" parent="."]
 visible = false
+visibility_layer = 3
 z_index = 128
 offset_top = -64.0
 offset_right = 1.0
@@ -1846,18 +1876,21 @@ grow_vertical = 0
 alignment = 2
 
 [node name="Physics" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+visibility_layer = 3
 layout_mode = 2
 script = ExtResource("5_0rvpn")
 object_to_watch = NodePath("../..")
 property_to_watch = "physics"
 
 [node name="Action" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+visibility_layer = 3
 layout_mode = 2
 script = ExtResource("5_0rvpn")
 object_to_watch = NodePath("../..")
 property_to_watch = "action"
 
 [node name="Velocity" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+visibility_layer = 3
 layout_mode = 2
 script = ExtResource("5_0rvpn")
 object_to_watch = NodePath("../..")

@@ -108,6 +108,9 @@ ball={
 
 [layer_names]
 
+2d_render/layer_1="regular"
+2d_render/layer_2="shadow_mask"
+2d_render/layer_3="lights"
 2d_physics/layer_1="terrain"
 2d_physics/layer_2="water"
 2d_physics/layer_3="player"

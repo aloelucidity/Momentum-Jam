@@ -86,3 +86,5 @@ right_scene = "res://level/level_scenes/forest.tscn"
 libraries = {
 &"": SubResource("AnimationLibrary_ksba8")
 }
+
+[node name="MaskTransform" type="RemoteTransform2D" parent="."]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://8g1xtf3lfd22"]
+
+[ext_resource type="Shader" uid="uid://byivv86gw2b0p" path="res://shaders/shadows.gdshader" id="1_64ydt"]
+[ext_resource type="Script" uid="uid://d4nfc5cj7hfjs" path="res://level/shadows.gd" id="1_wne4l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rujo"]
+shader = ExtResource("1_64ydt")
+shader_parameter/light_angle = 256.00001216
+shader_parameter/shadow_length = 0.2
+shader_parameter/shadow_softness = 0.5
+shader_parameter/shadow_density = 4.0
+shader_parameter/steps = 12
+shader_parameter/ao_range = 8.0
+shader_parameter/ao_strength = 0.5
+shader_parameter/mask_bleed_threshold = 0.15
+shader_parameter/ambient_tint = Color(1, 1, 1, 1)
+shader_parameter/ambient_brightness = 0.0
+shader_parameter/ambient_contrast = 1.0
+shader_parameter/ambient_saturation = 1.0
+shader_parameter/ambient_hue = 0.0
+shader_parameter/shadow_tint = Color(0.31797332, 0.2992, 0.44, 1)
+shader_parameter/shadow_brightness = -0.19999996200000003
+shader_parameter/shadow_contrast = 2.000000095
+shader_parameter/shadow_saturation = 0.50000002375
+shader_parameter/shadow_hue = 0.05000004987499995
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ibry7"]
+viewport_path = NodePath("ShadowMask")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wne4l"]
+viewport_path = NodePath("ShadowMask")
+
+[node name="Shadows" type="CanvasLayer"]
+process_mode = 3
+process_priority = 4
+process_physics_priority = 3
+layer = 32
+script = ExtResource("1_wne4l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_7rujo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_ibry7")
+expand_mode = 1
+metadata/_edit_group_ = true
+
+[node name="ShadowMask" type="SubViewport" parent="."]
+transparent_bg = true
+gui_snap_controls_to_pixels = false
+canvas_cull_mask = 4294966274
+size_2d_override_stretch = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_wne4l")
+expand_mode = 1

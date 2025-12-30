@@ -8,6 +8,9 @@ extends CollisionPolygon2D
 
 @onready var edges: Node2D = $Edges
 @onready var top: Node2D = $Top
+@onready var light_occluder_2d: LightOccluder2D = $LightOccluder2D
+@onready var decoration_manual: Node2D = $DecorationManual
+
 
 @export var detail_amount: int:
 	set(new_value):
@@ -38,8 +41,41 @@ extends CollisionPolygon2D
 @export var edge_texture: Texture2D
 
 
+func sync_parent_visibility():
+	var current: Node = self
+	while current != null:
+		if "visibility_layer" in current:
+			current.visibility_layer |= self.visibility_layer
+		
+		if current == owner:
+			break
+		
+		current = current.get_parent()
+
+
 func _ready() -> void:
 	details.multimesh = details.multimesh.duplicate()
+	light_occluder_2d.occluder = OccluderPolygon2D.new()
+	light_occluder_2d.occluder.polygon = polygon
+	
+	visibility_layer = 3
+	details.visibility_layer = 3
+	inner.visibility_layer = 3
+	overlay.visibility_layer = 3
+	
+	edges.visibility_layer = 3
+	for edge_segment: Node2D in edges.get_children():
+		edge_segment.visibility_layer = 3
+	
+	top.visibility_layer = 3
+	for top_segment: Node2D in top.get_children():
+		top_segment.visibility_layer = 3
+	
+	decoration_manual.visibility_layer = 3
+	for decoration: Node2D in decoration_manual.get_children():
+		decoration.visibility_layer = 3
+	
+	sync_parent_visibility()
 
 
 func _set(property: StringName, _value):
@@ -116,6 +152,7 @@ func place_edge(points: PackedVector2Array, tex: Texture2D, container: Node2D) -
 	var texture: Texture2D = tex
 	line_2d.texture = texture
 	line_2d.width = texture.get_height()
+	line_2d.visibility_layer = 3
 	
 	line_2d.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line_2d.end_cap_mode = Line2D.LINE_CAP_ROUND
