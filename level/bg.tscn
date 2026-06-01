@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://dop8vylr7vlfe"]
+
+[ext_resource type="Shader" uid="uid://6284i1vonqkd" path="res://shaders/sky.gdshader" id="1_r2s14"]
+
+[sub_resource type="Gradient" id="Gradient_d0ajy"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(0.04, 0.04, 0.04, 1, 0.32, 0.32, 0.32, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jcpdl"]
+noise_type = 5
+frequency = 0.0035
+offset = Vector3(396, 0, 0)
+fractal_type = 3
+fractal_lacunarity = 1.365
+fractal_gain = 0.94
+fractal_weighted_strength = 0.57
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kvvhj"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_jcpdl")
+color_ramp = SubResource("Gradient_d0ajy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5tdo"]
+shader = ExtResource("1_r2s14")
+shader_parameter/cloudscale = 1.25
+shader_parameter/speed = 0.05
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 1.0
+shader_parameter/cloudcover = 0.2
+shader_parameter/cloudalpha = 2.0
+shader_parameter/skytint = 0.5
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.135, 0.21, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
+shader_parameter/waterscale = 0.75
+shader_parameter/watercolour1 = Vector3(0.11, 0.205, 0.6)
+shader_parameter/watercolour2 = Vector3(-0.245, 1.225, 1)
+shader_parameter/horizon = 0.7
+shader_parameter/perspective = 0.75
+shader_parameter/standard_noise_tex = SubResource("NoiseTexture2D_kvvhj")
+
+[sub_resource type="Gradient" id="Gradient_y0alk"]
+colors = PackedColorArray(1, 1, 1, 0.7529412, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_852y8"]
+gradient = SubResource("Gradient_y0alk")
+fill = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 0.7)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y0alk"]
+gradient = SubResource("Gradient_y0alk")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 0.4)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_852y8"]
+offsets = PackedFloat32Array(0.725, 0.975, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5000001, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d0ajy"]
+gradient = SubResource("Gradient_852y8")
+fill_to = Vector2(0, 0.7)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_r2s14"]
+colors = PackedColorArray(1, 1, 1, 0.5019608, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1wrac"]
+gradient = SubResource("Gradient_r2s14")
+fill = 1
+fill_from = Vector2(0.8, 0.2)
+fill_to = Vector2(0.7, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_6qpju"]
+offsets = PackedFloat32Array(0, 0.2, 0.5, 0.8, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.3764706, 1, 1, 1, 0.14901961, 1, 1, 1, 0.3764706, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e6ug2"]
+gradient = SubResource("Gradient_6qpju")
+fill_from = Vector2(0.7, 0.2)
+fill_to = Vector2(1, 0.3)
+metadata/_snap_enabled = true
+
+[node name="BG" type="CanvasLayer" unique_id=174982721]
+layer = -256
+
+[node name="Clouds" type="ColorRect" parent="." unique_id=1914844457]
+texture_filter = 2
+material = SubResource("ShaderMaterial_l5tdo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient" type="TextureRect" parent="." unique_id=2142646847]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_852y8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient2" type="TextureRect" parent="." unique_id=1184079402]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y0alk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient3" type="TextureRect" parent="." unique_id=1653820167]
+modulate = Color(1, 1, 1, 0.3764706)
+texture_filter = 2
+anchors_preset = -1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y0alk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient4" type="TextureRect" parent="." unique_id=459781688]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_d0ajy")
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient5" type="TextureRect" parent="." unique_id=1124199040]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1wrac")
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Gradient6" type="TextureRect" parent="." unique_id=1375818991]
+texture_filter = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_e6ug2")
+flip_h = true
+metadata/_edit_use_anchors_ = true

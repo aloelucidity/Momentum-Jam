@@ -18,10 +18,10 @@ shader_parameter/ambient_brightness = 0.0
 shader_parameter/ambient_contrast = 1.0
 shader_parameter/ambient_saturation = 1.0
 shader_parameter/ambient_hue = 0.0
-shader_parameter/shadow_tint = Color(0.31797332, 0.2992, 0.44, 1)
+shader_parameter/shadow_tint = Color(0.61226, 0.6003, 0.69, 1)
 shader_parameter/shadow_brightness = -0.19999996200000003
-shader_parameter/shadow_contrast = 2.000000095
-shader_parameter/shadow_saturation = 0.50000002375
+shader_parameter/shadow_contrast = 0.800000038
+shader_parameter/shadow_saturation = 1.5000000712500001
 shader_parameter/shadow_hue = 0.05000004987499995
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ibry7"]
@@ -52,7 +52,7 @@ metadata/_edit_group_ = true
 [node name="ShadowMask" type="SubViewport" parent="."]
 transparent_bg = true
 gui_snap_controls_to_pixels = false
-canvas_cull_mask = 4294966274
+canvas_cull_mask = 4294966273
 size_2d_override_stretch = true
 
 [node name="TextureRect2" type="TextureRect" parent="."]

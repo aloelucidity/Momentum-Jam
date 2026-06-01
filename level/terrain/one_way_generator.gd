@@ -40,6 +40,3 @@ func _ready() -> void:
 		Vector2(max_pos.x - 2, min_pos.y + 12), Vector2(min_pos.x + 2, min_pos.y + 12)])
 	light_occluder.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 	add_child(light_occluder)
-
-	visibility_layer = 3
-	nine_patch.visibility_layer = 3

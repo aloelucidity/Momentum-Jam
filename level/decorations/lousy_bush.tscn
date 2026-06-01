@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://tahs8hb3x6cy"]
+
+[ext_resource type="Texture2D" uid="uid://boio80b3suyny" path="res://level/terrain/foliage/lousy_bush.png" id="1_jvkbg"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_i6mbv"]
+polygon = PackedVector2Array(-8, 27, 1, 28, 5.1500435, 8.806038, 11, 11, 13, 3, 6.941601, 0.52007675, 9, -9, 0, -25, 3, -10, 0, -6, -6, -8, -7, -3, -3, 1)
+
+[node name="LousyBush" type="Node2D"]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_i6mbv")
+
+[node name="LousyBush" type="Sprite2D" parent="."]
+texture = ExtResource("1_jvkbg")

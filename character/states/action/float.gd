@@ -16,6 +16,7 @@ var jump_released: bool
 @export var sprite: AnimatedSprite2D
 @export var light: RainbowGlow
 @export var wind_sound: AudioStreamPlayer2D
+@export var water_check: Area2D
 
 
 ## runs this check every frame while inactive and 
@@ -74,5 +75,5 @@ func _update(delta: float) -> void:
 
 ## always runs no matter what, before any of the other functions
 func _general_update(_delta: float) -> void:
-	if character.on_ground:
+	if character.on_ground or not water_check.get_overlapping_areas().is_empty():
 		floats_counter = 0

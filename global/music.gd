@@ -13,6 +13,8 @@ const UNDERWATER_WET: float = 0.05
 @onready var victory: AudioStreamPlayer = $Victory
 @onready var victory_start_vol: float = victory.volume_linear
 
+@onready var intro_jingle: AudioStreamPlayer = $IntroJingle
+
 var fade_tween: Tween
 var victory_tween: Tween
 var water_tween: Tween

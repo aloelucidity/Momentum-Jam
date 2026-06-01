@@ -7,11 +7,13 @@ extends PhysicsState
 @export var max_speed: float
 @export var friction_linear: float
 @export var friction_decay: float = 1
+@export var turn_speed_factor: float = 1
 
 @export_group("Misc")
 @export var water_check: Area2D
 @export var enter_factor: float = 1
-@export var exit_factor: float = 1 
+@export var exit_factor: float = 1
+@export var min_exit_velocity: float 
 @export var air_name: String
 @export var set_facing: bool = true
 
@@ -40,7 +42,7 @@ func _on_enter() -> void:
 
 ## runs once when this state stops being active
 func _on_exit() -> void:
-	character.velocity.y *= exit_factor
+	character.velocity.y = min(character.velocity.y * exit_factor, min_exit_velocity)
 
 
 ## runs every frame while active
@@ -69,6 +71,19 @@ func _update(delta: float) -> void:
 	else:
 		character.velocity.y = move_toward(character.velocity.y, 0, friction_linear * delta)
 		character.velocity.y *= decay_factor
+	
+	if move_dir != Vector2.ZERO:
+		var magnitude: float = character.velocity.length()
+		
+		## framerate independance
+		var turn_factor: float = magnitude / turn_speed_factor
+		var alpha: float = 1.0 - exp(-turn_factor * delta)
+		
+		var cur_normal: Vector2 = character.velocity.normalized()
+		var target_normal: Vector2 = move_dir.normalized()
+		var lerped_normal: Vector2 = cur_normal.slerp(target_normal, alpha)
+		
+		character.velocity = lerped_normal * magnitude
 	
 	## run base function
 	super(delta)

@@ -1359,7 +1359,6 @@ position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="BounceShape" type="CollisionShape2D" parent="."]
-visible = false
 visibility_layer = 3
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_orckd")
@@ -1689,7 +1688,7 @@ priority = 1
 do_flip_scale = false
 metadata/_custom_type_script = "uid://cr3ytgk6vs5q3"
 
-[node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light", "wind_sound")]
+[node name="Float" type="Node" parent="PhysicsStates/Air" node_paths=PackedStringArray("sprite", "light", "wind_sound", "water_check")]
 script = ExtResource("5_dy06j")
 jump_power = 400.0
 gravity_subtract = 0.25
@@ -1700,6 +1699,7 @@ variable_jump_factor = 0.63
 sprite = NodePath("../../../Scaler/Animator/Character")
 light = NodePath("../../../Lantern/Light")
 wind_sound = NodePath("../../../Sounds/WindSound")
+water_check = NodePath("../../../WaterCheck")
 animation = "fall"
 metadata/_custom_type_script = "uid://ccbgj2r3ghy1f"
 
@@ -1710,7 +1710,7 @@ bounce_sound = NodePath("../../Sounds/BounceSound")
 launch_sound = NodePath("../../Sounds/LaunchSound")
 voice = NodePath("../../Sounds/LaunchVoice")
 voice_threshold = 500.0
-min_bounce_vel = 200.0
+min_bounce_vel = 150.0
 bounce_damp = 1.003
 bounce_sensor = NodePath("../../BallCast")
 bounce_sensor_predict = 5.0
@@ -1816,9 +1816,11 @@ accel = 500.0
 max_speed = 300.0
 friction_linear = 100.0
 friction_decay = 0.8
+turn_speed_factor = 700.0
 water_check = NodePath("../../WaterCheck")
 enter_factor = 0.25
-exit_factor = 1.5
+exit_factor = 1.1
+min_exit_velocity = -600.0
 priority = 1
 animation = "water"
 rotator = NodePath("../../Rotators/Water")
@@ -1832,12 +1834,12 @@ metadata/_custom_type_script = "uid://64e26a6bvbu7"
 
 [node name="Swim" type="Node" parent="PhysicsStates/Water" node_paths=PackedStringArray("sprite", "light", "swim_sound", "swim_perfect_sound")]
 script = ExtResource("15_orckd")
-swim_power = 125.0
-perfect_swim_power = 250.0
-swim_speed = 500.0
-perfect_swim_speed = 600.0
-swim_cap = 600.0
-perfect_swim_cap = 800.0
+swim_power = 80.0
+perfect_swim_power = 180.0
+swim_speed = 400.0
+perfect_swim_speed = 500.0
+swim_cap = 500.0
+perfect_swim_cap = 700.0
 swim_delay = 0.05
 swim_time = 0.4
 control_regain_window = 0.2
@@ -1895,3 +1897,10 @@ layout_mode = 2
 script = ExtResource("5_0rvpn")
 object_to_watch = NodePath("../..")
 property_to_watch = "velocity"
+
+[node name="Ball" type="Label" parent="DebugLabels" node_paths=PackedStringArray("object_to_watch")]
+visibility_layer = 3
+layout_mode = 2
+script = ExtResource("5_0rvpn")
+object_to_watch = NodePath("../../PhysicsStates/Ball")
+property_to_watch = "debug_info"

@@ -80,12 +80,14 @@ copy_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="Inner" type="Polygon2D" parent="."]
+visibility_layer = 2
 material = SubResource("ShaderMaterial_1idy2")
 color = Color(0, 0.7529412, 1, 0.5019608)
 polygon = PackedVector2Array(8320, 0, 2431, 32, 2405, 744, 8337, 733)
 metadata/_edit_lock_ = true
 
 [node name="Overlay" type="Polygon2D" parent="."]
+visibility_layer = 2
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("CanvasItemMaterial_kvvhj")
@@ -94,6 +96,7 @@ polygon = PackedVector2Array(8320, 0, 2431, 32, 2405, 744, 8337, 733)
 metadata/_edit_lock_ = true
 
 [node name="Edge" type="Line2D" parent="."]
+visibility_layer = 2
 texture_filter = 2
 points = PackedVector2Array(8320, 0, 2431, 32, 2405, 744, 8337, 733)
 closed = true

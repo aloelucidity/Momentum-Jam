@@ -8,15 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="KinetiBall"
 run/main_scene="uid://ceqrkk71yaaw2"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
 
+buses/default_bus_layout="uid://bmic8jfu8uo1j"
 general/default_playback_type.web=0
 
 [autoload]
@@ -109,7 +114,7 @@ ball={
 [layer_names]
 
 2d_render/layer_1="regular"
-2d_render/layer_2="shadow_mask"
+2d_render/layer_2="water"
 2d_render/layer_3="lights"
 2d_physics/layer_1="terrain"
 2d_physics/layer_2="water"

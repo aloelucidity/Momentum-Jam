@@ -4,3 +4,8 @@ extends Node2D
 
 @export var player_spawner: PlayerSpawner
 @export var character_camera: CharacterCamera
+
+
+func _ready() -> void:
+	if not Music.bgm.playing:
+		Music.bgm.play()

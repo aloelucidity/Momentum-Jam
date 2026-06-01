@@ -1,21 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://r5rrb23p2dbr"]
+[gd_scene format=3 uid="uid://r5rrb23p2dbr"]
 
 [ext_resource type="Script" uid="uid://24wmengrbdrq" path="res://global/music.gd" id="1_1k5wo"]
 [ext_resource type="AudioStream" uid="uid://da8hgupvfg2lj" path="res://music/bgm.ogg" id="2_hw6si"]
-[ext_resource type="AudioStream" uid="uid://dvcglu88dwgea" path="res://music/victory.mp3" id="3_hw6si"]
+[ext_resource type="AudioStream" uid="uid://dvcglu88dwgea" path="res://music/jingle_victory.mp3" id="3_hw6si"]
+[ext_resource type="AudioStream" uid="uid://dk87i0dqwslp3" path="res://splash/aloelucidity/jingle.ogg" id="4_5dyrq"]
 
-[node name="Music" type="Node"]
+[node name="Music" type="Node" unique_id=270966658]
 script = ExtResource("1_1k5wo")
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1115175634]
 process_mode = 3
 stream = ExtResource("2_hw6si")
 volume_db = -4.0
-autoplay = true
 bus = &"Music"
 
-[node name="Victory" type="AudioStreamPlayer" parent="."]
+[node name="Victory" type="AudioStreamPlayer" parent="." unique_id=1404616514]
 process_mode = 3
 stream = ExtResource("3_hw6si")
 volume_db = -3.0
+bus = &"Music"
+
+[node name="IntroJingle" type="AudioStreamPlayer" parent="." unique_id=1316175293]
+stream = ExtResource("4_5dyrq")
+volume_db = -6.0
 bus = &"Music"

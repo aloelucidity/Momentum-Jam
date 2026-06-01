@@ -42,6 +42,7 @@ var last_input_dir: Vector2
 @export var scaler: Node2D
 
 var landed: bool
+var debug_info: String
 
 
 ## runs this check every frame while inactive and 
@@ -92,6 +93,9 @@ func _transition_check() -> String:
 
 ## runs once when this state begins being active
 func _on_enter() -> void:
+	## debug
+	#Engine.time_scale = 0.1
+	
 	if can_launch:
 		var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target
 		light.strength_factor = strength_factor
@@ -112,6 +116,9 @@ func _on_enter() -> void:
 
 ## runs once when this state stops being active
 func _on_exit() -> void:
+	## debug
+	Engine.time_scale = 1.0
+	
 	light.strength_factor = 0.0
 	scaler.scale = Vector2.ONE
 	character.animator.rotation -= PI/2 * 1.0 if sprite.flip_v else -1.0
@@ -202,26 +209,40 @@ func _update(delta: float) -> void:
 			and not (normal.round().y == -ball_direction.y and ball_direction.y != 0)
 		
 		if ball_hit:
+			debug_info = "Last vel: " + str(last_velocity) + ", Last normal: " + str(normal)
+			
 			bounce_sound.play()
 			
 			if abs(normal.y) > 0.5:
 				normal.x /= 2
 				normal = normal.normalized() ## ah yes
 			
-			character.velocity = bounce_velocity.bounce(normal)
+			## snap to 5 degree increments to make bouncing more predictable
+			var snap_step: float = deg_to_rad(5.0)
+			var snapped_angle: float = round(normal.angle() / snap_step) * snap_step
+			normal = Vector2.from_angle(snapped_angle)
+			
+			var prev_magnitude: float = last_velocity.length()
+			var relative_motion: float = bounce_velocity.dot(normal)
+			if relative_motion < -0.1:
+				character.velocity = bounce_velocity.bounce(normal)
+				## prevent the bounces from unexpectedly increasing the speed that comes in
+				character.velocity = character.velocity.normalized() * prev_magnitude
+			else:
+				character.velocity += normal * relative_motion
+				print(normal * relative_motion)
+			
 			launch_speed = base_launch_speed + last_velocity.length() / launch_damp
 			
 			can_launch = true
-			character.on_ground = false
-			landed = false
+			if character.on_ground and abs(character.velocity.y) < min_bounce_vel:
+				landed = true
+			else:
+				character.on_ground = false
+				landed = false
 			
 			var total_shrink: float = max_shrink * (character.velocity.length() / max_fall)
 			scaler.scale = Vector2.ONE - abs(normal) * total_shrink
-			
-			if abs(character.velocity.x) < min_bounce_vel and ball_direction.x != 0:
-				character.velocity.x = min_bounce_vel * ball_direction.x
-			if abs(character.velocity.y) < min_bounce_vel and ball_direction.y != 0:
-				character.velocity.y = min_bounce_vel * ball_direction.y
 			
 			var strength_factor: float = (launch_speed - base_launch_speed/2) / pop_speed_target
 			light.strength_factor = strength_factor

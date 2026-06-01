@@ -2,8 +2,6 @@ class_name CharacterCamera
 extends Camera2D
 
 
-@onready var mask_transform: RemoteTransform2D = $MaskTransform
-
 @export var character: Character:
 	set(new_value):
 		character = new_value

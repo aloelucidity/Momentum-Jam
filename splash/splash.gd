@@ -20,12 +20,13 @@ func _ready() -> void:
 	
 	luci.show()
 	luci_player.play("splash")
+	Music.intro_jingle.play()
 	await luci_player.animation_finished
-	luci.hide()
+	#luci.hide()
 	
-	kinetiball.show()
-	kinetiplayer.play("splash")
-	await kinetiplayer.animation_finished
+	#kinetiball.show()
+	#kinetiplayer.play("splash")
+	#await kinetiplayer.animation_finished
 	
 	Globals.is_splash = false
 	Transitions.change_scene("res://level/level_scenes/tutorial.tscn", null, 0)
